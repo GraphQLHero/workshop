@@ -102,36 +102,43 @@ const tatooine = {
   id: 1,
   name: 'Tatooine',
   diameter: 10465,
+  climate: 'ARID',
 };
 const yavin = {
   id: 2,
   name: 'Yavin IV',
   diameter: 10200,
+  climate: 'TEMPERATE',
 };
 const corellia = {
   id: 3,
   name: 'Corellia',
   diameter: 11000,
+  climate: 'TEMPERATE',
 };
 const alderaan = {
   id: 4,
   name: 'Alderaan',
   diameter: 12500,
+  climate: 'TEMPERATE',
 };
 const hoth = {
   id: 5,
   name: 'Hoth',
   diameter: 7200,
+  climate: 'FROZEN',
 };
 const naboo = {
   id: 6,
   name: 'Naboo',
   diameter: 12120,
+  climate: 'TEMPERATE',
 };
 const dagobah = {
   id: 7,
   name: 'Dagobah',
   diameter: 8900,
+  climate: 'MURKY',
 };
 
 export default async (supabase) => {

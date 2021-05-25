@@ -52,6 +52,17 @@ app.use(
           id
           name
         }
+        planets {
+          name
+          climate
+          landscapes
+        }
+        films {
+          title
+          featuredPlanets {
+            name
+          }
+        }
       }
       `,
     },
