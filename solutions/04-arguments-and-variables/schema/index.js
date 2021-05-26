@@ -24,15 +24,18 @@ const queryType = new GraphQLObjectType({
       args: {
         orderBy: {
           type: HumanOrder,
-          defaultValue: {field: "name", direction: 'ASC'}
+          defaultValue: { field: 'name', direction: 'ASC' },
         },
         gender: {
           type: HumanGender,
-        }
+        },
       },
       resolve: async (_, { orderBy, gender }, { supabase }) => {
-        const query = supabase.from('human').select('*').order(orderBy.field, { ascending: orderBy.direction === "ASC" });
-        
+        const query = supabase
+          .from('human')
+          .select('*')
+          .order(orderBy.field, { ascending: orderBy.direction === 'ASC' });
+
         if (gender) {
           query.filter('gender', 'eq', gender);
         }
@@ -45,14 +48,14 @@ const queryType = new GraphQLObjectType({
       type: new GraphQLList(planetType),
       args: {
         diameter: {
-          type: DiameterFilter
-        } 
+          type: DiameterFilter,
+        },
       },
       resolve: async (_, { diameter }, { supabase }) => {
         const query = supabase.from('planet').select('*');
 
         if (diameter !== null) {
-          const {min, max } = diameter;
+          const { min, max } = diameter;
           query.gte('diameter', min).lte('diameter', max);
         }
 
@@ -67,11 +70,14 @@ const queryType = new GraphQLObjectType({
       type: new GraphQLList(filmType),
       args: {
         saga: {
-          type: StarWarsSaga
-        }
+          type: StarWarsSaga,
+        },
       },
       resolve: async (_, { saga }, { supabase }) => {
-        const { data } = await supabase.from('film').select('*').filter('saga', 'eq', saga);
+        const { data } = await supabase
+          .from('film')
+          .select('*')
+          .filter('saga', 'eq', saga);
         return data;
       },
     },

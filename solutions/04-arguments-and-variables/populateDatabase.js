@@ -58,7 +58,7 @@ const newHope = {
   episode_number: 4,
   poster_url: 'https://graphqlhero.com/Episode_IV.jpg',
   release_date: '1977-05-25',
-  saga: "ORIGINAL_TRILOGY",
+  saga: 'ORIGINAL_TRILOGY',
 };
 const empireStikesBack = {
   id: 2,
@@ -66,7 +66,7 @@ const empireStikesBack = {
   episode_number: 5,
   poster_url: 'https://graphqlhero.com/Episode_V.jpg',
   release_date: '1980-05-17',
-  saga: "ORIGINAL_TRILOGY",
+  saga: 'ORIGINAL_TRILOGY',
 };
 const returnOfTheJedi = {
   id: 3,
@@ -74,7 +74,7 @@ const returnOfTheJedi = {
   episode_number: 6,
   poster_url: 'https://graphqlhero.com/Episode_VI.jpg',
   release_date: '1983-05-25',
-  saga: "ORIGINAL_TRILOGY",
+  saga: 'ORIGINAL_TRILOGY',
 };
 const revengeOfTheSith = {
   id: 4,
@@ -82,7 +82,7 @@ const revengeOfTheSith = {
   episode_number: 3,
   poster_url: 'https://graphqlhero.com/Episode_III.png',
   release_date: '2005-05-19',
-  saga: "PREQUEL_TRILOGY",
+  saga: 'PREQUEL_TRILOGY',
 };
 const theForceAwakens = {
   id: 5,
@@ -90,7 +90,7 @@ const theForceAwakens = {
   poster_url: 'https://graphqlhero.com/Episode_VII.jpg',
   episode_number: 7,
   release_date: '2015-12-11',
-  saga: "SEQUEL_TRILOGY",
+  saga: 'SEQUEL_TRILOGY',
 };
 const thePhantomMenace = {
   id: 6,
@@ -98,7 +98,7 @@ const thePhantomMenace = {
   episode_number: 1,
   poster_url: 'https://graphqlhero.com/Episode_I.png',
   release_date: '1999-05-19',
-  saga: "PREQUEL_TRILOGY",
+  saga: 'PREQUEL_TRILOGY',
 };
 const attackOfTheClones = {
   id: 7,
@@ -106,7 +106,7 @@ const attackOfTheClones = {
   episode_number: 2,
   poster_url: 'https://graphqlhero.com/Episode_II.jpg',
   release_date: '2002-05-16',
-  saga: "PREQUEL_TRILOGY",
+  saga: 'PREQUEL_TRILOGY',
 };
 const tatooine = {
   id: 1,
@@ -154,16 +154,16 @@ const dagobah = {
 const millenniumFalcon = {
   id: 1,
   name: 'Millennium Falcon',
-  model: "YT-1300 light freighter",
-	manufacturer: "Corellian Engineering Corporation",
-}
+  model: 'YT-1300 light freighter',
+  manufacturer: 'Corellian Engineering Corporation',
+};
 
 const yWing = {
   id: 2,
-  name: "Y-wing",
-	"model": "BTL Y-wing",
-	"manufacturer": "Koensayr Manufacturing",
-}
+  name: 'Y-wing',
+  model: 'BTL Y-wing',
+  manufacturer: 'Koensayr Manufacturing',
+};
 
 export default async (supabase) => {
   await supabase.from('human').upsert([lukeSkywalker, leiaOrgana, hanSolo]);
@@ -188,30 +188,24 @@ export default async (supabase) => {
     .from('planet')
     .upsert([tatooine, yavin, corellia, alderaan, hoth, naboo, dagobah]);
 
-  await supabase
-    .from('starship')
-    .upsert([millenniumFalcon, yWing]);
-  
-    await supabase
-    .from('planet_featured_in_film')
-      .upsert([
-        { planet_id: 1, film_id: 1 },
-        { planet_id: 1, film_id: 2 },
-        { planet_id: 1, film_id: 3 },
-        { planet_id: 1, film_id: 4 },
-        { planet_id: 2, film_id: 1 },
-        { planet_id: 3, film_id: 1 },
-        { planet_id: 4, film_id: 1 },
-      ]);
+  await supabase.from('starship').upsert([millenniumFalcon, yWing]);
 
-      await supabase
-      .from('starship_pilots')
-        .upsert([
-          { starship_id: 1, pilot_id: 1 },
-          { starship_id: 1, pilot_id: 2 },
-          { starship_id: 1, pilot_id: 3 },
-          { starship_id: 2, pilot_id: 1 },
-        ]);
+  await supabase.from('planet_featured_in_film').upsert([
+    { planet_id: 1, film_id: 1 },
+    { planet_id: 1, film_id: 2 },
+    { planet_id: 1, film_id: 3 },
+    { planet_id: 1, film_id: 4 },
+    { planet_id: 2, film_id: 1 },
+    { planet_id: 3, film_id: 1 },
+    { planet_id: 4, film_id: 1 },
+  ]);
+
+  await supabase.from('starship_pilots').upsert([
+    { starship_id: 1, pilot_id: 1 },
+    { starship_id: 1, pilot_id: 2 },
+    { starship_id: 1, pilot_id: 3 },
+    { starship_id: 2, pilot_id: 1 },
+  ]);
 
   console.log('Database populated !\n');
 };

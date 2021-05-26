@@ -27,7 +27,15 @@ export default new GraphQLObjectType({
     landscapes: {
       type: new GraphQLList(planetLandscape),
       resolve: () => {
-        return ['DESERT', 'GRASSLANDS', 'FORESTS', 'JUNGLE', 'LAKES', 'TUNDRA', 'MOUNTAINS']
+        return [
+          'DESERT',
+          'GRASSLANDS',
+          'FORESTS',
+          'JUNGLE',
+          'LAKES',
+          'TUNDRA',
+          'MOUNTAINS',
+        ]
           .sort(() => 0.5 - Math.random())
           .slice(0, 2);
       },

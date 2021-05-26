@@ -1,8 +1,5 @@
 import graphql from 'graphql';
-const {
-    GraphQLInputObjectType,
-    GraphQLInt,
-} = graphql;
+const { GraphQLInputObjectType, GraphQLInt } = graphql;
 
 export default new GraphQLInputObjectType({
   name: 'DiameterFilter',
@@ -12,6 +9,6 @@ export default new GraphQLInputObjectType({
     },
     max: {
       type: GraphQLInt,
-    }
+    },
   },
 });

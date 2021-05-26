@@ -1,7 +1,15 @@
 import graphql from 'graphql';
 import humanGender from '../enums/HumanGender.js';
 import starshipType from './Starship.js';
-const { GraphQLObjectType, GraphQLList, GraphQLBoolean, GraphQLFloat, GraphQLInt, GraphQLID, GraphQLString } = graphql;
+const {
+  GraphQLObjectType,
+  GraphQLList,
+  GraphQLBoolean,
+  GraphQLFloat,
+  GraphQLInt,
+  GraphQLID,
+  GraphQLString,
+} = graphql;
 
 export default new GraphQLObjectType({
   name: 'Human',
@@ -36,8 +44,8 @@ export default new GraphQLObjectType({
           .from('starship_pilots')
           .select('starship_id(*)')
           .filter('pilot_id', 'eq', obj.id);
-        return data.map(o => o.starship_id);
+        return data.map((o) => o.starship_id);
+      },
     },
-  },
   },
 });
