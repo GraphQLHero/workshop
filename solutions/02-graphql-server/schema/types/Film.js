@@ -38,12 +38,12 @@ export default new GraphQLObjectType({
     },
     featuredPlanets: {
       type: new GraphQLList(planetType),
-      resolve: async (obj, args, { supabase }) => {
+      resolve: async (film, args, { supabase }) => {
         const { data } = await supabase
-          .from('planet')
-          .select('*')
-          .in('id', ['1', '2', '3']);
-        return data;
+          .from('planet_featured_in_film')
+          .select('planet_id(*)')
+          .filter('film_id', 'eq', film.id);
+        return data.map(o => o.planet_id);
       },
     },
   },

@@ -63,6 +63,16 @@ create table planet (
   climate text,
   diameter bigint
 );
+
+drop table if exists planet_featured_in_film;
+create table planet_featured_in_film(
+  planet_id bigint,
+  film_id bigint,
+  -- Constraints:
+  primary key (planet_id, film_id),
+  foreign key (planet_id) references planet(id),
+  foreign key (film_id) references film(id)
+);
 ```
 
 ### 3. Get the URL and Key

@@ -164,5 +164,18 @@ export default async (supabase) => {
     .from('planet')
     .upsert([tatooine, yavin, corellia, alderaan, hoth, naboo, dagobah]);
 
+  await supabase
+    .from('planet_featured_in_film')
+      .upsert([
+        { planet_id: 1, film_id: 1 },
+        { planet_id: 1, film_id: 2 },
+        { planet_id: 1, film_id: 3 },
+        { planet_id: 1, film_id: 4 },
+        { planet_id: 2, film_id: 1 },
+        { planet_id: 3, film_id: 1 },
+        { planet_id: 4, film_id: 1 },
+      ]);
+
+  
   console.log('Database populated !\n');
 };
