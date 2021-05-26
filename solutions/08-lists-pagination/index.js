@@ -3,6 +3,7 @@ import expressGraphQL from 'express-graphql';
 import graphqlM from 'graphql';
 import graphqlRelay from 'graphql-relay';
 import supabaseJS from '@supabase/supabase-js';
+import populateDatabase from './populateDatabase.js';
 
 const {
   GraphQLInt,
@@ -22,65 +23,12 @@ const {
   connectionFromArraySlice,
 } = graphqlRelay;
 
-// Our objects fetched from our database
-const lukeSkywalker = {
-  id: 1,
-  name: 'Luke Skywalker',
-};
-const leiaOrgana = {
-  id: 2,
-  name: 'Leia Organa',
-};
-const darthVader = {
-  id: 3,
-  name: 'Anakin Skywalker',
-};
-const r2d2 = {
-  id: 4,
-  name: 'R2-D2',
-};
-const c3po = {
-  id: 5,
-  name: 'C-3PO',
-};
-const chewbacca = {
-  id: 6,
-  name: 'Chewbacca',
-};
-const obiWan = {
-  id: 7,
-  name: 'Obi-Wan Kenobi',
-};
-const hanSolo = {
-  id: 8,
-  name: 'Han Solo',
-};
-const palpatine = {
-  id: 9,
-  name: 'Palpatine',
-};
-
 // We put objects in our database
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 const { createClient } = supabaseJS;
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-const characters = [
-  lukeSkywalker,
-  leiaOrgana,
-  darthVader,
-  r2d2,
-  c3po,
-  chewbacca,
-  obiWan,
-  hanSolo,
-  palpatine,
-];
-const { error } = await supabase.from('characters').upsert(characters);
-if (error) {
-  console.error(error);
-}
+await populateDatabase(supabase);
 
 /**
  *  type Character {

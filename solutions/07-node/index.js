@@ -3,6 +3,7 @@ import expressGraphQL from 'express-graphql';
 import graphqlM from 'graphql';
 import graphqlRelay from 'graphql-relay';
 import supabaseJS from '@supabase/supabase-js';
+import populateDatabase from './populateDatabase.js';
 
 const {
   graphql,
@@ -24,36 +25,7 @@ const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 const { createClient } = supabaseJS;
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-const lukeSkywalker = {
-  id: 1,
-  name: 'Luke Skywalker',
-};
-const leiaOrgana = {
-  id: 2,
-  name: 'Leia Organa',
-};
-const newHope = {
-  id: 1,
-  title: 'A New Hope',
-};
-const empireStikesBack = {
-  id: 2,
-  title: 'The Empire Strikes Back',
-};
-
-const { data: newHumans } = await supabase
-  .from('human')
-  .upsert([lukeSkywalker, leiaOrgana]);
-console.log('Inserted humans :\n');
-console.log(newHumans);
-const testId = newHumans[0]['id'];
-
-const { data: newFilms } = await supabase
-  .from('film')
-  .upsert([newHope, empireStikesBack]);
-console.log('Inserted films :\n');
-console.log(newFilms);
+await populateDatabase(supabase);
 
 /**
  * We get the node interface and field from the relay library.
@@ -149,6 +121,7 @@ const schema = new GraphQLSchema({
 console.log('Dumping GraphQL schema :\n');
 console.log(printSchema(schema));
 
+const testId = 1;
 const query = `{
   node(id: "${toGlobalId('Human', testId)}") {
     id

@@ -141,6 +141,20 @@ const dagobah = {
   climate: 'MURKY',
 };
 
+const millenniumFalcon = {
+  id: 1,
+  name: 'Millennium Falcon',
+  model: "YT-1300 light freighter",
+	manufacturer: "Corellian Engineering Corporation",
+}
+
+const yWing = {
+  id: 2,
+  name: "Y-wing",
+	"model": "BTL Y-wing",
+	"manufacturer": "Koensayr Manufacturing",
+}
+
 export default async (supabase) => {
   await supabase.from('human').upsert([lukeSkywalker, leiaOrgana, hanSolo]);
 
@@ -165,6 +179,10 @@ export default async (supabase) => {
     .upsert([tatooine, yavin, corellia, alderaan, hoth, naboo, dagobah]);
 
   await supabase
+    .from('starship')
+    .upsert([millenniumFalcon, yWing]);
+  
+    await supabase
     .from('planet_featured_in_film')
       .upsert([
         { planet_id: 1, film_id: 1 },
@@ -176,6 +194,14 @@ export default async (supabase) => {
         { planet_id: 4, film_id: 1 },
       ]);
 
-  
+      await supabase
+      .from('starship_pilots')
+        .upsert([
+          { starship_id: 1, pilot_id: 1 },
+          { starship_id: 1, pilot_id: 2 },
+          { starship_id: 1, pilot_id: 3 },
+          { starship_id: 2, pilot_id: 1 },
+        ]);
+
   console.log('Database populated !\n');
 };
