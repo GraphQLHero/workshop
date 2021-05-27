@@ -54,14 +54,14 @@ const { nodeInterface, nodeField, nodesField } = nodeDefinitions(
           .single();
         if (!film) return null;
         return { ...film, __typename: 'Film' };
-        case 'Planet':
-          const { data: planet } = await supabase
-            .from('planet')
-            .select('*')
-            .eq('id', id)
-            .single();
-          if (!planet) return null;
-          return { ...planet, __typename: 'Planet' };
+      case 'Planet':
+        const { data: planet } = await supabase
+          .from('planet')
+          .select('*')
+          .eq('id', id)
+          .single();
+        if (!planet) return null;
+        return { ...planet, __typename: 'Planet' };
     }
   },
   (obj) => {
@@ -70,8 +70,8 @@ const { nodeInterface, nodeField, nodesField } = nodeDefinitions(
         return humanType;
       case 'Film':
         return filmType;
-        case 'Planet':
-          return planetType;
+      case 'Planet':
+        return planetType;
     }
   }
 );
@@ -116,7 +116,7 @@ const filmType = new GraphQLObjectType({
  *    name: String!
  *  }
  */
- const planetType = new GraphQLObjectType({
+const planetType = new GraphQLObjectType({
   name: 'Planet',
   interfaces: [nodeInterface],
   fields: {
@@ -141,10 +141,7 @@ const queryType = new GraphQLObjectType({
     films: {
       type: new GraphQLList(filmType),
       resolve: async (_, args, { supabase }) => {
-        const { data } = await supabase
-          .from('film')
-          .select('*')
-        ;
+        const { data } = await supabase.from('film').select('*');
         return data;
       },
     },

@@ -102,7 +102,7 @@ app.use(
   graphqlHTTP({
     schema,
     graphiql: {
-      defaultQuery:  `{
+      defaultQuery: `{
         characters(first: 3, after: "${offsetToCursor(3)}") {
           totalCount
           edges {

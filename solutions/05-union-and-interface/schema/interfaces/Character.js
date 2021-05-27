@@ -5,7 +5,7 @@ import droidType from '../types/Droid.js';
 import Likable, { likableFields } from './Likable.js';
 
 const {
-GraphQLInterfaceType,
+  GraphQLInterfaceType,
   GraphQLList,
   GraphQLID,
   GraphQLString,
@@ -20,23 +20,23 @@ export const resolveType = (obj) => {
     return droidType;
   }
   return wookieType;
-}
+};
 
 const characterInterface = new GraphQLInterfaceType({
   name: 'Character',
   resolveType,
   interfaces: [Likable],
   fields: () => ({
-      id: {
-        type: GraphQLID,
-      },
-      name: {
-        type: new GraphQLNonNull(GraphQLString),
-      },
-      friends: {
-        type: new GraphQLList(characterInterface),
-      },
-      ...likableFields,
+    id: {
+      type: GraphQLID,
+    },
+    name: {
+      type: new GraphQLNonNull(GraphQLString),
+    },
+    friends: {
+      type: new GraphQLList(characterInterface),
+    },
+    ...likableFields,
   }),
 });
 

@@ -12,7 +12,7 @@ const {
 
 export default new GraphQLObjectType({
   name: 'Planet',
-  interfaces: () => ([Likable]),
+  interfaces: () => [Likable],
   fields: () => ({
     id: {
       type: GraphQLID,

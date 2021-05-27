@@ -1,7 +1,7 @@
 import graphql from 'graphql';
 import humanGender from '../enums/HumanGender.js';
 import Character from '../interfaces/Character.js';
-import Likable, {likableFields} from '../interfaces/Likable.js';
+import Likable, { likableFields } from '../interfaces/Likable.js';
 import starshipType from './Starship.js';
 import characterFriendsResolver from '../../resolvers/characterFriendsResolver.js';
 
@@ -18,7 +18,7 @@ const {
 
 export default new GraphQLObjectType({
   name: 'Human',
-  interfaces: () => ([Character, Likable]),
+  interfaces: () => [Character, Likable],
   fields: () => ({
     id: {
       type: GraphQLID,

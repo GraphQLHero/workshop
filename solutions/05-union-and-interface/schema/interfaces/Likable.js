@@ -5,27 +5,23 @@ import droidType from '../types/Droid.js';
 import planetType from '../types/Planet.js';
 import filmType from '../types/Film.js';
 
-const {
-  GraphQLInterfaceType,
-  GraphQLInt,
-  GraphQLBoolean,
-} = graphql;
+const { GraphQLInterfaceType, GraphQLInt, GraphQLBoolean } = graphql;
 
 export const likableFields = {
-    likesCount: {
-      type: GraphQLInt,
-      resolve: (obj) => (obj.likes_count)
-    },
-    viewerHasLiked: {
-      type: GraphQLBoolean,
-      resolve: (obj, args, { viewer }) => {
-          if (viewer) {
-              return true;
-          }
-          return false;
+  likesCount: {
+    type: GraphQLInt,
+    resolve: (obj) => obj.likes_count,
+  },
+  viewerHasLiked: {
+    type: GraphQLBoolean,
+    resolve: (obj, args, { viewer }) => {
+      if (viewer) {
+        return true;
       }
+      return false;
     },
-}
+  },
+};
 
 export default new GraphQLInterfaceType({
   name: 'Likable',
@@ -43,6 +39,6 @@ export default new GraphQLInterfaceType({
       return droidType;
     }
     return wookieType;
-},
-  fields: () => (likableFields),
+  },
+  fields: () => likableFields,
 });

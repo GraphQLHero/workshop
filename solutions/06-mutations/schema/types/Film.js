@@ -11,7 +11,7 @@ const {
 
 export default new GraphQLObjectType({
   name: 'Film',
-  interfaces: () => ([Likable]),
+  interfaces: () => [Likable],
   fields: () => ({
     id: {
       type: GraphQLID,
