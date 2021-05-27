@@ -2,6 +2,8 @@ import graphql from 'graphql';
 import humanGender from '../enums/HumanGender.js';
 import characterInterface from '../interfaces/Character.js';
 import starshipType from './Starship.js';
+import characterFriendsResolver from '../../resolvers/characterFriendsResolver.js';
+
 const {
   GraphQLObjectType,
   GraphQLList,
@@ -14,8 +16,8 @@ const {
 
 export default new GraphQLObjectType({
   name: 'Human',
-  interfaces: [characterInterface],
-  fields: {
+  interfaces: () => ([characterInterface]),
+  fields: () => ({
     id: {
       type: GraphQLID,
     },
@@ -49,5 +51,9 @@ export default new GraphQLObjectType({
         return data.map((o) => o.starship_id);
       },
     },
-  },
+    friends: {
+      type: new GraphQLList(characterInterface),
+      resolve: characterFriendsResolver,
+    },
+  }),
 });

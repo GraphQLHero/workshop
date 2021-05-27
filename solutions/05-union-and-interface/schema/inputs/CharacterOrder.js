@@ -1,6 +1,6 @@
 import graphql from 'graphql';
 import OrderDirection from '../enums/OrderDirection.js';
-import HumanOrderField from '../enums/HumanOrderField.js';
+import CharacterOrderField from '../enums/CharacterOrderField.js';
 const { GraphQLInputObjectType } = graphql;
 
 export default new GraphQLInputObjectType({
@@ -10,7 +10,7 @@ export default new GraphQLInputObjectType({
       type: OrderDirection,
     },
     field: {
-      type: HumanOrderField,
+      type: CharacterOrderField,
     },
   },
 });

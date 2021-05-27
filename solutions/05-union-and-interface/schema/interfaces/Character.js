@@ -1,4 +1,8 @@
 import graphql from 'graphql';
+import humanType from '../types/Human.js';
+import wookieType from '../types/Wookie.js';
+import droidType from '../types/Droid.js';
+
 const {
 GraphQLInterfaceType,
   GraphQLList,
@@ -8,6 +12,15 @@ GraphQLInterfaceType,
 
 const characterInterface = new GraphQLInterfaceType({
   name: 'Character',
+  resolveType: (obj) => {
+      if (obj.gender) {
+        return humanType;
+      }
+      if (obj.model) {
+        return droidType;
+      }
+      return wookieType;
+  },
   fields: () => ({
       id: {
         type: GraphQLID,
@@ -15,16 +28,9 @@ const characterInterface = new GraphQLInterfaceType({
       name: {
         type: GraphQLString,
       },
-      // friends: {
-      //   type: new GraphQLList(characterInterface),
-      //   resolve: async (obj, args, { supabase }) => {
-      //   //   const { data } = await supabase
-      //   //     .from('starship_pilots')
-      //   //     .select('starship_id(*)')
-      //   //     .filter('pilot_id', 'eq', obj.id);
-      //   //   return data.map((o) => o.starship_id);
-      //   },
-      // },
+      friends: {
+        type: new GraphQLList(characterInterface),
+      },
   }),
 });
 

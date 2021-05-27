@@ -216,7 +216,6 @@ export default async (supabase) => {
     { id: 6, human_id: null, droid_id: null, wookie_id: 1 },
   ]);
 
-
 await supabase.from('character_friends').upsert([
     { character_id: 1, friend_id: 2 },
     { character_id: 1, friend_id: 4 },

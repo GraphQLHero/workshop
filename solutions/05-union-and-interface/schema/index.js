@@ -6,7 +6,7 @@ import droidType from './types/Droid.js';
 import wookieType from './types/Wookie.js';
 import planetType from './types/Planet.js';
 import filmType from './types/Film.js';
-import HumanOrder from './inputs/HumanOrder.js';
+import CharacterOrder from './inputs/CharacterOrder.js';
 import DiameterFilter from './inputs/DiameterFilter.js';
 import StarWarsSaga from './enums/StarWarsSaga.js';
 
@@ -23,24 +23,23 @@ const queryType = new GraphQLObjectType({
     },
     characters: {
       type: new GraphQLList(characterInterface),
-      // args: {
-      //   orderBy: {
-      //     type: HumanOrder,
-      //     defaultValue: { field: 'name', direction: 'ASC' },
-      //   },
-      // },
-      resolve: async (_, { orderBy, gender }, { supabase }) => {
+      args: {
+        orderBy: {
+          type: CharacterOrder,
+          defaultValue: { field: 'id', direction: 'DESC' },
+        },
+      },
+      resolve: async (_, { orderBy }, { supabase }) => {
         const query = supabase
           .from('character')
           .select('human_id(*),droid_id(*),wookie_id(*)')
-          // .order(orderBy.field, { ascending: orderBy.direction === 'ASC' })
+          .order(orderBy.field, { ascending: orderBy.direction === 'ASC' })
           ;
 
-        // if (gender) {
-        //   query.filter('gender', 'eq', gender);
-        // }
-
-        const { data } = await query;
+        const { data, error } = await query;
+        if (error) {
+          console.error(error);
+        }
 
         return data.map(character => {
           if (character.human_id) {
@@ -87,6 +86,7 @@ const queryType = new GraphQLObjectType({
           .from('film')
           .select('*')
           .filter('saga', 'eq', saga);
+        
         return data;
       },
     },

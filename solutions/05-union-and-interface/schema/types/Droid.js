@@ -1,17 +1,19 @@
 import graphql from 'graphql';
 import characterInterface from '../interfaces/Character.js';
+import characterFriendsResolver from '../../resolvers/characterFriendsResolver.js';
 const {
     GraphQLObjectType,
     GraphQLID,
     GraphQLString,
     GraphQLInt,
     GraphQLFloat,
+    GraphQLList,
   } = graphql;
 
 export default new GraphQLObjectType({
     name: 'Droid',
-    interfaces: [characterInterface],
-    fields: {
+    interfaces: () => ([characterInterface]),
+    fields: () => ({
       id: {
         type: GraphQLID,
       },
@@ -27,5 +29,9 @@ export default new GraphQLObjectType({
       model: {
         type: GraphQLString,
       },
-    },
+      friends: {
+        type: new GraphQLList(characterInterface),
+        resolve: characterFriendsResolver,
+      },
+    }),
   });
