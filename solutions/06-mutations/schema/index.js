@@ -9,9 +9,8 @@ import filmType from './types/Film.js';
 import CharacterOrder from './inputs/CharacterOrder.js';
 import DiameterFilter from './inputs/DiameterFilter.js';
 import StarWarsSaga from './enums/StarWarsSaga.js';
-import SearchResultItem from './unions/SearchResultItem.js';
 
-const { GraphQLObjectType, GraphQLNonNull, GraphQLString, GraphQLList, GraphQLSchema } = graphqlM;
+const { GraphQLObjectType, GraphQLList, GraphQLSchema } = graphqlM;
 
 const queryType = new GraphQLObjectType({
   name: 'Query',
@@ -20,32 +19,6 @@ const queryType = new GraphQLObjectType({
       type: viewerType,
       resolve: (obj, args, { viewer }) => {
         return viewer;
-      },
-    },
-    search: {
-      type: new GraphQLNonNull(new GraphQLList(SearchResultItem)),
-      args: {
-        query: {
-          type: new GraphQLNonNull(GraphQLString),
-        },
-      },
-      resolve: async (_, {query}, { supabase }) => {
-        const { data: humans } = await supabase
-        .from('human')
-        .select('*')
-        .textSearch('name', query, { type: 'websearch', config: 'english' });
-
-        const { data: planets } = await supabase
-        .from('planet')
-        .select('*')
-        .textSearch('name', query, { type: 'websearch', config: 'english' });
-
-        const { data: films } = await supabase
-        .from('film')
-        .select('*')
-        .textSearch('title', query, { type: 'websearch', config: 'english' });
-
-        return [...humans, ...planets, ...films];
       },
     },
     characters: {
@@ -63,8 +36,23 @@ const queryType = new GraphQLObjectType({
           .order(orderBy.field, { ascending: orderBy.direction === 'ASC' })
           ;
 
-        const { data } = await query;
-        return data.map(o => o.human_id || o.droid_id || o.wookie_id);;
+        const { data, error } = await query;
+        if (error) {
+          console.error(error);
+        }
+
+        return data.map(character => {
+          if (character.human_id) {
+            return {...character.human_id, __typename: 'Human'};
+          }
+          if (character.droid_id) {
+            return {...character.droid_id, __typename: 'Droid'};
+          }
+          if (character.wookie_id) {
+            return {...character.wookie_id, __typename: 'Wookie'};
+          }
+          return null;
+        });
       },
     },
     planets: {

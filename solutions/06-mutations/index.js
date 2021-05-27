@@ -63,18 +63,8 @@ app.use(
             }
           }
         }
-          search(query: "Tatooine") {
-            ... on Human {
-              name
-            }
-            ... on Film {
-              title
-            }
-            ... on Planet {
-              name
-            }
-          }
       }
+      
       `,
     },
   }))
