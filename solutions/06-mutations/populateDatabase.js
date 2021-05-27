@@ -7,6 +7,7 @@ const lukeSkywalker = {
   mass: 77.1,
   is_jedi: true,
   gender: 'MALE',
+  likes_count: 0,
 };
 const leiaOrgana = {
   id: 2,
@@ -17,6 +18,7 @@ const leiaOrgana = {
   mass: 49.3,
   is_jedi: false,
   gender: 'FEMALE',
+  likes_count: 0,
 };
 
 const hanSolo = {
@@ -28,6 +30,7 @@ const hanSolo = {
   mass: 80.0,
   is_jedi: false,
   gender: 'MALE',
+  likes_count: 0,
 };
 
 const r2d2 = {
@@ -36,6 +39,7 @@ const r2d2 = {
   height: 96,
   mass: 32.0,
   model: 'Série R2',
+  likes_count: 0,
 };
 const c3po = {
   id: 2,
@@ -43,6 +47,7 @@ const c3po = {
   height: 167,
   mass: 75.0,
   model: '',
+  likes_count: 0,
 };
 
 const chewbacca = {
@@ -51,6 +56,7 @@ const chewbacca = {
   hair_color: 'Brown',
   height: 228,
   mass: 112,
+  likes_count: 0,
 };
 const newHope = {
   id: 1,
@@ -59,6 +65,7 @@ const newHope = {
   poster_url: 'https://graphqlhero.com/Episode_IV.jpg',
   release_date: '1977-05-25',
   saga: 'ORIGINAL_TRILOGY',
+  likes_count: 0,
 };
 const empireStikesBack = {
   id: 2,
@@ -67,6 +74,7 @@ const empireStikesBack = {
   poster_url: 'https://graphqlhero.com/Episode_V.jpg',
   release_date: '1980-05-17',
   saga: 'ORIGINAL_TRILOGY',
+  likes_count: 0,
 };
 const returnOfTheJedi = {
   id: 3,
@@ -75,6 +83,7 @@ const returnOfTheJedi = {
   poster_url: 'https://graphqlhero.com/Episode_VI.jpg',
   release_date: '1983-05-25',
   saga: 'ORIGINAL_TRILOGY',
+  likes_count: 0,
 };
 const revengeOfTheSith = {
   id: 4,
@@ -83,6 +92,7 @@ const revengeOfTheSith = {
   poster_url: 'https://graphqlhero.com/Episode_III.png',
   release_date: '2005-05-19',
   saga: 'PREQUEL_TRILOGY',
+  likes_count: 0,
 };
 const theForceAwakens = {
   id: 5,
@@ -91,6 +101,7 @@ const theForceAwakens = {
   episode_number: 7,
   release_date: '2015-12-11',
   saga: 'SEQUEL_TRILOGY',
+  likes_count: 0,
 };
 const thePhantomMenace = {
   id: 6,
@@ -99,6 +110,7 @@ const thePhantomMenace = {
   poster_url: 'https://graphqlhero.com/Episode_I.png',
   release_date: '1999-05-19',
   saga: 'PREQUEL_TRILOGY',
+  likes_count: 0,
 };
 const attackOfTheClones = {
   id: 7,
@@ -107,48 +119,56 @@ const attackOfTheClones = {
   poster_url: 'https://graphqlhero.com/Episode_II.jpg',
   release_date: '2002-05-16',
   saga: 'PREQUEL_TRILOGY',
+  likes_count: 0,
 };
 const tatooine = {
   id: 1,
   name: 'Tatooine',
   diameter: 10465,
   climate: 'ARID',
+  likes_count: 0,
 };
 const yavin = {
   id: 2,
   name: 'Yavin IV',
   diameter: 10200,
   climate: 'TEMPERATE',
+  likes_count: 0,
 };
 const corellia = {
   id: 3,
   name: 'Corellia',
   diameter: 11000,
   climate: 'TEMPERATE',
+  likes_count: 0,
 };
 const alderaan = {
   id: 4,
   name: 'Alderaan',
   diameter: 12500,
   climate: 'TEMPERATE',
+  likes_count: 0,
 };
 const hoth = {
   id: 5,
   name: 'Hoth',
   diameter: 7200,
   climate: 'FROZEN',
+  likes_count: 0,
 };
 const naboo = {
   id: 6,
   name: 'Naboo',
   diameter: 12120,
   climate: 'TEMPERATE',
+  likes_count: 0,
 };
 const dagobah = {
   id: 7,
   name: 'Dagobah',
   diameter: 8900,
   climate: 'MURKY',
+  likes_count: 0,
 };
 
 const millenniumFalcon = {
@@ -156,6 +176,7 @@ const millenniumFalcon = {
   name: 'Millennium Falcon',
   model: 'YT-1300 light freighter',
   manufacturer: 'Corellian Engineering Corporation',
+  likes_count: 0,
 };
 
 const yWing = {
@@ -163,6 +184,7 @@ const yWing = {
   name: 'Y-wing',
   model: 'BTL Y-wing',
   manufacturer: 'Koensayr Manufacturing',
+  likes_count: 0,
 };
 
 export default async (supabase) => {

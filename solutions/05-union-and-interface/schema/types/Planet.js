@@ -1,6 +1,7 @@
 import graphql from 'graphql';
 import planetClimage from '../enums/PlanetClimate.js';
 import planetLandscape from '../enums/PlanetLandscape.js';
+import Likable, { likableFields } from '../interfaces/Likable.js';
 const {
   GraphQLObjectType,
   GraphQLList,
@@ -11,7 +12,8 @@ const {
 
 export default new GraphQLObjectType({
   name: 'Planet',
-  fields: {
+  interfaces: () => ([Likable]),
+  fields: () => ({
     id: {
       type: GraphQLID,
     },
@@ -40,5 +42,6 @@ export default new GraphQLObjectType({
           .slice(0, 2);
       },
     },
-  },
+    ...likableFields,
+  }),
 });

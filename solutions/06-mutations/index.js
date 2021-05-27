@@ -1,12 +1,13 @@
+import fs from 'fs';
 import session from 'express-session';
 import express from 'express';
 import expressGraphQL from 'express-graphql';
-import graphqlM from 'graphql';
+import graphql from 'graphql';
 import supabaseJS from '@supabase/supabase-js';
 import schema from './schema/index.js';
 import populateDatabase from './populateDatabase.js';
 
-const { printSchema } = graphqlM;
+const { printSchema } = graphql;
 
 // We put objects in our database
 const SUPABASE_URL = process.env.SUPABASE_URL;
@@ -15,8 +16,7 @@ const { createClient } = supabaseJS;
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 await populateDatabase(supabase);
 
-console.log('Dumping GraphQL schema :\n');
-console.log(printSchema(schema));
+fs.writeFileSync('schema.graphql', printSchema(schema));
 
 const { graphqlHTTP } = expressGraphQL;
 
@@ -51,6 +51,7 @@ app.use(
       {
         characters(orderBy: {field: CREATED_AT}) {
           name
+          likesCount
           ... on Human {
             starships {
               name
@@ -58,13 +59,24 @@ app.use(
           }
           friends {
             name
+            likesCount
             ... on Droid {
               model
             }
           }
         }
+          search(query: "Tatooine") {
+            ... on Human {
+              name
+            }
+            ... on Film {
+              title
+            }
+            ... on Planet {
+              name
+            }
+          }
       }
-      
       `,
     },
   }))

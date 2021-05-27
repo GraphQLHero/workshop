@@ -1,4 +1,5 @@
 import graphql from 'graphql';
+import Likable, { likableFields } from '../interfaces/Likable.js';
 import planetType from './Planet.js';
 const {
   GraphQLObjectType,
@@ -10,7 +11,8 @@ const {
 
 export default new GraphQLObjectType({
   name: 'Film',
-  fields: {
+  interfaces: () => ([Likable]),
+  fields: () => ({
     id: {
       type: GraphQLID,
     },
@@ -46,5 +48,6 @@ export default new GraphQLObjectType({
         return data.map((o) => o.planet_id);
       },
     },
-  },
+    ...likableFields,
+  }),
 });

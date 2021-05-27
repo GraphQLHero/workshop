@@ -1,12 +1,14 @@
 import graphql from 'graphql';
 import humanGender from '../enums/HumanGender.js';
-import characterInterface from '../interfaces/Character.js';
+import Character from '../interfaces/Character.js';
+import Likable, {likableFields} from '../interfaces/Likable.js';
 import starshipType from './Starship.js';
 import characterFriendsResolver from '../../resolvers/characterFriendsResolver.js';
 
 const {
   GraphQLObjectType,
   GraphQLList,
+  GraphQLNonNull,
   GraphQLBoolean,
   GraphQLFloat,
   GraphQLInt,
@@ -16,13 +18,13 @@ const {
 
 export default new GraphQLObjectType({
   name: 'Human',
-  interfaces: () => ([characterInterface]),
+  interfaces: () => ([Character, Likable]),
   fields: () => ({
     id: {
       type: GraphQLID,
     },
     name: {
-      type: GraphQLString,
+      type: new GraphQLNonNull(GraphQLString),
     },
     gender: {
       type: humanGender,
@@ -52,8 +54,9 @@ export default new GraphQLObjectType({
       },
     },
     friends: {
-      type: new GraphQLList(characterInterface),
+      type: new GraphQLList(Character),
       resolve: characterFriendsResolver,
     },
+    ...likableFields,
   }),
 });

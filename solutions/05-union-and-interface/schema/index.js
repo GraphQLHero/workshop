@@ -77,7 +77,7 @@ const queryType = new GraphQLObjectType({
       resolve: async (_, { diameter }, { supabase }) => {
         const query = supabase.from('planet').select('*');
 
-        if (diameter !== null) {
+        if (diameter) {
           const { min, max } = diameter;
           query.gte('diameter', min).lte('diameter', max);
         }

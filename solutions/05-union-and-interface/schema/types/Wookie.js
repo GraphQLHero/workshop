@@ -1,6 +1,7 @@
 import graphql from 'graphql';
-import characterInterface from '../interfaces/Character.js';
+import Character from '../interfaces/Character.js';
 import characterFriendsResolver from '../../resolvers/characterFriendsResolver.js';
+import Likable, { likableFields} from '../interfaces/Likable.js';
 
 const {
     GraphQLObjectType,
@@ -9,17 +10,18 @@ const {
     GraphQLInt,
     GraphQLFloat,
     GraphQLList,
+    GraphQLNonNull,
   } = graphql;
 
 export default new GraphQLObjectType({
     name: 'Wookie',
-    interfaces: () => ([characterInterface]),
+    interfaces: () => ([Character, Likable]),
     fields: () => ({
       id: {
         type: GraphQLID,
       },
       name: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
       },
       height: {
         type: GraphQLInt,
@@ -32,8 +34,9 @@ export default new GraphQLObjectType({
         resolve: (v) => v.hair_color,
       },
       friends: {
-        type: new GraphQLList(characterInterface),
+        type: new GraphQLList(Character),
         resolve: characterFriendsResolver,
       },
+      ...likableFields,
     }),
   });

@@ -1,3 +1,4 @@
+import fs from 'fs';
 import express from 'express';
 import expressGraphQL from 'express-graphql';
 import graphqlM from 'graphql';
@@ -12,7 +13,6 @@ const {
   GraphQLNonNull,
   GraphQLSchema,
   printSchema,
-  graphql,
 } = graphqlM;
 const {
   connectionDefinitions,
@@ -56,7 +56,7 @@ const { connectionType: characterConnection } = connectionDefinitions({
 
 /**
  *  type Query {
- *    humans: HumanConnection!
+ *    characters: CharacterConnection!
  *  }
  */
 const queryType = new GraphQLObjectType({
@@ -92,34 +92,9 @@ const queryType = new GraphQLObjectType({
 });
 
 const schema = new GraphQLSchema({ query: queryType });
-
-console.log('Dumping GraphQL schema :\n');
-console.log(printSchema(schema));
-
-const query = `{
-  characters(first: 3, after: "${offsetToCursor(3)}") {
-    totalCount
-    edges {
-      cursor
-      node {
-        name
-      }
-    }
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-  }
-}`;
-
-console.log('Executing a test query :\n', query, '\n');
-
-const result = await graphql(schema, query);
-console.log('\nExecution result :');
-console.log(JSON.stringify(result, null, true), '\n');
+fs.writeFileSync('schema.graphql', printSchema(schema));
 
 const { graphqlHTTP } = expressGraphQL;
-
 var app = express();
 
 app.use(
@@ -127,7 +102,21 @@ app.use(
   graphqlHTTP({
     schema,
     graphiql: {
-      defaultQuery: query,
+      defaultQuery:  `{
+        characters(first: 3, after: "${offsetToCursor(3)}") {
+          totalCount
+          edges {
+            cursor
+            node {
+              name
+            }
+          }
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+        }
+      }`,
     },
   })
 );

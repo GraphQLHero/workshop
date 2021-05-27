@@ -1,3 +1,4 @@
+import fs from 'fs';
 import express from 'express';
 import expressGraphQL from 'express-graphql';
 import graphqlM from 'graphql';
@@ -6,11 +7,11 @@ import supabaseJS from '@supabase/supabase-js';
 import populateDatabase from './populateDatabase.js';
 
 const {
-  graphql,
   GraphQLString,
   GraphQLObjectType,
   GraphQLNonNull,
   GraphQLSchema,
+  GraphQLList,
   printSchema,
 } = graphqlM;
 const {
@@ -38,21 +39,29 @@ const { nodeInterface, nodeField, nodesField } = nodeDefinitions(
     const { type, id } = fromGlobalId(globalId);
     switch (type) {
       case 'Human':
-        let { data: dataHumans } = await supabase
+        const { data: human } = await supabase
           .from('human')
           .select('*')
-          .eq('id', id);
-        if (!dataHumans || !dataHumans.length) return null;
-        const human = dataHumans[0];
+          .eq('id', id)
+          .single();
+        if (!human) return null;
         return { ...human, __typename: 'Human' };
       case 'Film':
-        let { data: dataFilms } = await supabase
+        const { data: film } = await supabase
           .from('film')
           .select('*')
-          .eq('id', id);
-        if (!dataFilms || !dataFilms.length) return null;
-        const film = dataFilms[0];
+          .eq('id', id)
+          .single();
+        if (!film) return null;
         return { ...film, __typename: 'Film' };
+        case 'Planet':
+          const { data: planet } = await supabase
+            .from('planet')
+            .select('*')
+            .eq('id', id)
+            .single();
+          if (!planet) return null;
+          return { ...planet, __typename: 'Planet' };
     }
   },
   (obj) => {
@@ -61,6 +70,8 @@ const { nodeInterface, nodeField, nodesField } = nodeDefinitions(
         return humanType;
       case 'Film':
         return filmType;
+        case 'Planet':
+          return planetType;
     }
   }
 );
@@ -100,6 +111,23 @@ const filmType = new GraphQLObjectType({
 });
 
 /**
+ *  type Planet implements Node {
+ *    id: ID!
+ *    name: String!
+ *  }
+ */
+ const planetType = new GraphQLObjectType({
+  name: 'Planet',
+  interfaces: [nodeInterface],
+  fields: {
+    id: globalIdField('Planet'),
+    name: {
+      type: new GraphQLNonNull(GraphQLString),
+    },
+  },
+});
+
+/**
  *  type Query {
  *    node(id: ID): Node
  *    nodes(ids: [ID!]!): [Node]!
@@ -110,43 +138,50 @@ const queryType = new GraphQLObjectType({
   fields: {
     node: nodeField,
     nodes: nodesField,
+    films: {
+      type: new GraphQLList(filmType),
+      resolve: async (_, args, { supabase }) => {
+        const { data } = await supabase
+          .from('film')
+          .select('*')
+        ;
+        return data;
+      },
+    },
+    planets: {
+      type: new GraphQLList(planetType),
+      resolve: async (_, args, { supabase }) => {
+        const { data } = await supabase.from('planet').select('*');
+        return data;
+      },
+    },
   },
 });
 
 const schema = new GraphQLSchema({
   query: queryType,
-  types: [humanType, filmType],
+  types: [humanType, filmType, planetType],
 });
 
-console.log('Dumping GraphQL schema :\n');
-console.log(printSchema(schema));
-
-const testId = 1;
-const query = `{
-  node(id: "${toGlobalId('Human', testId)}") {
-    id
-    ... on Human {
-      name
-    }
-  }
-}`;
-
-console.log('Executing a test query :\n', query, '\n');
-
-const result = await graphql(schema, query);
-console.log('\nExecution result :');
-console.log(JSON.stringify(result, null, true), '\n');
+fs.writeFileSync('schema.graphql', printSchema(schema));
 
 const { graphqlHTTP } = expressGraphQL;
-
 var app = express();
 
 app.use(
   '/graphql',
   graphqlHTTP((req) => ({
     schema,
+    context: { supabase },
     graphiql: {
-      defaultQuery: query,
+      defaultQuery: `{
+        node(id: "${toGlobalId('Human', 1)}") {
+          id
+          ... on Human {
+            name
+          }
+        }
+      }`,
     },
   }))
 );
