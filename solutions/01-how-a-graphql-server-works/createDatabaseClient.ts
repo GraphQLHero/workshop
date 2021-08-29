@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import populateDatabase from './populateDatabase.js';
+import populateDatabase from './populateDatabase';
 
 const createDatabaseClient = async () => {
 const SUPABASE_URL = process.env.SUPABASE_URL;

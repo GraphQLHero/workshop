@@ -6,8 +6,10 @@ import {
   GraphQLObjectType, // Le type objet en SDL
   GraphQLSchema, // Pour construire notre schéma
   printSchema, // Pour convertir le schéma en SDL
-  graphqlSync,
+  graphql,
 }  from 'graphql';
+
+(async () => {
 
 /**
  *  type Human {
@@ -63,27 +65,27 @@ const schema = new GraphQLSchema({ query: queryType });
 console.log('Dumping GraphQL schema :\n');
 console.log(printSchema(schema));
 
-const query = /* GraphQL */`{
+// Test a default query execution
+const defaultQuery = /* GraphQL */`{
   strongestJedi {
     id
     name
   }
 }
 `;
-
-console.log('Executing a test query :\n', query, '\n');
-
-const result = graphqlSync(schema, query);
+console.log('Executing a test query :\n', defaultQuery, '\n');
+const result = await graphql(schema, defaultQuery);
 console.log('\nExecution result :');
 console.log(JSON.stringify(result, undefined, 2), '\n');
 
+// Launch HTTP server
 var app = express();
 app.use(
   '/graphql',
   graphqlHTTP({
     schema: schema,
     graphiql: {
-      defaultQuery: query,
+      defaultQuery
     },
   })
 );
@@ -92,3 +94,5 @@ app.use('/', (_, res) => {
 });
 app.listen(4000);
 console.log('Running a GraphQL API server at http://localhost:4000/graphql');
+
+})();

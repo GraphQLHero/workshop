@@ -12,7 +12,9 @@ import {
   printSchema,
   graphql,
 } from 'graphql';
-import createDatabaseClient from './createDatabaseClient.js';
+import createDatabaseClient from './createDatabaseClient';
+
+(async () => {
 
 // Initialize our database
 const database = await createDatabaseClient();
@@ -141,7 +143,7 @@ const queryType = new GraphQLObjectType({
 const schema = new GraphQLSchema({ query: queryType });
 fs.writeFileSync('schema.graphql', printSchema(schema));
 
-const query = `{
+const defaultQuery = `{
   strongestJedi {
     id
     name
@@ -172,24 +174,20 @@ const query = `{
 }
 `;
 
-console.log('Executing a test query :\n', query, '\n');
-
-const result = await graphql(schema, query);
-console.log('\nExecution result :');
-console.log(JSON.stringify(result, undefined, 2), '\n');
-
 var app = express();
 app.use(
   '/graphql',
   graphqlHTTP({
     schema: schema,
     graphiql: {
-      defaultQuery: query,
+      defaultQuery
     },
   })
 );
-app.use('/', (req, res) => {
+app.use('/', (_, res) => {
   res.redirect('/graphql');
 });
 app.listen(4000);
 console.log('Running a GraphQL API server at http://localhost:4000/graphql');
+
+})();
