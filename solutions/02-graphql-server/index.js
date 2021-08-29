@@ -1,3 +1,4 @@
+import fs from 'fs';
 import session from 'express-session';
 import express from 'express';
 import expressGraphQL from 'express-graphql';
@@ -15,8 +16,7 @@ const { createClient } = supabaseJS;
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 await populateDatabase(supabase);
 
-console.log('Dumping GraphQL schema :\n');
-console.log(printSchema(schema));
+fs.writeFileSync('schema.graphql', printSchema(schema));
 
 const { graphqlHTTP } = expressGraphQL;
 

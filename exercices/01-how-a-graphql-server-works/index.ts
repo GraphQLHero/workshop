@@ -1,14 +1,13 @@
 import express from 'express';
-import expressGraphQL from 'express-graphql';
-import graphql from 'graphql';
-const {
+import { graphqlHTTP } from 'express-graphql';
+import {
   GraphQLString, // Le type scalaire `String` en SDL
   GraphQLID, // Le type scalaire `ID` en SDL
   GraphQLObjectType, // Le type objet en SDL
   GraphQLSchema, // Pour construire notre schéma
-  printSchema, // Pour afficher le schéma en SDL
+  printSchema, // Pour convertir le schéma en SDL
   graphqlSync,
-} = graphql;
+}  from 'graphql';
 
 /**
  *  type Human {
@@ -64,7 +63,7 @@ const schema = new GraphQLSchema({ query: queryType });
 console.log('Dumping GraphQL schema :\n');
 console.log(printSchema(schema));
 
-const query = `{
+const query = /* GraphQL */`{
   strongestJedi {
     id
     name
@@ -76,9 +75,7 @@ console.log('Executing a test query :\n', query, '\n');
 
 const result = graphqlSync(schema, query);
 console.log('\nExecution result :');
-console.log(JSON.stringify(result, null, true), '\n');
-
-const { graphqlHTTP } = expressGraphQL;
+console.log(JSON.stringify(result, undefined, 2), '\n');
 
 var app = express();
 app.use(
@@ -90,7 +87,7 @@ app.use(
     },
   })
 );
-app.use('/', (req, res) => {
+app.use('/', (_, res) => {
   res.redirect('/graphql');
 });
 app.listen(4000);

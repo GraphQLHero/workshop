@@ -1,0 +1,32 @@
+type Query {
+  strongestJedi: Human
+  leiaOrgana: Human
+  hanSolo: Human
+  strongestDroid: Droid
+  strongestWookie: Wookie
+}
+
+type Human {
+  id: ID
+  name: String
+  height: Int
+  mass: Float
+  avatarUrl: String
+  isJedi: Boolean
+}
+
+type Droid {
+  id: ID
+  name: String
+  height: Int
+  mass: Float
+  model: String
+}
+
+type Wookie {
+  id: ID
+  name: String
+  height: Int
+  mass: Float
+  hairColor: String
+}

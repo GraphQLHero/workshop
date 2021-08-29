@@ -1,8 +1,5 @@
 {
-  "name": "graphql-tp-1",
-  "version": "1.0.0",
-  "main": "index.js",
-  "type": "module",
+  "name": "graphqlhero-01-how-a-graphql-server-works",
   "license": "MIT",
   "scripts": {
     "dev": "node index.js"

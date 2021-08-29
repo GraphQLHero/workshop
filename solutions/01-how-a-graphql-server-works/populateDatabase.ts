@@ -1,8 +1,10 @@
+import { SupabaseClient } from '@supabase/supabase-js';
+
 const lukeSkywalker = {
   id: 1,
   name: 'Luke Skywalker',
   birth_year: '19BBY',
-  avatar_url: 'https://graphqlhero.com/luke.jpg',
+  avatar_url: 'https://graphqlhero.com/img/luke.jpg',
   height: 172,
   mass: 77.1,
   is_jedi: true,
@@ -13,7 +15,7 @@ const leiaOrgana = {
   name: 'Leia Organa',
   birth_year: '19BBY',
   height: 150,
-  avatar_url: 'https://graphqlhero.com/LeiaOrgana.png',
+  avatar_url: 'https://graphqlhero.com/img/LeiaOrgana.png',
   mass: 49.3,
   is_jedi: false,
 };
@@ -22,7 +24,7 @@ const hanSolo = {
   id: 3,
   name: 'Han Solo',
   birth_year: '29BBY',
-  avatar_url: 'https://graphqlhero.com/HanSolo.png',
+  avatar_url: 'https://graphqlhero.com/img/HanSolo.png',
   height: 180,
   mass: 80.0,
   is_jedi: false,
@@ -51,8 +53,11 @@ const chewbacca = {
   mass: 112,
 };
 
-export default async (supabase) => {
-  await supabase.from('human').upsert([lukeSkywalker, leiaOrgana, hanSolo]);
+export default async (supabase: SupabaseClient) => {
+  const { error, data } = await supabase.from('human').upsert([lukeSkywalker, leiaOrgana, hanSolo]);
+  if (error) {
+    console.error(error);
+  }
 
   await supabase.from('droid').upsert([r2d2, c3po]);
 

@@ -1,0 +1,74 @@
+type Query {
+  viewer: Viewer
+  humans: [Human]
+  planets: [Planet]
+  films: [Film]
+}
+
+type Viewer {
+  username: String
+}
+
+type Human {
+  id: ID
+  name: String
+  gender: HumanGender
+  height: Int
+  mass: Float
+  avatarUrl: String
+  isJedi: Boolean
+  starships: [Starship]
+}
+
+"""The possible gender for a human."""
+enum HumanGender {
+  FEMALE
+  MALE
+  OTHER
+}
+
+type Starship {
+  id: ID
+  name: String
+  model: String
+  pilots: [Human]
+}
+
+type Planet {
+  id: ID
+  name: String
+  diameter: Int
+  climate: PlanetClimage
+  landscapes: [PlanetLandscape]
+}
+
+"""The possible climate for a planet."""
+enum PlanetClimage {
+  ARID
+  TEMPERATE
+  TROPICAL
+  FROZEN
+  MURKY
+}
+
+"""The possible landscape for a planet."""
+enum PlanetLandscape {
+  DESERT
+  GRASSLANDS
+  MOUNTAINS
+  JUNGLE
+  RAINFORESTS
+  FORESTS
+  LAKES
+  TUNDRA
+}
+
+type Film {
+  id: ID
+  title: String
+  episodeNumber: Int
+  posterUrl: String
+  releaseDate: String
+  viewerRating: Int
+  featuredPlanets: [Planet]
+}

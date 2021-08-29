@@ -1,10 +1,7 @@
+import fs from 'fs';
 import express from 'express';
-import expressGraphQL from 'express-graphql';
-import graphqlM from 'graphql';
-import supabaseJS from '@supabase/supabase-js';
-import populateDatabase from './populateDatabase.js';
-
-const {
+import { graphqlHTTP } from 'express-graphql';
+import {
   GraphQLString,
   GraphQLID,
   GraphQLInt,
@@ -14,14 +11,11 @@ const {
   GraphQLSchema,
   printSchema,
   graphql,
-} = graphqlM;
+} from 'graphql';
+import createDatabaseClient from './createDatabaseClient.js';
 
-// We put objects in our database
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
-const { createClient } = supabaseJS;
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-await populateDatabase(supabase);
+// Initialize our database
+const database = await createDatabaseClient();
 
 const humanType = new GraphQLObjectType({
   name: 'Human',
@@ -92,8 +86,8 @@ const wookieType = new GraphQLObjectType({
   },
 });
 
-const findHumanById = async (id) => {
-  const { data, error } = await supabase
+const findHumanById = async (id: number) => {
+  const { data, error } = await database
     .from('human')
     .select('*')
     .filter('id', 'eq', id)
@@ -122,7 +116,7 @@ const queryType = new GraphQLObjectType({
     strongestDroid: {
       type: droidType,
       resolve: async () => {
-        const { data: r2d2FromDb } = await supabase
+        const { data: r2d2FromDb } = await database
           .from('droid')
           .select('*')
           .filter('id', 'eq', 1)
@@ -133,7 +127,7 @@ const queryType = new GraphQLObjectType({
     strongestWookie: {
       type: wookieType,
       resolve: async () => {
-        const { data: chewbaccaFromDb } = await supabase
+        const { data: chewbaccaFromDb } = await database
           .from('wookie')
           .select('*')
           .filter('id', 'eq', 1)
@@ -145,9 +139,7 @@ const queryType = new GraphQLObjectType({
 });
 
 const schema = new GraphQLSchema({ query: queryType });
-
-console.log('Dumping GraphQL schema :\n');
-console.log(printSchema(schema));
+fs.writeFileSync('schema.graphql', printSchema(schema));
 
 const query = `{
   strongestJedi {
@@ -184,9 +176,7 @@ console.log('Executing a test query :\n', query, '\n');
 
 const result = await graphql(schema, query);
 console.log('\nExecution result :');
-console.log(JSON.stringify(result, null, true), '\n');
-
-const { graphqlHTTP } = expressGraphQL;
+console.log(JSON.stringify(result, undefined, 2), '\n');
 
 var app = express();
 app.use(
