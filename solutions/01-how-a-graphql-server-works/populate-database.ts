@@ -1,4 +1,4 @@
-import { SupabaseClient } from '@supabase/supabase-js';
+import database from './database';
 
 const lukeSkywalker = {
   id: 1,
@@ -53,15 +53,12 @@ const chewbacca = {
   mass: 112,
 };
 
-export default async (supabase: SupabaseClient) => {
-  const { error, data } = await supabase.from('human').upsert([lukeSkywalker, leiaOrgana, hanSolo]);
-  if (error) {
-    console.error(error);
-  }
+(async () => {
+  console.log('Populating database…\n');
 
-  await supabase.from('droid').upsert([r2d2, c3po]);
-
-  await supabase.from('wookie').upsert([chewbacca]);
+  await database.from('human').upsert([lukeSkywalker, leiaOrgana, hanSolo]);
+  await database.from('droid').upsert([r2d2, c3po]);
+  await database.from('wookie').upsert([chewbacca]);
 
   console.log('Database populated !\n');
-};
+})();

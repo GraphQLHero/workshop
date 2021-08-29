@@ -1,8 +1,7 @@
-import session from 'express-session';
 import express from 'express';
-import expressGraphQL from 'express-graphql';
-import graphql from 'graphql';
-const {
+import session from 'express-session';
+import { graphqlHTTP } from 'express-graphql';
+import {
   GraphQLString,
   GraphQLID,
   GraphQLObjectType,
@@ -10,8 +9,7 @@ const {
   GraphQLList,
   GraphQLSchema,
   printSchema,
-  graphqlSync,
-} = graphql;
+} from 'graphql';
 
 // Our objects fetched from our database
 const lukeSkywalker = {
@@ -136,7 +134,7 @@ const schema = new GraphQLSchema({ query: queryType });
 console.log('Dumping GraphQL schema :\n');
 console.log(printSchema(schema));
 
-const query = `{
+const defaultQuery = `{
   humans {
     id
     name
@@ -144,14 +142,6 @@ const query = `{
   }
 }
 `;
-
-console.log('Executing a test query :\n', query, '\n');
-
-const result = graphqlSync(schema, query);
-console.log('\nExecution result :');
-console.log(JSON.stringify(result, undefined, 2), '\n');
-
-const { graphqlHTTP } = expressGraphQL;
 
 const buildContext = (req) => {
   // Access the session to fetch the viewer…
@@ -180,7 +170,7 @@ app.use(
     schema,
     context: buildContext(req),
     graphiql: {
-      defaultQuery: query,
+      defaultQuery
     },
   }))
 );

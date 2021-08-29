@@ -125,4 +125,9 @@ Go to the Project Settings (the cog icon), open the API tab, and find your API U
 - `SUPABASE_URL`
 - `SUPABASE_ANON_KEY`
 
-You can use a `.env` file.
+You should use a `.env` file at the root of each exercise, it will be loaded by NodeJS :
+
+```
+SUPABASE_URL=xyz
+SUPABASE_ANON_KEY=xyz
+```

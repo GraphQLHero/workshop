@@ -22,14 +22,14 @@ const humanType = new GraphQLObjectType({
     id: {
       type: GraphQLID,
       resolve: (obj) => {
-        console.log('Resolver called: Human.id');
+        console.log(`Resolver called: Human.id with ${JSON.stringify(obj)}`);
         return obj.id;
       },
     },
     name: {
       type: GraphQLString,
       resolve: (obj) => {
-        console.log('Resolver called: Human.name');
+        console.log(`Resolver called: Human.name with ${JSON.stringify(obj)}`);
         return obj.name;
       },
     },
@@ -47,7 +47,7 @@ const queryType = new GraphQLObjectType({
     strongestJedi: {
       type: humanType,
       resolve: () => {
-        console.log('Resolver called: Query.strongestJedi');
+        console.log(`Resolver called: Query.strongestJedi`);
         // Our object fetched from our database
         const lukeSkywalker = {
           id: '123',
