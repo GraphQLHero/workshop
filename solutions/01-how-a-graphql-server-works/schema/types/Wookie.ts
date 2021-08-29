@@ -6,7 +6,7 @@ import {
     GraphQLObjectType,
 } from 'graphql';
 
-const Wookie = new GraphQLObjectType({
+export default new GraphQLObjectType({
     name: 'Wookie',
     fields: {
       id: {
@@ -27,5 +27,3 @@ const Wookie = new GraphQLObjectType({
       },
     },
 });
-
-export default Wookie;

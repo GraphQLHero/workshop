@@ -38,16 +38,16 @@ const humanType = new GraphQLObjectType({
 
 /**
  *  type Query {
- *    strongestJedi: Human
+ *    lukeSkywalker: Human
  *  }
  */
 const queryType = new GraphQLObjectType({
   name: 'Query',
   fields: {
-    strongestJedi: {
+    lukeSkywalker: {
       type: humanType,
       resolve: () => {
-        console.log(`Resolver called: Query.strongestJedi`);
+        console.log(`Resolver called: Query.lukeSkywalker`);
         // Our object fetched from our database
         const lukeSkywalker = {
           id: '123',
@@ -66,7 +66,7 @@ console.log(printSchema(schema));
 
 // Test a default query execution
 const defaultQuery = /* GraphQL */`{
-  strongestJedi {
+  lukeSkywalker {
     id
     name
   }

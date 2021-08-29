@@ -2,10 +2,9 @@ import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import schema from './schema';
 
-(async () => {
   const defaultQuery = /* GraphQL */`
 query DefaultQuery {
-  strongestJedi {
+  lukeSkywalker {
     id
     name
     height
@@ -18,14 +17,14 @@ query DefaultQuery {
   hanSolo {
     name
   }
-  strongestDroid {
+  r2d2 {
     id
     name
     height
     mass
     model
   }
-  strongestWookie {
+  chewbacca {
     id
     name
     height
@@ -50,5 +49,3 @@ app.use('/', (_, res) => {
 });
 app.listen(4000);
 console.log('Running a GraphQL API server at http://localhost:4000/graphql');
-
-})();

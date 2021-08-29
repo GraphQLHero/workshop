@@ -9,7 +9,7 @@ import { findHumanById, findDroidById, findWookieById } from '../../database';
 export default new GraphQLObjectType({
     name: 'Query',
     fields: {
-      strongestJedi: {
+      lukeSkywalker: {
         type: humanType,
         resolve: () => findHumanById(1),
       },
@@ -21,11 +21,15 @@ export default new GraphQLObjectType({
         type: humanType,
         resolve: () => findHumanById(3),
       },
-      strongestDroid: {
+      r2d2: {
         type: droidType,
         resolve: () => findDroidById(1),
       },
-      strongestWookie: {
+      c3po: {
+        type: droidType,
+        resolve: () => findDroidById(2),
+      },
+      chewbacca: {
         type: wookieType,
         resolve: () => findWookieById(1),
       },
