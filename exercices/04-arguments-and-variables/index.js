@@ -151,7 +151,7 @@ console.log('Executing a test query :\n', query, '\n');
 
 const result = graphqlSync(schema, query);
 console.log('\nExecution result :');
-console.log(JSON.stringify(result, null, true), '\n');
+console.log(JSON.stringify(result, undefined, 2), '\n');
 
 const { graphqlHTTP } = expressGraphQL;
 
