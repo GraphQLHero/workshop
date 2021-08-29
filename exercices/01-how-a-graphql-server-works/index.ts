@@ -1,16 +1,15 @@
 import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import {
-  GraphQLString, // Le type scalaire `String` en SDL
-  GraphQLID, // Le type scalaire `ID` en SDL
-  GraphQLObjectType, // Le type objet en SDL
-  GraphQLSchema, // Pour construire notre schéma
-  printSchema, // Pour convertir le schéma en SDL
+  GraphQLString,
+  GraphQLID,
+  GraphQLObjectType,
+  GraphQLSchema,
+  printSchema,
   graphql,
 }  from 'graphql';
 
 (async () => {
-
 /**
  *  type Human {
  *    id: ID
@@ -60,8 +59,8 @@ const queryType = new GraphQLObjectType({
   },
 });
 
+// Dump schema in SDL
 const schema = new GraphQLSchema({ query: queryType });
-
 console.log('Dumping GraphQL schema :\n');
 console.log(printSchema(schema));
 
@@ -94,5 +93,4 @@ app.use('/', (_, res) => {
 });
 app.listen(4000);
 console.log('Running a GraphQL API server at http://localhost:4000/graphql');
-
 })();

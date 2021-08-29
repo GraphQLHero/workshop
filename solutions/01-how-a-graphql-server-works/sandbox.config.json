@@ -1,5 +1,4 @@
 {
-    "hardReloadOnChange": true,
     "container": {
         "startScript": "dev",
         "node": "14"

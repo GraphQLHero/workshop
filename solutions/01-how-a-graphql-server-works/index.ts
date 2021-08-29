@@ -10,7 +10,6 @@ import {
   GraphQLObjectType,
   GraphQLSchema,
   printSchema,
-  graphql,
 } from 'graphql';
 import createDatabaseClient from './createDatabaseClient';
 
