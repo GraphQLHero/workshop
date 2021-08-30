@@ -1,37 +1,35 @@
-import {
-    GraphQLObjectType,
-} from 'graphql';
+import { GraphQLObjectType } from 'graphql';
 import humanType from './Human';
 import droidType from './Droid';
 import wookieType from './Wookie';
-import { findHumanById, findDroidById, findWookieById } from '../../database';
-  
+import { lukeSkywalker, leiaOrgana, hanSolo, r2d2, c3po, chewbacca } from '../../utils/fakeDatabase';
+
 export default new GraphQLObjectType({
-    name: 'Query',
-    fields: {
-      lukeSkywalker: {
-        type: humanType,
-        resolve: () => findHumanById(1),
-      },
-      leiaOrgana: {
-        type: humanType,
-        resolve: () => findHumanById(2),
-      },
-      hanSolo: {
-        type: humanType,
-        resolve: () => findHumanById(3),
-      },
-      r2d2: {
-        type: droidType,
-        resolve: () => findDroidById(1),
-      },
-      c3po: {
-        type: droidType,
-        resolve: () => findDroidById(2),
-      },
-      chewbacca: {
-        type: wookieType,
-        resolve: () => findWookieById(1),
-      },
+  name: 'Query',
+  fields: {
+    lukeSkywalker: {
+      type: humanType,
+      resolve: () => lukeSkywalker,
     },
-  });
+    leiaOrgana: {
+      type: humanType,
+      resolve: () => leiaOrgana,
+    },
+    hanSolo: {
+      type: humanType,
+      resolve: () => hanSolo,
+    },
+    r2d2: {
+      type: droidType,
+      resolve: () => r2d2,
+    },
+    c3po: {
+      type: droidType,
+      resolve: () => c3po,
+    },
+    chewbacca: {
+      type: wookieType,
+      resolve: () => chewbacca,
+    },
+  },
+});

@@ -2,36 +2,64 @@ import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import schema from './schema';
 
-  const defaultQuery = /* GraphQL */`
-query DefaultQuery {
-  lukeSkywalker {
-    id
-    name
-    height
-    mass
-    avatarUrl
+const defaultQuery = /* GraphQL */ `
+  query DefaultQuery {
+    lukeSkywalker {
+      id
+      name
+      height
+      mass
+      avatarUrl
+      favoriteSpaceship {
+        name
+        model
+        manufacturer
+      }
+    }
+    leiaOrgana {
+      id
+      name
+      height
+      mass
+      avatarUrl
+      favoriteSpaceship {
+        name
+        model
+        manufacturer
+      }
+    }
+    hanSolo {
+      id
+      name
+      height
+      mass
+      avatarUrl
+      favoriteSpaceship {
+        name
+        model
+        manufacturer
+      }
+    }
+    r2d2 {
+      id
+      name
+      height
+      mass
+      model
+    }
+    chewbacca {
+      id
+      name
+      height
+      mass
+      hairColor
+      favoriteSpaceship {
+        name
+        model
+        manufacturer
+      }
+    }
   }
-  leiaOrgana {
-    name
-  }
-  hanSolo {
-    name
-  }
-  r2d2 {
-    id
-    name
-    height
-    mass
-    model
-  }
-  chewbacca {
-    id
-    name
-    height
-    mass
-    hairColor
-  }
-}
 `;
 
 var app = express();
@@ -40,7 +68,7 @@ app.use(
   graphqlHTTP({
     schema: schema,
     graphiql: {
-      defaultQuery
+      defaultQuery,
     },
   })
 );

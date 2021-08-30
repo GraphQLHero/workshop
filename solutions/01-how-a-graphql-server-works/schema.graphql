@@ -1,9 +1,10 @@
 type Query {
-  strongestJedi: Human
+  lukeSkywalker: Human
   leiaOrgana: Human
   hanSolo: Human
-  strongestDroid: Droid
-  strongestWookie: Wookie
+  r2d2: Droid
+  c3po: Droid
+  chewbacca: Wookie
 }
 
 type Human {
@@ -13,6 +14,14 @@ type Human {
   mass: Float
   avatarUrl: String
   isJedi: Boolean
+  favoriteSpaceship: Spaceship
+}
+
+type Spaceship {
+  id: ID
+  name: String
+  model: String
+  manufacturer: String
 }
 
 type Droid {
@@ -21,6 +30,7 @@ type Droid {
   height: Int
   mass: Float
   model: String
+  favoriteSpaceship: Spaceship
 }
 
 type Wookie {
@@ -29,4 +39,5 @@ type Wookie {
   height: Int
   mass: Float
   hairColor: String
+  favoriteSpaceship: Spaceship
 }

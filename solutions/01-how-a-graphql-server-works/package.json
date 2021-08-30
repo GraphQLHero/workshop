@@ -2,13 +2,10 @@
   "name": "01-how-a-graphql-server-works",
   "private": true,
   "scripts": {
-    "dev": "node-dev --require dotenv/config index.ts",
-    "populate-database": "node-dev --require dotenv/config populate-database.ts",
-    "dump-graphql-schema": "node-dev --require dotenv/config dump-graphql-schema.ts"
+    "dev": "node-dev index.ts",
+    "dump-graphql-schema": "node-dev dump-graphql-schema.ts"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^1.22.3",
-    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-graphql": "^0.12.0",
     "graphql": "^15.5.0",
