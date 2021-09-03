@@ -1,0 +1,43 @@
+type Query {
+  lukeSkywalker: Human
+  leiaOrgana: Human
+  hanSolo: Human
+  r2d2: Droid
+  c3po: Droid
+  chewbacca: Wookie
+}
+
+type Human {
+  id: ID
+  name: String
+  height: Int
+  mass: Float
+  avatarUrl: String
+  isJedi: Boolean
+  favoriteSpaceship: Spaceship
+}
+
+type Spaceship {
+  id: ID
+  name: String
+  model: String
+  manufacturer: String
+}
+
+type Droid {
+  id: ID
+  name: String
+  height: Int
+  mass: Float
+  model: String
+  favoriteSpaceship: Spaceship
+}
+
+type Wookie {
+  id: ID
+  name: String
+  height: Int
+  mass: Float
+  hairColor: String
+  favoriteSpaceship: Spaceship
+}

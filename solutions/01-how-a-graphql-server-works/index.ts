@@ -46,6 +46,11 @@ const defaultQuery = /* GraphQL */ `
       height
       mass
       model
+      favoriteSpaceship {
+      name
+      model
+      manufacturer
+    }
     }
     chewbacca {
       id

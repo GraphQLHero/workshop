@@ -1,8 +1,9 @@
 {
-  "name": "03-null-vs-non-null",
+  "name": "02-type-system-flexibility",
   "private": true,
   "scripts": {
-    "dev": "node-dev index.ts"
+    "dev": "node-dev index.ts",
+    "dump-graphql-schema": "node-dev dump-graphql-schema.ts"
   },
   "dependencies": {
     "express": "^4.17.1",
