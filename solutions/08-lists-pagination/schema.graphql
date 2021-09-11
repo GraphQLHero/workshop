@@ -1,0 +1,44 @@
+type Query {
+  """The characters of Star Wars."""
+  characters(after: String, first: Int): CharacterConnection!
+}
+
+"""A connection to a list of items."""
+type CharacterConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [CharacterEdge]
+
+  """Identifies the total count of items in the connection."""
+  totalCount: Int!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+"""An edge in a connection."""
+type CharacterEdge {
+  """The item at the end of the edge"""
+  node: Character
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+type Character {
+  name: String!
+}
