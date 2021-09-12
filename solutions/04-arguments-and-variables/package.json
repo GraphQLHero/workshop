@@ -5,7 +5,7 @@
     "dev": "node-dev --require dotenv/config index.ts",
     "dump-graphql-schema": "node-dev --require dotenv/config utils/dump-graphql-schema.ts",
     "populate-database": "node-dev --require dotenv/config utils/populate-database.ts",
-    "test": "jest"
+    "test": "jest --setupFiles dotenv/config"
   },
   "dependencies": {
     "@supabase/supabase-js": "^1.22.6",

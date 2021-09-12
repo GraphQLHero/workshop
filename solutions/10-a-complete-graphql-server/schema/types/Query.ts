@@ -15,22 +15,22 @@ export default new GraphQLObjectType({
     },
     humans: {
       type: new GraphQLList(humanType),
-      resolve: async (obj, args, { supabase }) => {
-        const { data } = await supabase.from('human').select('*');
+      resolve: async (obj, args, { database }) => {
+        const { data } = await database.from('human').select('*');
         return data;
       }
     },
     planets: {
       type: new GraphQLList(planetType),
-      resolve: async (obj, args, { supabase }) => {
-        const { data } = await supabase.from('planet').select('*');
+      resolve: async (obj, args, { database }) => {
+        const { data } = await database.from('planet').select('*');
         return data;
       }
     },
     films: {
       type: new GraphQLList(filmType),
-      resolve: async (obj, args, { supabase }) => {
-        const { data } = await supabase.from('film').select('*');
+      resolve: async (obj, args, { database }) => {
+        const { data } = await database.from('film').select('*');
         return data;
       }
     }

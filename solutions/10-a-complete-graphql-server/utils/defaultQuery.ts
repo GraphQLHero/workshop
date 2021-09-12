@@ -14,9 +14,6 @@ export default /* GraphQL */ `
     }
     films {
       title
-      featuredPlanets {
-        name
-      }
     }
   }
 `;
