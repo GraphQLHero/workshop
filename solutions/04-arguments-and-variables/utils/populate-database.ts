@@ -1,4 +1,4 @@
-import supabase from '../database';
+import database from '../database';
 
 const lukeSkywalker = {
   id: 1,
@@ -168,13 +168,13 @@ const yWing = {
 };
 
 (async () => {
-  await supabase.from('human').upsert([lukeSkywalker, leiaOrgana, hanSolo]);
+  await database.from('human').upsert([lukeSkywalker, leiaOrgana, hanSolo]);
 
-  await supabase.from('droid').upsert([r2d2, c3po]);
+  await database.from('droid').upsert([r2d2, c3po]);
 
-  await supabase.from('wookie').upsert([chewbacca]);
+  await database.from('wookie').upsert([chewbacca]);
 
-  await supabase
+  await database
     .from('film')
     .upsert([
       newHope,
@@ -186,13 +186,13 @@ const yWing = {
       attackOfTheClones
     ]);
 
-  await supabase
+  await database
     .from('planet')
     .upsert([tatooine, yavin, corellia, alderaan, hoth, naboo, dagobah]);
 
-  await supabase.from('starship').upsert([millenniumFalcon, yWing]);
+  await database.from('starship').upsert([millenniumFalcon, yWing]);
 
-  await supabase.from('planet_featured_in_film').upsert([
+  await database.from('planet_featured_in_film').upsert([
     { planet_id: 1, film_id: 1 },
     { planet_id: 1, film_id: 2 },
     { planet_id: 1, film_id: 3 },
@@ -202,7 +202,7 @@ const yWing = {
     { planet_id: 4, film_id: 1 }
   ]);
 
-  await supabase.from('starship_pilots').upsert([
+  await database.from('starship_pilots').upsert([
     { starship_id: 1, pilot_id: 1 },
     { starship_id: 1, pilot_id: 2 },
     { starship_id: 1, pilot_id: 3 },
