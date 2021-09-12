@@ -11,14 +11,51 @@ jobs:
         run: |
             cd solutions/01-how-a-graphql-server-works
             yarn install
+            yarn dump-graphql-schema
             yarn test --ci
-      - name: Test exercises 2
+      - name: Test exercise 2
         run: |
             cd exercices/02-type-system-flexibility
             yarn install
+            yarn dump-graphql-schema
             yarn test --ci
       - name: Test solution 2
         run: |
             cd solutions/02-type-system-flexibility
             yarn install
+            yarn dump-graphql-schema
+            yarn test --ci
+      - name: Test exercise 3
+        run: |
+            cd exercices/03-null-vs-non-null
+            yarn install
+            yarn dump-graphql-schema
+            yarn test --ci
+      # TODO add solution 3
+      - name: Test exercise 4
+        run: |
+            cd exercices/04-arguments-and-variables
+            yarn install
+            yarn dump-graphql-schema
+            yarn test --ci
+      - name: Test solution 4
+        run: |
+            cd exercices/04-arguments-and-variables
+            yarn install
+            yarn dump-graphql-schema
+            yarn populate-database
+            yarn test --ci
+      - name: Test exercise 10
+        run: |
+            cd exercices/10-a-complete-graphql-server
+            yarn install
+            yarn dump-graphql-schema
+            yarn populate-database
+            yarn test --ci
+      - name: Test solution 10
+        run: |
+            cd solutions/10-a-complete-graphql-server
+            yarn install
+            yarn dump-graphql-schema
+            yarn populate-database
             yarn test --ci

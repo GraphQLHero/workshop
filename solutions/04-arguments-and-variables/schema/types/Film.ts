@@ -35,7 +35,7 @@ export default new GraphQLObjectType({
           .from('planet_featured_in_film')
           .select('planet_id(*)')
           .filter('film_id', 'eq', film.id);
-        return data.map((o) => o.planet_id);
+        return data.map((o: {planet_id: Object}) => o.planet_id);
       },
     },
   },

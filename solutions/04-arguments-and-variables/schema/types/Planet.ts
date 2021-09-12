@@ -5,8 +5,8 @@ import {
   GraphQLInt,
   GraphQLString,
 } from 'graphql';
-import planetClimage from '../enums/PlanetClimate.js';
-import planetLandscape from '../enums/PlanetLandscape.js';
+import planetClimage from '../enums/PlanetClimate';
+import planetLandscape from '../enums/PlanetLandscape';
 
 export default new GraphQLObjectType({
   name: 'Planet',

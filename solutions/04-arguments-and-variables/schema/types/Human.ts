@@ -43,7 +43,8 @@ export default new GraphQLObjectType({
           .from('starship_pilots')
           .select('starship_id(*)')
           .filter('pilot_id', 'eq', obj.id);
-        return data.map((o) => o.starship_id);
+
+        return data.map((o: {starship_id: Object}) => o.starship_id);
       },
     },
   },
