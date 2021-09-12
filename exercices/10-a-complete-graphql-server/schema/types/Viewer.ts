@@ -4,7 +4,7 @@ export default new GraphQLObjectType({
   name: 'Viewer',
   fields: {
     username: {
-      type: GraphQLString,
-    },
-  },
+      type: GraphQLString
+    }
+  }
 });

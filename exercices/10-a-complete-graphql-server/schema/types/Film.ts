@@ -1,30 +1,30 @@
 import {
-    GraphQLObjectType,
-    GraphQLID,
-    GraphQLInt,
-    GraphQLString,
-  } from 'graphql';
+  GraphQLObjectType,
+  GraphQLID,
+  GraphQLInt,
+  GraphQLString
+} from 'graphql';
 
 export default new GraphQLObjectType({
   name: 'Film',
   fields: {
     id: {
-      type: GraphQLID,
+      type: GraphQLID
     },
     title: {
-      type: GraphQLString,
+      type: GraphQLString
     },
     episodeNumber: {
       type: GraphQLInt,
-      resolve: (v) => v.episode_number,
+      resolve: v => v.episode_number
     },
     posterUrl: {
       type: GraphQLString,
-      resolve: (v) => v.poster_url,
+      resolve: v => v.poster_url
     },
     releaseDate: {
       type: GraphQLString,
-      resolve: (v) => v.release_date,
-    },
-  },
+      resolve: v => v.release_date
+    }
+  }
 });

@@ -11,28 +11,28 @@ export default new GraphQLObjectType({
       type: viewerType,
       resolve: (obj, args, { viewer }) => {
         return viewer;
-      },
+      }
     },
     humans: {
       type: new GraphQLList(humanType),
       resolve: async (obj, args, { supabase }) => {
         const { data } = await supabase.from('human').select('*');
         return data;
-      },
+      }
     },
     planets: {
       type: new GraphQLList(planetType),
       resolve: async (obj, args, { supabase }) => {
         const { data } = await supabase.from('planet').select('*');
         return data;
-      },
+      }
     },
     films: {
       type: new GraphQLList(filmType),
       resolve: async (obj, args, { supabase }) => {
         const { data } = await supabase.from('film').select('*');
         return data;
-      },
-    },
-  },
+      }
+    }
+  }
 });

@@ -1,4 +1,10 @@
-import { GraphQLObjectType, GraphQLBoolean, GraphQLID, GraphQLList, GraphQLNonNull } from 'graphql';
+import {
+  GraphQLObjectType,
+  GraphQLBoolean,
+  GraphQLID,
+  GraphQLList,
+  GraphQLNonNull
+} from 'graphql';
 import humanType from './Human';
 import { lukeSkywalker, leiaOrgana } from '../../utils/fakeDatabase';
 
@@ -10,8 +16,8 @@ export default new GraphQLObjectType({
       args: {
         isJedi: {
           type: GraphQLBoolean,
-          description: 'Whether or not the human is a jedi.',
-        },
+          description: 'Whether or not the human is a jedi.'
+        }
       },
       resolve: (_, args) => {
         console.log('Resolver called: Query.humans');
@@ -20,11 +26,11 @@ export default new GraphQLObjectType({
         );
         if (args.isJedi !== null) {
           return [lukeSkywalker, leiaOrgana].filter(
-            (h) => h.is_jedi === args.isJedi
+            h => h.is_jedi === args.isJedi
           );
         }
         return [lukeSkywalker, leiaOrgana];
-      },
+      }
     },
     human: {
       type: humanType,
@@ -32,18 +38,16 @@ export default new GraphQLObjectType({
       args: {
         id: {
           type: new GraphQLNonNull(GraphQLID),
-          description: 'The ID of a `Human`.',
-        },
+          description: 'The ID of a `Human`.'
+        }
       },
       resolve: (_, args) => {
         console.log('Resolver called: Query.human');
         console.log(
           'Resolver called with args: ' + JSON.stringify(args, null, 2)
         );
-        return [lukeSkywalker, leiaOrgana].find(
-          (human) => human.id === args.id
-        );
-      },
-    },
-  },
+        return [lukeSkywalker, leiaOrgana].find(human => human.id === args.id);
+      }
+    }
+  }
 });

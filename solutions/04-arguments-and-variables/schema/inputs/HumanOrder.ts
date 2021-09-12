@@ -6,10 +6,10 @@ export default new GraphQLInputObjectType({
   name: 'HumanOrder',
   fields: {
     direction: {
-      type: OrderDirection,
+      type: OrderDirection
     },
     field: {
-      type: HumanOrderField,
-    },
-  },
+      type: HumanOrderField
+    }
+  }
 });

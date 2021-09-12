@@ -4,16 +4,16 @@ export default new GraphQLObjectType({
   name: 'Spaceship',
   fields: {
     id: {
-      type: GraphQLID,
+      type: GraphQLID
     },
     name: {
-      type: GraphQLString,
+      type: GraphQLString
     },
     model: {
-      type: GraphQLString,
+      type: GraphQLString
     },
     manufacturer: {
-      type: GraphQLString,
-    },
-  },
+      type: GraphQLString
+    }
+  }
 });

@@ -3,7 +3,7 @@ import {
   GraphQLList,
   GraphQLID,
   GraphQLInt,
-  GraphQLString,
+  GraphQLString
 } from 'graphql';
 import planetClimage from '../enums/PlanetClimate';
 import planetLandscape from '../enums/PlanetLandscape';
@@ -12,16 +12,16 @@ export default new GraphQLObjectType({
   name: 'Planet',
   fields: {
     id: {
-      type: GraphQLID,
+      type: GraphQLID
     },
     name: {
-      type: GraphQLString,
+      type: GraphQLString
     },
     diameter: {
-      type: GraphQLInt,
+      type: GraphQLInt
     },
     climate: {
-      type: planetClimage,
+      type: planetClimage
     },
     landscapes: {
       type: new GraphQLList(planetLandscape),
@@ -33,11 +33,11 @@ export default new GraphQLObjectType({
           'JUNGLE',
           'LAKES',
           'TUNDRA',
-          'MOUNTAINS',
+          'MOUNTAINS'
         ]
           .sort(() => 0.5 - Math.random())
           .slice(0, 2);
-      },
-    },
-  },
+      }
+    }
+  }
 });

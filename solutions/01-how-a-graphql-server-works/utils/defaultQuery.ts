@@ -43,10 +43,10 @@ export default /* GraphQL */ `
       mass
       model
       favoriteSpaceship {
-      name
-      model
-      manufacturer
-    }
+        name
+        model
+        manufacturer
+      }
     }
     chewbacca {
       id

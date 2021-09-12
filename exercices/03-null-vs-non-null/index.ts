@@ -9,8 +9,8 @@ app.use(
   graphqlHTTP({
     schema: schema,
     graphiql: {
-      defaultQuery,
-    },
+      defaultQuery
+    }
   })
 );
 app.use('/', (_, res) => {

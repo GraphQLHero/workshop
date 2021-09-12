@@ -1,4 +1,4 @@
 import { GraphQLSchema } from 'graphql';
-import query from './types/Query'
+import query from './types/Query';
 
 export default new GraphQLSchema({ query });

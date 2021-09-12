@@ -1,7 +1,7 @@
 export default /* GraphQL */ `
   query DefaultQuery {
     planets {
-     name 
+      name
     }
     films {
       title

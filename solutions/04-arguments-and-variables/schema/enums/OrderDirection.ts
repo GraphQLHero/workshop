@@ -5,10 +5,10 @@ export default new GraphQLEnumType({
   description: 'The possible direction for ordering.',
   values: {
     ASC: {
-      value: 'ASC',
+      value: 'ASC'
     },
     DESC: {
-      value: 'DESC',
-    },
-  },
+      value: 'DESC'
+    }
+  }
 });

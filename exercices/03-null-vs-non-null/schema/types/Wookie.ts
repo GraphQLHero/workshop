@@ -3,7 +3,7 @@ import {
   GraphQLID,
   GraphQLInt,
   GraphQLFloat,
-  GraphQLObjectType,
+  GraphQLObjectType
 } from 'graphql';
 import spaceshipType from './Spaceship';
 import { millenniumFalcon } from '../../utils/fakeDatabase';
@@ -12,26 +12,26 @@ export default new GraphQLObjectType({
   name: 'Wookie',
   fields: {
     id: {
-      type: GraphQLID,
+      type: GraphQLID
     },
     name: {
-      type: GraphQLString,
+      type: GraphQLString
     },
     height: {
-      type: GraphQLInt,
+      type: GraphQLInt
     },
     mass: {
-      type: GraphQLFloat,
+      type: GraphQLFloat
     },
     hairColor: {
       type: GraphQLString,
-      resolve: (v) => v.hair_color,
+      resolve: v => v.hair_color
     },
     favoriteSpaceship: {
       type: spaceshipType,
-      resolve: (obj) => {
+      resolve: obj => {
         return millenniumFalcon;
-      },
-    },
-  },
+      }
+    }
+  }
 });

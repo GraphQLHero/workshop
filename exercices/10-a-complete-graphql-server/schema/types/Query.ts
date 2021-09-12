@@ -11,28 +11,28 @@ export default new GraphQLObjectType({
       type: viewerType,
       resolve: (obj, args, { viewer }) => {
         return viewer;
-      },
+      }
     },
     humans: {
       type: new GraphQLList(humanType),
       resolve: async (obj, args, { supabase }) => {
         // TODO
         return [];
-      },
+      }
     },
     planets: {
       type: new GraphQLList(planetType),
       resolve: async (obj, args, { supabase }) => {
         // TODO
         return [];
-      },
+      }
     },
     films: {
       type: new GraphQLList(filmType),
       resolve: async (obj, args, { supabase }) => {
         // TODO
         return [];
-      },
-    },
-  },
+      }
+    }
+  }
 });

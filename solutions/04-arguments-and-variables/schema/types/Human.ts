@@ -5,8 +5,8 @@ import {
   GraphQLFloat,
   GraphQLInt,
   GraphQLID,
-  GraphQLString,
-}  from 'graphql';
+  GraphQLString
+} from 'graphql';
 import humanGender from '../enums/HumanGender';
 import starshipType from './Starship';
 
@@ -14,27 +14,27 @@ export default new GraphQLObjectType({
   name: 'Human',
   fields: {
     id: {
-      type: GraphQLID,
+      type: GraphQLID
     },
     name: {
-      type: GraphQLString,
+      type: GraphQLString
     },
     gender: {
-      type: humanGender,
+      type: humanGender
     },
     height: {
-      type: GraphQLInt,
+      type: GraphQLInt
     },
     mass: {
-      type: GraphQLFloat,
+      type: GraphQLFloat
     },
     avatarUrl: {
       type: GraphQLString,
-      resolve: (v) => v.avatar_url,
+      resolve: v => v.avatar_url
     },
     isJedi: {
       type: GraphQLBoolean,
-      resolve: (v) => v.is_jedi,
+      resolve: v => v.is_jedi
     },
     starships: {
       type: new GraphQLList(starshipType),
@@ -44,8 +44,8 @@ export default new GraphQLObjectType({
           .select('starship_id(*)')
           .filter('pilot_id', 'eq', obj.id);
 
-        return data.map((o: {starship_id: Object}) => o.starship_id);
-      },
-    },
-  },
+        return data.map((o: { starship_id: Object }) => o.starship_id);
+      }
+    }
+  }
 });

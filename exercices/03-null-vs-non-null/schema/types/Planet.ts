@@ -1,21 +1,21 @@
 import {
-    GraphQLObjectType,
-    GraphQLID,
-    GraphQLInt,
-    GraphQLString,
-  } from 'graphql';
+  GraphQLObjectType,
+  GraphQLID,
+  GraphQLInt,
+  GraphQLString
+} from 'graphql';
 
 export default new GraphQLObjectType({
   name: 'Planet',
   fields: {
     id: {
-      type: GraphQLID,
+      type: GraphQLID
     },
     name: {
-      type: GraphQLString,
+      type: GraphQLString
     },
     diameter: {
-      type: GraphQLInt,
-    },
-  },
+      type: GraphQLInt
+    }
+  }
 });

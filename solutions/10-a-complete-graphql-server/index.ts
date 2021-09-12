@@ -7,7 +7,7 @@ import defaultQuery from './utils/defaultQuery';
 
 declare module 'express-session' {
   interface SessionData {
-   viewer: { username: string };
+    viewer: { username: string };
   }
 }
 
@@ -18,7 +18,7 @@ app.use(
     secret: 'A super secret',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 60000, secure: false },
+    cookie: { maxAge: 60000, secure: false }
   })
 );
 
@@ -34,16 +34,16 @@ const buildContext = (req: express.Request) => {
 
 app.use(
   '/graphql',
-  graphqlHTTP((request) => ({
+  graphqlHTTP(request => ({
     schema,
     // @ts-expect-error
     context: buildContext(request),
     graphiql: {
       defaultQuery
-    },
+    }
   }))
 );
- 
+
 app.use('/login', (req, res) => {
   req.session.viewer = { username: 'Spyl' };
   res.send('Bienvenue Spyl ! <a href="/graphql">Retourner sur GraphiQL.</a>');

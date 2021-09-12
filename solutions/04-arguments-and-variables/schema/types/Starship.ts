@@ -1,18 +1,23 @@
-import { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLString } from 'graphql';
+import {
+  GraphQLObjectType,
+  GraphQLList,
+  GraphQLID,
+  GraphQLString
+} from 'graphql';
 // import humanType from './Human';
 
 export default new GraphQLObjectType({
   name: 'Starship',
   fields: () => ({
     id: {
-      type: GraphQLID,
+      type: GraphQLID
     },
     name: {
-      type: GraphQLString,
+      type: GraphQLString
     },
     model: {
-      type: GraphQLString,
-    },
+      type: GraphQLString
+    }
     // pilots: {
     //   type: new GraphQLList(humanType),
     //   resolve: async (obj, args, { supabase }) => {
@@ -23,5 +28,5 @@ export default new GraphQLObjectType({
     //     return data.map((o) => o.pilot_id);
     //   },
     // },
-  }),
+  })
 });

@@ -3,7 +3,7 @@ import {
   GraphQLList,
   GraphQLID,
   GraphQLInt,
-  GraphQLString,
+  GraphQLString
 } from 'graphql';
 import planetType from './Planet';
 
@@ -11,22 +11,22 @@ export default new GraphQLObjectType({
   name: 'Film',
   fields: {
     id: {
-      type: GraphQLID,
+      type: GraphQLID
     },
     title: {
-      type: GraphQLString,
+      type: GraphQLString
     },
     episodeNumber: {
       type: GraphQLInt,
-      resolve: (v) => v.episode_number,
+      resolve: v => v.episode_number
     },
     posterUrl: {
       type: GraphQLString,
-      resolve: (v) => v.poster_url,
+      resolve: v => v.poster_url
     },
     releaseDate: {
       type: GraphQLString,
-      resolve: (v) => v.release_date,
+      resolve: v => v.release_date
     },
     featuredPlanets: {
       type: new GraphQLList(planetType),
@@ -35,8 +35,8 @@ export default new GraphQLObjectType({
           .from('planet_featured_in_film')
           .select('planet_id(*)')
           .filter('film_id', 'eq', film.id);
-        return data.map((o: {planet_id: Object}) => o.planet_id);
-      },
-    },
-  },
+        return data.map((o: { planet_id: Object }) => o.planet_id);
+      }
+    }
+  }
 });

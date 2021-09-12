@@ -4,10 +4,10 @@ export default new GraphQLInputObjectType({
   name: 'DiameterFilter',
   fields: {
     min: {
-      type: GraphQLInt,
+      type: GraphQLInt
     },
     max: {
-      type: GraphQLInt,
-    },
-  },
+      type: GraphQLInt
+    }
+  }
 });
