@@ -6,7 +6,7 @@ import {
   GraphQLObjectType,
   GraphQLSchema,
   printSchema,
-  graphql,
+  graphql
 } from 'graphql';
 
 (async () => {
@@ -21,21 +21,21 @@ import {
     fields: {
       id: {
         type: GraphQLID,
-        resolve: (obj) => {
+        resolve: obj => {
           console.log(`Resolver called: Human.id with ${JSON.stringify(obj)}`);
           return obj.id;
-        },
+        }
       },
       name: {
         type: GraphQLString,
-        resolve: (obj) => {
+        resolve: obj => {
           console.log(
             `Resolver called: Human.name with ${JSON.stringify(obj)}`
           );
           return obj.name;
-        },
-      },
-    },
+        }
+      }
+    }
   });
 
   /**
@@ -53,12 +53,12 @@ import {
           // Our object fetched from our database
           const lukeSkywalker = {
             id: '123',
-            name: 'Luke Skywalker',
+            name: 'Luke Skywalker'
           };
           return lukeSkywalker;
-        },
-      },
-    },
+        }
+      }
+    }
   });
 
   // Dump schema in SDL
@@ -87,8 +87,8 @@ import {
     graphqlHTTP({
       schema: schema,
       graphiql: {
-        defaultQuery,
-      },
+        defaultQuery
+      }
     })
   );
   app.use('/', (_, res) => {

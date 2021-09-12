@@ -3,7 +3,7 @@ import {
   GraphQLID,
   GraphQLInt,
   GraphQLFloat,
-  GraphQLObjectType,
+  GraphQLObjectType
 } from 'graphql';
 import spaceshipType from './Spaceship';
 import { xWing } from '../../utils/fakeDatabase';
@@ -12,28 +12,28 @@ export default new GraphQLObjectType({
   name: 'Droid',
   fields: {
     id: {
-      type: GraphQLID,
+      type: GraphQLID
     },
     name: {
-      type: GraphQLString,
+      type: GraphQLString
     },
     height: {
-      type: GraphQLInt,
+      type: GraphQLInt
     },
     mass: {
-      type: GraphQLFloat,
+      type: GraphQLFloat
     },
     model: {
-      type: GraphQLString,
+      type: GraphQLString
     },
     favoriteSpaceship: {
       type: spaceshipType,
-      resolve: (obj) => {
+      resolve: obj => {
         if (obj.name === 'r2d2') {
           return xWing;
         }
         return null;
-      },
-    },
-  },
+      }
+    }
+  }
 });

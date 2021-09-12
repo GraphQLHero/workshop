@@ -12,26 +12,19 @@ type Viewer {
 type Human {
   id: ID
   name: String
-  gender: HumanGender
   height: Int
   mass: Float
   avatarUrl: String
   isJedi: Boolean
-  starships: [Starship]
+  spaceships: [Spaceship]
+  favoriteSpaceship: Spaceship
 }
 
-"""The possible gender for a human."""
-enum HumanGender {
-  FEMALE
-  MALE
-  OTHER
-}
-
-type Starship {
+type Spaceship {
   id: ID
   name: String
   model: String
-  pilots: [Human]
+  manufacturer: String
 }
 
 type Planet {
@@ -69,6 +62,4 @@ type Film {
   episodeNumber: Int
   posterUrl: String
   releaseDate: String
-  viewerRating: Int
-  featuredPlanets: [Planet]
 }

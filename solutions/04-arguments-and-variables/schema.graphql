@@ -1,0 +1,96 @@
+type Query {
+  humans(orderBy: HumanOrder = {direction: ASC, field: NAME}, gender: HumanGender): [Human]
+  planets(diameter: DiameterFilter): [Planet]
+  films(saga: StarWarsSaga): [Film]
+}
+
+type Human {
+  id: ID
+  name: String
+  gender: HumanGender
+  height: Int
+  mass: Float
+  avatarUrl: String
+  isJedi: Boolean
+  starships: [Starship]
+}
+
+"""The possible gender for a human."""
+enum HumanGender {
+  FEMALE
+  MALE
+  OTHER
+}
+
+type Starship {
+  id: ID
+  name: String
+  model: String
+}
+
+input HumanOrder {
+  direction: OrderDirection
+  field: HumanOrderField
+}
+
+"""The possible direction for ordering."""
+enum OrderDirection {
+  ASC
+  DESC
+}
+
+"""The possible field for ordering humans."""
+enum HumanOrderField {
+  MASS
+  NAME
+}
+
+type Planet {
+  id: ID
+  name: String
+  diameter: Int
+  climate: PlanetClimage
+  landscapes: [PlanetLandscape]
+}
+
+"""The possible climate for a planet."""
+enum PlanetClimage {
+  ARID
+  TEMPERATE
+  TROPICAL
+  FROZEN
+  MURKY
+}
+
+"""The possible landscape for a planet."""
+enum PlanetLandscape {
+  DESERT
+  GRASSLANDS
+  MOUNTAINS
+  JUNGLE
+  RAINFORESTS
+  FORESTS
+  LAKES
+  TUNDRA
+}
+
+input DiameterFilter {
+  min: Int
+  max: Int
+}
+
+type Film {
+  id: ID
+  title: String
+  episodeNumber: Int
+  posterUrl: String
+  releaseDate: String
+  featuredPlanets: [Planet]
+}
+
+"""The possible saga for a film."""
+enum StarWarsSaga {
+  ORIGINAL_TRILOGY
+  PREQUEL_TRILOGY
+  SEQUEL_TRILOGY
+}

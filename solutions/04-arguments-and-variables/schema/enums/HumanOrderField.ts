@@ -5,10 +5,10 @@ export default new GraphQLEnumType({
   description: 'The possible field for ordering humans.',
   values: {
     MASS: {
-      value: 'mass',
+      value: 'mass'
     },
     NAME: {
-      value: 'name',
-    },
-  },
+      value: 'name'
+    }
+  }
 });

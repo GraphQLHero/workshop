@@ -1,4 +1,5 @@
 type Query {
+  humans: [Human]
   lukeSkywalker: Human
   leiaOrgana: Human
   hanSolo: Human

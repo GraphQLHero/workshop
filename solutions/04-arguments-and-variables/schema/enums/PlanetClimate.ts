@@ -5,19 +5,19 @@ export default new GraphQLEnumType({
   description: 'The possible climate for a planet.',
   values: {
     ARID: {
-      value: 'ARID',
+      value: 'ARID'
     },
     TEMPERATE: {
-      value: 'TEMPERATE',
+      value: 'TEMPERATE'
     },
     TROPICAL: {
-      value: 'TROPICAL',
+      value: 'TROPICAL'
     },
     FROZEN: {
-      value: 'FROZEN',
+      value: 'FROZEN'
     },
     MURKY: {
-      value: 'MURKY',
-    },
-  },
+      value: 'MURKY'
+    }
+  }
 });

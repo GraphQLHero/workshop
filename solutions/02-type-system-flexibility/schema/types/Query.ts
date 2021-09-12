@@ -4,24 +4,39 @@ import droidType from './Droid';
 import wookieType from './Wookie';
 import filmType from './Film';
 import planetType from './Planet';
-import { lukeSkywalker, leiaOrgana, hanSolo, r2d2, c3po, chewbacca, tatooine, yavin, corellia, alderaan, hoth, naboo, dagobah, newHope,
+import {
+  lukeSkywalker,
+  leiaOrgana,
+  hanSolo,
+  r2d2,
+  c3po,
+  chewbacca,
+  tatooine,
+  yavin,
+  corellia,
+  alderaan,
+  hoth,
+  naboo,
+  dagobah,
+  newHope,
   empireStikesBack,
   returnOfTheJedi,
   revengeOfTheSith,
   theForceAwakens,
   thePhantomMenace,
-  attackOfTheClones } from '../../utils/fakeDatabase';
+  attackOfTheClones
+} from '../../utils/fakeDatabase';
 
 export default new GraphQLObjectType({
   name: 'Query',
   fields: {
     humans: {
       type: new GraphQLList(humanType),
-      resolve: () => [lukeSkywalker, leiaOrgana, hanSolo],
+      resolve: () => [lukeSkywalker, leiaOrgana, hanSolo]
     },
     planets: {
       type: new GraphQLList(planetType),
-      resolve: () => [tatooine, yavin, corellia, alderaan, hoth, naboo, dagobah],
+      resolve: () => [tatooine, yavin, corellia, alderaan, hoth, naboo, dagobah]
     },
     films: {
       type: new GraphQLList(filmType),
@@ -32,32 +47,32 @@ export default new GraphQLObjectType({
         revengeOfTheSith,
         theForceAwakens,
         thePhantomMenace,
-        attackOfTheClones,
-      ],
+        attackOfTheClones
+      ]
     },
     lukeSkywalker: {
       type: humanType,
-      resolve: () => lukeSkywalker,
+      resolve: () => lukeSkywalker
     },
     leiaOrgana: {
       type: humanType,
-      resolve: () => leiaOrgana,
+      resolve: () => leiaOrgana
     },
     hanSolo: {
       type: humanType,
-      resolve: () => hanSolo,
+      resolve: () => hanSolo
     },
     r2d2: {
       type: droidType,
-      resolve: () => r2d2,
+      resolve: () => r2d2
     },
     c3po: {
       type: droidType,
-      resolve: () => c3po,
+      resolve: () => c3po
     },
     chewbacca: {
       type: wookieType,
-      resolve: () => chewbacca,
-    },
-  },
+      resolve: () => chewbacca
+    }
+  }
 });
