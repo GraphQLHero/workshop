@@ -40,7 +40,7 @@ jobs:
             yarn test --ci
       - name: Test solution 4
         run: |
-            cd exercices/04-arguments-and-variables
+            cd solutions/04-arguments-and-variables
             yarn install
             yarn dump-graphql-schema
             yarn populate-database
