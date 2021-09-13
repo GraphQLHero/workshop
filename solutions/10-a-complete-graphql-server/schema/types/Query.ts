@@ -13,6 +13,30 @@ export default new GraphQLObjectType({
         return viewer;
       }
     },
+    lukeSkywalker: {
+      type: humanType,
+      resolve: () => findHumanById(1)
+    },
+    leiaOrgana: {
+      type: humanType,
+      resolve: () => findHumanById(2)
+    },
+    hanSolo: {
+      type: humanType,
+      resolve: () => findHumanById(3)
+    },
+    r2d2: {
+      type: droidType,
+      resolve: () => findDroidById(1)
+    },
+    c3po: {
+      type: droidType,
+      resolve: () => findDroidById(2)
+    },
+    chewbacca: {
+      type: wookieType,
+      resolve: () => findWookieById(1)
+    },
     humans: {
       type: new GraphQLList(humanType),
       resolve: async (obj, args, { database }) => {
