@@ -1,0 +1,89 @@
+type Query {
+  viewer: Viewer
+  lukeSkywalker: Human
+  leiaOrgana: Human
+  hanSolo: Human
+  r2d2: Droid
+  c3po: Droid
+  chewbacca: Wookie
+  humans: [Human]
+  planets: [Planet]
+  films: [Film]
+}
+
+type Viewer {
+  username: String
+}
+
+type Human {
+  id: ID
+  name: String
+  height: Int
+  mass: Float
+  avatarUrl: String
+  isJedi: Boolean
+  spaceships: [Spaceship]
+  favoriteSpaceship: Spaceship
+}
+
+type Spaceship {
+  id: ID
+  name: String
+  model: String
+  manufacturer: String
+}
+
+type Droid {
+  id: ID
+  name: String
+  height: Int
+  mass: Float
+  model: String
+  favoriteSpaceship: Spaceship
+}
+
+type Wookie {
+  id: ID
+  name: String
+  height: Int
+  mass: Float
+  hairColor: String
+  favoriteSpaceship: Spaceship
+}
+
+type Planet {
+  id: ID
+  name: String
+  diameter: Int
+  climate: PlanetClimage
+  landscapes: [PlanetLandscape]
+}
+
+"""The possible climate for a planet."""
+enum PlanetClimage {
+  ARID
+  TEMPERATE
+  TROPICAL
+  FROZEN
+  MURKY
+}
+
+"""The possible landscape for a planet."""
+enum PlanetLandscape {
+  DESERT
+  GRASSLANDS
+  MOUNTAINS
+  JUNGLE
+  RAINFORESTS
+  FORESTS
+  LAKES
+  TUNDRA
+}
+
+type Film {
+  id: ID
+  title: String
+  episodeNumber: Int
+  posterUrl: String
+  releaseDate: String
+}

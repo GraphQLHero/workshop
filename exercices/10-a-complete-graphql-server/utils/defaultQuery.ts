@@ -1,22 +1,42 @@
 export default /* GraphQL */ `
-  {
+  query DefaultQuery {
     viewer {
       username
     }
-    humans {
+    lukeSkywalker {
       id
       name
+      height
+      mass
+      avatarUrl
     }
-    planets {
+    leiaOrgana {
+      id
       name
-      climate
-      landscapes
+      height
+      mass
+      avatarUrl
     }
-    films {
-      title
-      featuredPlanets {
-        name
-      }
+    hanSolo {
+      id
+      name
+      height
+      mass
+      avatarUrl
+    }
+    r2d2 {
+      id
+      name
+      height
+      mass
+      model
+    }
+    chewbacca {
+      id
+      name
+      height
+      mass
+      hairColor
     }
   }
 `;

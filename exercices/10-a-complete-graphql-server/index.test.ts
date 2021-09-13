@@ -2,11 +2,9 @@ import { graphql } from 'graphql';
 import schema from './schema';
 import defaultQuery from './utils/defaultQuery';
 
-test('`defaultQuery` resolve correctly', () => {
+test('`defaultQuery` resolve correctly', async () => {
   expect(graphql(schema, defaultQuery)).resolves.toMatchInlineSnapshot(`
 Object {
-  "errors": Array [
-    [GraphQLError: Cannot query field "featuredPlanets" on type "Film".],
   ],
 }
 `);
