@@ -3,20 +3,23 @@ export default /* GraphQL */ `
     viewer {
       username
     }
+    lukeSkywalker {
+      name
+    }
+    leiaOrgana {
+      name
+    }
+    hanSolo {
+      name
+    }
     humans {
-      id
       name
     }
     planets {
       name
-      climate
-      landscapes
     }
     films {
       title
-      featuredPlanets {
-        name
-      }
     }
   }
 `;

@@ -2,7 +2,17 @@ import createClient from './createClient';
 
 let database = createClient();
 
-export const findHumanById = async (id: number) => {
+type Human = {
+  id: string;
+  name: string;
+  birth_year: string;
+  avatar_url: string;
+  height: number;
+  mass: number;
+  is_jedi: boolean;
+};
+
+export const findHumanById = async (id: number): Promise<Human | null> => {
   const { data, error } = await database
     .from('human')
     .select('*')

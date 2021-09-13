@@ -3,14 +3,12 @@ import {
   GraphQLID,
   GraphQLInt,
   GraphQLFloat,
-  GraphQLBoolean,
-  GraphQLObjectType,
-  GraphQLList
+  GraphQLObjectType
 } from 'graphql';
 import spaceshipType from './Spaceship';
 
 export default new GraphQLObjectType({
-  name: 'Human',
+  name: 'Wookie',
   fields: {
     id: {
       type: GraphQLID
@@ -24,20 +22,9 @@ export default new GraphQLObjectType({
     mass: {
       type: GraphQLFloat
     },
-    avatarUrl: {
+    hairColor: {
       type: GraphQLString,
-      resolve: v => v.avatar_url
-    },
-    isJedi: {
-      type: GraphQLBoolean,
-      resolve: v => v.is_jedi
-    },
-    spaceships: {
-      type: new GraphQLList(spaceshipType),
-      resolve: obj => {
-        // TODO
-        return [];
-      }
+      resolve: v => v.hair_color
     },
     favoriteSpaceship: {
       type: spaceshipType,
