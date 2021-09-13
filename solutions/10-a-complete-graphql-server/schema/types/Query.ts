@@ -3,6 +3,7 @@ import humanType from './Human';
 import viewerType from './Viewer';
 import filmType from './Film';
 import planetType from './Planet';
+import { findHumanById } from '../../database';
 
 export default new GraphQLObjectType({
   name: 'Query',
@@ -25,18 +26,18 @@ export default new GraphQLObjectType({
       type: humanType,
       resolve: () => findHumanById(3)
     },
-    r2d2: {
-      type: droidType,
-      resolve: () => findDroidById(1)
-    },
-    c3po: {
-      type: droidType,
-      resolve: () => findDroidById(2)
-    },
-    chewbacca: {
-      type: wookieType,
-      resolve: () => findWookieById(1)
-    },
+    // r2d2: {
+    //   type: droidType,
+    //   resolve: () => findDroidById(1)
+    // },
+    // c3po: {
+    //   type: droidType,
+    //   resolve: () => findDroidById(2)
+    // },
+    // chewbacca: {
+    //   type: wookieType,
+    //   resolve: () => findWookieById(1)
+    // },
     humans: {
       type: new GraphQLList(humanType),
       resolve: async (obj, args, { database }) => {

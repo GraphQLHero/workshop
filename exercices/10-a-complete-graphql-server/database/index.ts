@@ -19,7 +19,6 @@ export const findHumanById = async (id: number): Promise<Human | null> => {
     .filter('id', 'eq', id)
     .single();
   if (error) {
-    console.log(error);
     throw error;
   }
   return data;
