@@ -1,20 +1,43 @@
 import { graphql } from 'graphql';
 import schema from './schema';
+import database from './database';
 import defaultQuery from './utils/defaultQuery';
 
-test('`defaultQuery` resolve correctly', () => {
-  expect(graphql(schema, defaultQuery)).resolves.toMatchInlineSnapshot(`
+test('`defaultQuery` resolve correctly', async () => {
+  const result = await graphql(schema, defaultQuery, null, { database });
+  expect(result).toMatchInlineSnapshot(`
 Object {
   "data": Object {
-    "films": null,
-    "humans": null,
-    "planets": null,
+    "films": Array [
+      Object {
+        "title": "The Force Awakens",
+      },
+    ],
+    "humans": Array [
+      Object {
+        "mass": 80,
+        "name": "Han Solo",
+      },
+      Object {
+        "mass": 77.1,
+        "name": "Luke Skywalker",
+      },
+      Object {
+        "mass": 49.3,
+        "name": "Leia Organa",
+      },
+    ],
+    "planets": Array [
+      Object {
+        "diameter": 7200,
+        "name": "Hoth",
+      },
+      Object {
+        "diameter": 8900,
+        "name": "Dagobah",
+      },
+    ],
   },
-  "errors": Array [
-    [GraphQLError: Cannot destructure property 'supabase' of 'undefined' as it is undefined.],
-    [GraphQLError: Cannot destructure property 'supabase' of 'undefined' as it is undefined.],
-    [GraphQLError: Cannot destructure property 'supabase' of 'undefined' as it is undefined.],
-  ],
 }
 `);
 });
