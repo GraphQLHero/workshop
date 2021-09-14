@@ -1,6 +1,7 @@
 import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import schema from './schema';
+import database from './database';
 import defaultQuery from './utils/defaultQuery';
 
 var app = express();
@@ -8,6 +9,7 @@ app.use(
   '/graphql',
   graphqlHTTP({
     schema: schema,
+    context: { database },
     graphiql: {
       defaultQuery
     }

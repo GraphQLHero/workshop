@@ -21,8 +21,8 @@ export default new GraphQLObjectType({
           type: HumanGender
         }
       },
-      resolve: async (_, { orderBy, gender }, { supabase }) => {
-        const query = supabase
+      resolve: async (_, { orderBy, gender }, { database }) => {
+        const query = database
           .from('human')
           .select('*')
           .order(orderBy.field, { ascending: orderBy.direction === 'ASC' });
@@ -42,8 +42,8 @@ export default new GraphQLObjectType({
           type: DiameterFilter
         }
       },
-      resolve: async (_, { diameter }, { supabase }) => {
-        const query = supabase.from('planet').select('*');
+      resolve: async (_, { diameter }, { database }) => {
+        const query = database.from('planet').select('*');
 
         if (diameter) {
           const { min, max } = diameter;
@@ -64,8 +64,8 @@ export default new GraphQLObjectType({
           type: StarWarsSaga
         }
       },
-      resolve: async (_, { saga }, { supabase }) => {
-        const { data } = await supabase
+      resolve: async (_, { saga }, { database }) => {
+        const { data } = await database
           .from('film')
           .select('*')
           .filter('saga', 'eq', saga);

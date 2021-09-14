@@ -1,11 +1,22 @@
 export default /* GraphQL */ `
   {
-    humans(isJedi: true) {
+    jedis: humans(isJedi: true) {
       id
       name
-      gender
+      isJedi
     }
-    luke: human(id: "123") {
+    notJedis: humans(isJedi: false) {
+      id
+      name
+      isJedi
+    }
+    lukeSkywalker: human(id: 1) {
+      name
+    }
+    leiaOrgana: human(id: 2) {
+      name
+    }
+    hanSolo: human(id: 3) {
       name
     }
   }
