@@ -38,8 +38,8 @@ export default new GraphQLObjectType({
     },
     starships: {
       type: new GraphQLList(starshipType),
-      resolve: async (obj, args, { supabase }) => {
-        const { data } = await supabase
+      resolve: async (obj, args, { database }) => {
+        const { data } = await database
           .from('starship_pilots')
           .select('starship_id(*)')
           .filter('pilot_id', 'eq', obj.id);

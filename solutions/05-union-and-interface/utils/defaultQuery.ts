@@ -6,7 +6,6 @@ export default /* GraphQL */ `
   {
     characters(orderBy: { field: CREATED_AT, direction: DESC }) {
       id
-      name
       friends {
         name
         ...LikableInfos
@@ -32,7 +31,7 @@ export default /* GraphQL */ `
             ... on Planet {
               name
             }
-          }
+    }
     planets {
       name
       ...LikableInfos

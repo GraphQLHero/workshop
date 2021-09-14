@@ -24,7 +24,7 @@ export default new GraphQLObjectType({
         .select('human_id(*),droid_id(*),wookie_id(*)')
         .order(orderBy.field, { ascending: orderBy.direction === 'ASC' });
         const { data } = await query;
-        return data.map((o) => o.human_id || o.droid_id || o.wookie_id);
+        return data.map((o: {human_id: Object; droid_id: Object; wookie_id: Object}) => o.human_id || o.droid_id || o.wookie_id);
       }
     },
     search: {
@@ -34,18 +34,18 @@ export default new GraphQLObjectType({
           type: new GraphQLNonNull(GraphQLString),
         },
       },
-      resolve: async (_, { query }, { supabase }) => {
-        const { data: humans } = await supabase
+      resolve: async (_, { query }, { database }) => {
+        const { data: humans } = await database
           .from('human')
           .select('*')
           .textSearch('name', query, { type: 'websearch', config: 'english' });
 
-        const { data: planets } = await supabase
+        const { data: planets } = await database
           .from('planet')
           .select('*')
           .textSearch('name', query, { type: 'websearch', config: 'english' });
 
-        const { data: films } = await supabase
+        const { data: films } = await database
           .from('film')
           .select('*')
           .textSearch('title', query, { type: 'websearch', config: 'english' });

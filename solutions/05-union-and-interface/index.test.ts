@@ -11,11 +11,63 @@ Object {
   "data": Object {
     "characters": Array [
       Object {
+        "friends": Array [
+          Object {
+            "likesCount": 0,
+            "name": "Leia Organa",
+            "viewerHasLiked": false,
+          },
+          Object {
+            "likesCount": 0,
+            "name": "R2-D2",
+            "viewerHasLiked": false,
+          },
+          Object {
+            "likesCount": 0,
+            "name": "Chewbacca",
+            "viewerHasLiked": false,
+          },
+        ],
+        "hairColor": "Brown",
+        "id": "1",
+        "likesCount": 0,
+        "viewerHasLiked": false,
+      },
+      Object {
+        "friends": Array [],
+        "hairColor": null,
+        "id": "2",
+        "likesCount": 0,
+        "viewerHasLiked": false,
+      },
+      Object {
+        "friends": Array [
+          Object {
+            "likesCount": 0,
+            "name": "Leia Organa",
+            "viewerHasLiked": false,
+          },
+          Object {
+            "likesCount": 0,
+            "name": "R2-D2",
+            "viewerHasLiked": false,
+          },
+          Object {
+            "likesCount": 0,
+            "name": "Chewbacca",
+            "viewerHasLiked": false,
+          },
+        ],
+        "id": "1",
+        "likesCount": 0,
+        "model": "Série R2",
+        "viewerHasLiked": false,
+      },
+      Object {
         "friends": Array [],
         "gender": "MALE",
         "id": "3",
         "likesCount": 0,
-        "name": "Han Solo",
         "viewerHasLiked": false,
       },
       Object {
@@ -23,25 +75,29 @@ Object {
         "gender": "FEMALE",
         "id": "2",
         "likesCount": 0,
-        "name": "Leia Organa",
         "viewerHasLiked": false,
       },
       Object {
         "friends": Array [
           Object {
+            "likesCount": 0,
             "name": "Leia Organa",
+            "viewerHasLiked": false,
           },
           Object {
+            "likesCount": 0,
             "name": "R2-D2",
+            "viewerHasLiked": false,
           },
           Object {
+            "likesCount": 0,
             "name": "Chewbacca",
+            "viewerHasLiked": false,
           },
         ],
         "gender": "MALE",
         "id": "1",
         "likesCount": 8,
-        "name": "Luke Skywalker",
         "viewerHasLiked": false,
       },
     ],
@@ -81,6 +137,11 @@ Object {
         "likesCount": 0,
         "name": "Dagobah",
         "viewerHasLiked": false,
+      },
+    ],
+    "search": Array [
+      Object {
+        "name": "Tatooine",
       },
     ],
   },

@@ -1,10 +1,9 @@
-import graphql from 'graphql';
-import humanType from '../types/Human.js';
-import wookieType from '../types/Wookie.js';
-import droidType from '../types/Droid.js';
-import filmType from '../types/Film.js';
-import planetType from '../types/Planet.js';
-const { GraphQLUnionType } = graphql;
+import { GraphQLUnionType } from 'graphql';
+import humanType from '../types/Human';
+import wookieType from '../types/Wookie';
+import droidType from '../types/Droid';
+import filmType from '../types/Film';
+import planetType from '../types/Planet';
 
 export default new GraphQLUnionType({
   name: 'SearchResultItem',

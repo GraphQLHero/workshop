@@ -23,7 +23,7 @@ const characterInterface: GraphQLInterfaceType = new GraphQLInterfaceType({
   interfaces: () => ([Likable]),
   fields: () => ({
     id: {
-      type: GraphQLID,
+      type: new GraphQLNonNull(GraphQLID)
     },
     name: {
       type: new GraphQLNonNull(GraphQLString),
