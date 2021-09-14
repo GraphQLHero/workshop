@@ -1,4 +1,7 @@
 type Query {
+  humans: [Human]
+  planets: [Planet]
+  films: [Film]
   lukeSkywalker: Human
   leiaOrgana: Human
   hanSolo: Human
@@ -14,7 +17,48 @@ type Human {
   mass: Float
   avatarUrl: String
   isJedi: Boolean
+  appearsIn: [Film]
+  spaceships: [Spaceship]
   favoriteSpaceship: Spaceship
+}
+
+type Film {
+  id: ID
+  title: String
+  episodeNumber: Int
+  posterUrl: String
+  releaseDate: String
+  featuredHumans: [Human]
+  featuredPlanets: [Planet]
+}
+
+type Planet {
+  id: ID
+  name: String
+  diameter: Int
+  climate: PlanetClimage
+  landscapes: [PlanetLandscape]
+}
+
+"""The possible climate for a planet."""
+enum PlanetClimage {
+  ARID
+  TEMPERATE
+  TROPICAL
+  FROZEN
+  MURKY
+}
+
+"""The possible landscape for a planet."""
+enum PlanetLandscape {
+  DESERT
+  GRASSLANDS
+  MOUNTAINS
+  JUNGLE
+  RAINFORESTS
+  FORESTS
+  LAKES
+  TUNDRA
 }
 
 type Spaceship {
