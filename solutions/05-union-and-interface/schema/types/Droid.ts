@@ -9,11 +9,10 @@ import {
 } from 'graphql';
 import characterFriendsResolver from '../../resolvers/characterFriendsResolver';
 import Character from '../interfaces/Character';
-import Likable, { likableFields } from '../interfaces/Likable';
 
 export default new GraphQLObjectType({
   name: 'Droid',
-  interfaces: [Character, Likable],
+  interfaces: [Character],
   fields: {
     id: {
       type: new GraphQLNonNull(GraphQLID)
@@ -34,6 +33,5 @@ export default new GraphQLObjectType({
       type: new GraphQLList(Character),
       resolve: characterFriendsResolver,
     },
-    ...likableFields,
   }
 });

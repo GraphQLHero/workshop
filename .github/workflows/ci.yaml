@@ -49,6 +49,19 @@ jobs:
             yarn dump-graphql-schema
             yarn populate-database
             yarn test --ci
+      - name: Test exercise 6
+        run: |
+            cd exercices/05-union-and-interface
+            yarn install
+            yarn dump-graphql-schema
+            yarn test --ci
+      - name: Test solution 5
+        run: |
+            cd solutions/05-union-and-interface
+            yarn install
+            yarn dump-graphql-schema
+            yarn populate-database
+            yarn test --ci
       - name: Test exercise 10
         run: |
             cd exercices/10-a-complete-graphql-server

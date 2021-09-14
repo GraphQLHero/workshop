@@ -1,24 +1,28 @@
 import {
-  GraphQLString,
-  GraphQLID,
-  GraphQLInt,
-  GraphQLFloat,
   GraphQLObjectType,
   GraphQLList,
+  GraphQLBoolean,
+  GraphQLFloat,
+  GraphQLInt,
+  GraphQLID,
+  GraphQLString,
   GraphQLNonNull
 } from 'graphql';
-import characterFriendsResolver from '../../resolvers/characterFriendsResolver';
+import humanGender from '../enums/HumanGender';
 import Character from '../interfaces/Character';
 
 export default new GraphQLObjectType({
-  name: 'Wookie',
+  name: 'Human',
   interfaces: [Character],
   fields: {
     id: {
-      type: GraphQLID
+      type: new GraphQLNonNull(GraphQLID)
     },
     name: {
       type: new GraphQLNonNull(GraphQLString)
+    },
+    gender: {
+      type: humanGender
     },
     height: {
       type: GraphQLInt
@@ -26,13 +30,13 @@ export default new GraphQLObjectType({
     mass: {
       type: GraphQLFloat
     },
-    hairColor: {
+    avatarUrl: {
       type: GraphQLString,
-      resolve: (v: {hair_color: string}) => v.hair_color
+      resolve: v => v.avatar_url
     },
-    friends: {
-      type: new GraphQLList(Character),
-      resolve: characterFriendsResolver,
+    isJedi: {
+      type: GraphQLBoolean,
+      resolve: v => v.is_jedi
     },
   }
 });

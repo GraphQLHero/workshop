@@ -3,19 +3,18 @@ import {
   GraphQLID,
   GraphQLInt,
   GraphQLFloat,
-  GraphQLObjectType,
   GraphQLList,
+  GraphQLObjectType,
   GraphQLNonNull
 } from 'graphql';
-import characterFriendsResolver from '../../resolvers/characterFriendsResolver';
 import Character from '../interfaces/Character';
 
 export default new GraphQLObjectType({
-  name: 'Wookie',
+  name: 'Droid',
   interfaces: [Character],
   fields: {
     id: {
-      type: GraphQLID
+      type: new GraphQLNonNull(GraphQLID)
     },
     name: {
       type: new GraphQLNonNull(GraphQLString)
@@ -26,13 +25,8 @@ export default new GraphQLObjectType({
     mass: {
       type: GraphQLFloat
     },
-    hairColor: {
-      type: GraphQLString,
-      resolve: (v: {hair_color: string}) => v.hair_color
-    },
-    friends: {
-      type: new GraphQLList(Character),
-      resolve: characterFriendsResolver,
+    model: {
+      type: GraphQLString
     },
   }
 });
