@@ -1,5 +1,4 @@
-import graphql from 'graphql';
-const { GraphQLEnumType } = graphql;
+import { GraphQLEnumType } from 'graphql';
 
 export default new GraphQLEnumType({
   name: 'CharacterOrderField',

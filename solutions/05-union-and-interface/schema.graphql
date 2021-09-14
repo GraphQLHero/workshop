@@ -1,28 +1,18 @@
-type Human implements Character & Likable {
-  id: ID
+type Human implements Character {
+  id: ID!
   name: String!
   gender: HumanGender
   height: Int
   mass: Float
   avatarUrl: String
   isJedi: Boolean
-  starships: [Starship]
   friends: [Character]
-  likesCount: Int
-  viewerHasLiked: Boolean
 }
 
-interface Character implements Likable {
+interface Character {
   id: ID
   name: String!
   friends: [Character]
-  likesCount: Int
-  viewerHasLiked: Boolean
-}
-
-interface Likable {
-  likesCount: Int
-  viewerHasLiked: Boolean
 }
 
 """The possible gender for a human."""
@@ -32,69 +22,52 @@ enum HumanGender {
   OTHER
 }
 
-type Starship {
-  id: ID
-  name: String
-  model: String
-  pilots: [Human]
-}
-
-type Droid implements Character & Likable {
-  id: ID
+type Droid implements Character {
+  id: ID!
   name: String!
   height: Int
   mass: Float
   model: String
   friends: [Character]
-  likesCount: Int
-  viewerHasLiked: Boolean
 }
 
-type Wookie implements Character & Likable {
+type Wookie implements Character {
   id: ID
   name: String!
   height: Int
   mass: Float
   hairColor: String
   friends: [Character]
-  likesCount: Int
-  viewerHasLiked: Boolean
 }
 
 type Query {
-  viewer: Viewer
-  search(query: String!): [SearchResultItem]!
-  characters(orderBy: HumanOrder = {direction: DESC, field: CREATED_AT}): [Character]
+  characters(orderBy: CharacterOrder = {direction: ASC, field: CREATED_AT}): [Character]
   planets(diameter: DiameterFilter): [Planet]
   films(saga: StarWarsSaga): [Film]
 }
 
-type Viewer {
-  username: String
+input CharacterOrder {
+  direction: OrderDirection
+  field: CharacterOrderField
 }
 
-union SearchResultItem = Human | Droid | Wookie | Film | Planet
-
-type Film implements Likable {
-  id: ID
-  title: String
-  episodeNumber: Int
-  posterUrl: String
-  releaseDate: String
-  viewerRating: Int
-  featuredPlanets: [Planet]
-  likesCount: Int
-  viewerHasLiked: Boolean
+"""The possible direction for ordering."""
+enum OrderDirection {
+  ASC
+  DESC
 }
 
-type Planet implements Likable {
+"""The possible field for ordering characters."""
+enum CharacterOrderField {
+  CREATED_AT
+}
+
+type Planet {
   id: ID
   name: String
   diameter: Int
   climate: PlanetClimage
   landscapes: [PlanetLandscape]
-  likesCount: Int
-  viewerHasLiked: Boolean
 }
 
 """The possible climate for a planet."""
@@ -118,25 +91,18 @@ enum PlanetLandscape {
   TUNDRA
 }
 
-input HumanOrder {
-  direction: OrderDirection
-  field: CharacterOrderField
-}
-
-"""The possible direction for ordering."""
-enum OrderDirection {
-  ASC
-  DESC
-}
-
-"""The possible field for ordering characters."""
-enum CharacterOrderField {
-  CREATED_AT
-}
-
 input DiameterFilter {
   min: Int
   max: Int
+}
+
+type Film {
+  id: ID
+  title: String
+  episodeNumber: Int
+  posterUrl: String
+  releaseDate: String
+  featuredPlanets: [Planet]
 }
 
 """The possible saga for a film."""

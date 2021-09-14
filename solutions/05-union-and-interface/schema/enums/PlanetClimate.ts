@@ -1,24 +1,23 @@
-import graphql from 'graphql';
-const { GraphQLEnumType } = graphql;
+import { GraphQLEnumType } from 'graphql';
 
 export default new GraphQLEnumType({
   name: 'PlanetClimage',
   description: 'The possible climate for a planet.',
   values: {
     ARID: {
-      value: 'ARID',
+      value: 'ARID'
     },
     TEMPERATE: {
-      value: 'TEMPERATE',
+      value: 'TEMPERATE'
     },
     TROPICAL: {
-      value: 'TROPICAL',
+      value: 'TROPICAL'
     },
     FROZEN: {
-      value: 'FROZEN',
+      value: 'FROZEN'
     },
     MURKY: {
-      value: 'MURKY',
-    },
-  },
+      value: 'MURKY'
+    }
+  }
 });

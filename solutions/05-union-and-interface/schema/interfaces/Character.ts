@@ -1,31 +1,26 @@
-import graphql from 'graphql';
-import humanType from '../types/Human.js';
-import wookieType from '../types/Wookie.js';
-import droidType from '../types/Droid.js';
-import Likable, { likableFields } from './Likable.js';
-
-const {
+import {
   GraphQLInterfaceType,
   GraphQLList,
   GraphQLID,
   GraphQLString,
   GraphQLNonNull,
-} = graphql;
+} from 'graphql';
+import Likable, { likableFields } from './Likable';
 
-export const resolveType = (obj) => {
+export const resolveType = (obj: {gender?: string; model?: string}) => {
   if (obj.gender) {
-    return humanType;
+    return 'Human';
   }
   if (obj.model) {
-    return droidType;
+    return 'Droid';
   }
-  return wookieType;
+  return 'Wookie';
 };
 
-const characterInterface = new GraphQLInterfaceType({
+const characterInterface: GraphQLInterfaceType = new GraphQLInterfaceType({
   name: 'Character',
   resolveType,
-  interfaces: [Likable],
+  interfaces: () => ([Likable]),
   fields: () => ({
     id: {
       type: GraphQLID,

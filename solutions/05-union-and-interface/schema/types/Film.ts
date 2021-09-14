@@ -1,42 +1,34 @@
-import graphql from 'graphql';
-import Likable, { likableFields } from '../interfaces/Likable.js';
-import planetType from './Planet.js';
-const {
+import {
   GraphQLObjectType,
   GraphQLList,
   GraphQLID,
   GraphQLInt,
-  GraphQLString,
-} = graphql;
+  GraphQLString
+} from 'graphql';
+import Likable, { likableFields } from '../interfaces/Likable';
+import planetType from './Planet';
 
 export default new GraphQLObjectType({
   name: 'Film',
-  interfaces: () => [Likable],
-  fields: () => ({
+  interfaces: [Likable],
+  fields: {
     id: {
-      type: GraphQLID,
+      type: GraphQLID
     },
     title: {
-      type: GraphQLString,
+      type: GraphQLString
     },
     episodeNumber: {
       type: GraphQLInt,
-      resolve: (v) => v.episode_number,
+      resolve: v => v.episode_number
     },
     posterUrl: {
       type: GraphQLString,
-      resolve: (v) => v.poster_url,
+      resolve: v => v.poster_url
     },
     releaseDate: {
       type: GraphQLString,
-      resolve: (v) => v.release_date,
-    },
-    viewerRating: {
-      type: GraphQLInt,
-      resolve: (obj, args, context) => {
-        if (!context.viewer) return null;
-        return 10;
-      },
+      resolve: v => v.release_date
     },
     featuredPlanets: {
       type: new GraphQLList(planetType),
@@ -45,9 +37,9 @@ export default new GraphQLObjectType({
           .from('planet_featured_in_film')
           .select('planet_id(*)')
           .filter('film_id', 'eq', film.id);
-        return data.map((o) => o.planet_id);
-      },
+        return data.map((o: { planet_id: Object }) => o.planet_id);
+      }
     },
     ...likableFields,
-  }),
+  }
 });

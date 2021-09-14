@@ -1,33 +1,32 @@
-import graphql from 'graphql';
-const { GraphQLEnumType } = graphql;
+import { GraphQLEnumType } from 'graphql';
 
 export default new GraphQLEnumType({
   name: 'PlanetLandscape',
   description: 'The possible landscape for a planet.',
   values: {
     DESERT: {
-      value: 'DESERT',
+      value: 'DESERT'
     },
     GRASSLANDS: {
-      value: 'GRASSLANDS',
+      value: 'GRASSLANDS'
     },
     MOUNTAINS: {
-      value: 'MOUNTAINS',
+      value: 'MOUNTAINS'
     },
     JUNGLE: {
-      value: 'JUNGLE',
+      value: 'JUNGLE'
     },
     RAINFORESTS: {
-      value: 'RAINFORESTS',
+      value: 'RAINFORESTS'
     },
     FORESTS: {
-      value: 'FORESTS',
+      value: 'FORESTS'
     },
     LAKES: {
-      value: 'LAKES',
+      value: 'LAKES'
     },
     TUNDRA: {
-      value: 'TUNDRA',
-    },
-  },
+      value: 'TUNDRA'
+    }
+  }
 });

@@ -8,7 +8,7 @@ const { GraphQLUnionType } = graphql;
 
 export default new GraphQLUnionType({
   name: 'SearchResultItem',
-  types: [humanType, droidType, wookieType, filmType, planetType],
+  types: () => [humanType, droidType, wookieType, filmType, planetType],
   resolveType: (obj) => {
     if (obj.title) {
       return filmType;
