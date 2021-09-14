@@ -35,7 +35,7 @@ export default new GraphQLObjectType({
           'TUNDRA',
           'MOUNTAINS'
         ]
-          .sort(() => 0.5 - Math.random())
+          // .sort(() => 0.5 - Math.random())
           .slice(0, 2);
       }
     }

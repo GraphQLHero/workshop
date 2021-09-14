@@ -8,6 +8,7 @@ import {
 } from 'graphql';
 import spaceshipType from './Spaceship';
 import { xWing, tantive4, millenniumFalcon } from '../../utils/fakeDatabase';
+import HumanGender from '../enums/HumanGender';
 
 export default new GraphQLObjectType({
   name: 'Human',
@@ -23,6 +24,9 @@ export default new GraphQLObjectType({
     },
     mass: {
       type: GraphQLFloat
+    },
+    gender: {
+      type: HumanGender
     },
     avatarUrl: {
       type: GraphQLString,

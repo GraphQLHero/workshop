@@ -6,7 +6,9 @@ import {
   GraphQLNonNull
 } from 'graphql';
 import humanType from './Human';
-import { lukeSkywalker, leiaOrgana } from '../../utils/fakeDatabase';
+import { lukeSkywalker, leiaOrgana, hanSolo } from '../../utils/fakeDatabase';
+
+const humans = [lukeSkywalker, leiaOrgana, hanSolo]
 
 export default new GraphQLObjectType({
   name: 'Query',
@@ -25,11 +27,11 @@ export default new GraphQLObjectType({
           'Resolver called with args: ' + JSON.stringify(args, null, 2)
         );
         if (args.isJedi !== null) {
-          return [lukeSkywalker, leiaOrgana].filter(
+          return humans.filter(
             h => h.is_jedi === args.isJedi
           );
         }
-        return [lukeSkywalker, leiaOrgana];
+        return humans;
       }
     },
     human: {
@@ -46,7 +48,7 @@ export default new GraphQLObjectType({
         console.log(
           'Resolver called with args: ' + JSON.stringify(args, null, 2)
         );
-        return [lukeSkywalker, leiaOrgana].find(human => human.id === args.id);
+        return humans.find(human => human.id === args.id);
       }
     }
   }

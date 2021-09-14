@@ -8,7 +8,8 @@ import {
   GraphQLList
 } from 'graphql';
 import spaceshipType from './Spaceship';
-import { xWing, tantive4, millenniumFalcon } from '../../utils/fakeDatabase';
+import filmType from './Film';
+import { xWing, tantive4, millenniumFalcon, newHope, empireStikesBack, returnOfTheJedi } from '../../utils/fakeDatabase';
 
 export default new GraphQLObjectType({
   name: 'Human',
@@ -32,6 +33,20 @@ export default new GraphQLObjectType({
     isJedi: {
       type: GraphQLBoolean,
       resolve: v => v.is_jedi
+    },
+    appearsIn: {
+      type: new GraphQLList(filmType),
+      resolve: obj => {
+        if (obj.name === 'Han Solo') {
+          return [newHope];
+        }
+        if (obj.name === 'Luke Skywalker') {
+          return [newHope, empireStikesBack, returnOfTheJedi];
+        }
+        if (obj.name === 'Leia Organa') {
+          return [newHope, empireStikesBack];
+        }
+      }
     },
     spaceships: {
       type: new GraphQLList(spaceshipType),
