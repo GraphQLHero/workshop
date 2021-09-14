@@ -49,7 +49,7 @@ jobs:
             yarn dump-graphql-schema
             yarn populate-database
             yarn test --ci
-      - name: Test exercise 6
+      - name: Test exercise 5
         run: |
             cd exercices/05-union-and-interface
             yarn install

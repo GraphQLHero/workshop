@@ -1,42 +1,15 @@
-import { GraphQLObjectType, GraphQLList } from 'graphql';
-// import humanType from './Human';
+import { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLList } from 'graphql';
 import planetType from './Planet';
 import filmType from './Film';
-// import HumanOrder from '../inputs/HumanOrder';
 import DiameterFilter from '../inputs/DiameterFilter';
 import StarWarsSaga from '../enums/StarWarsSaga';
 import characterInterface from '../interfaces/Character';
 import CharacterOrder from '../inputs/CharacterOrder';
-// import HumanGender from '../enums/HumanGender';
+import SearchResultItem from '../unions/SearchResultItem';
 
 export default new GraphQLObjectType({
   name: 'Query',
   fields: {
-    // humans: {
-    //   type: new GraphQLList(humanType),
-    //   args: {
-    //     orderBy: {
-    //       type: HumanOrder,
-    //       defaultValue: { field: 'name', direction: 'ASC' }
-    //     },
-    //     gender: {
-    //       type: HumanGender
-    //     }
-    //   },
-    //   resolve: async (_, { orderBy, gender }, { database }) => {
-    //     const query = database
-    //       .from('human')
-    //       .select('*')
-    //       .order(orderBy.field, { ascending: orderBy.direction === 'ASC' });
-
-    //     if (gender) {
-    //       query.filter('gender', 'eq', gender);
-    //     }
-
-    //     const { data } = await query;
-    //     return data;
-    //   }
-    // },
     characters: {
       type: new GraphQLList(characterInterface),
       args: {
@@ -47,13 +20,38 @@ export default new GraphQLObjectType({
       },
       resolve: async (_, { orderBy }, { database }) => {
         const query = database
+        .from('character')
+        .select('human_id(*),droid_id(*),wookie_id(*)')
+        .order(orderBy.field, { ascending: orderBy.direction === 'ASC' });
+        const { data } = await query;
+        return data.map((o) => o.human_id || o.droid_id || o.wookie_id);
+      }
+    },
+    search: {
+      type: new GraphQLNonNull(new GraphQLList(SearchResultItem)),
+      args: {
+        query: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+      },
+      resolve: async (_, { query }, { supabase }) => {
+        const { data: humans } = await supabase
           .from('human')
           .select('*')
-          .order(orderBy.field, { ascending: orderBy.direction === 'ASC' });
+          .textSearch('name', query, { type: 'websearch', config: 'english' });
 
-        const { data } = await query;
-        return data;
-      }
+        const { data: planets } = await supabase
+          .from('planet')
+          .select('*')
+          .textSearch('name', query, { type: 'websearch', config: 'english' });
+
+        const { data: films } = await supabase
+          .from('film')
+          .select('*')
+          .textSearch('title', query, { type: 'websearch', config: 'english' });
+
+        return [...humans, ...planets, ...films];
+      },
     },
     planets: {
       type: new GraphQLList(planetType),

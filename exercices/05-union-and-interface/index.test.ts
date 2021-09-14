@@ -11,6 +11,21 @@ Object {
   "data": Object {
     "characters": Array [
       Object {
+        "hairColor": "Brown",
+        "id": "1",
+        "name": "Chewbacca",
+      },
+      Object {
+        "hairColor": null,
+        "id": "2",
+        "name": "C-3PO",
+      },
+      Object {
+        "id": "1",
+        "model": "Série R2",
+        "name": "R2-D2",
+      },
+      Object {
         "gender": "MALE",
         "id": "3",
         "name": "Han Solo",

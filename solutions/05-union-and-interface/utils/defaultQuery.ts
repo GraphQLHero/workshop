@@ -9,6 +9,7 @@ export default /* GraphQL */ `
       name
       friends {
         name
+        ...LikableInfos
       }
       ...LikableInfos
       ... on Human {
@@ -21,6 +22,17 @@ export default /* GraphQL */ `
         hairColor
       }
     }
+    search(query: "Tatooine") {
+            ... on Human {
+              name
+            }
+            ... on Film {
+              title
+            }
+            ... on Planet {
+              name
+            }
+          }
     planets {
       name
       ...LikableInfos
