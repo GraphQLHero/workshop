@@ -17,7 +17,7 @@ import {
   naboo,
   tatooine,
   yavin
-} from '../../utils/fakeDatabase';
+} from '../../database';
 
 export default new GraphQLObjectType({
   name: 'Film',

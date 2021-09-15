@@ -2,7 +2,7 @@ import {
   nodeDefinitions,
   fromGlobalId,
 } from 'graphql-relay';
-import { leiaOrgana, lukeSkywalker } from '../../utils/fakeDatabase';
+import { leiaOrgana, lukeSkywalker } from '../../database';
 
  export const { nodeInterface, nodeField } = nodeDefinitions(
   async (globalId: string) => {

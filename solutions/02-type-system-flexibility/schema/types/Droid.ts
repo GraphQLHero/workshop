@@ -6,7 +6,7 @@ import {
   GraphQLObjectType
 } from 'graphql';
 import spaceshipType from './Spaceship';
-import { xWing } from '../../utils/fakeDatabase';
+import { xWing } from '../../database';
 
 export default new GraphQLObjectType({
   name: 'Droid',

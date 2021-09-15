@@ -25,7 +25,7 @@ import {
   theForceAwakens,
   thePhantomMenace,
   attackOfTheClones
-} from '../../utils/fakeDatabase';
+} from '../../database';
 
 export default new GraphQLObjectType({
   name: 'Query',

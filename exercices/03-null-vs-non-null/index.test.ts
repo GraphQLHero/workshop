@@ -1,6 +1,6 @@
 import { graphql } from 'graphql';
 import schema from './schema';
-import defaultQuery from './utils/defaultQuery';
+import defaultQuery from './queries/defaultQuery';
 
 test('`defaultQuery` resolve correctly', () => {
   expect(graphql(schema, defaultQuery)).resolves.toMatchInlineSnapshot(`

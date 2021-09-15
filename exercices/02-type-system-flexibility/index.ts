@@ -1,7 +1,7 @@
 import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import schema from './schema';
-import defaultQuery from './utils/defaultQuery';
+import defaultQuery from './queries/defaultQuery';
 
 var app = express();
 app.use(

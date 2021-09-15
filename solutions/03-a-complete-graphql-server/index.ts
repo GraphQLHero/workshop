@@ -3,7 +3,7 @@ import session from 'express-session';
 import { graphqlHTTP } from 'express-graphql';
 import schema from './schema';
 import database from './database';
-import defaultQuery from './utils/defaultQuery';
+import defaultQuery from './queries/defaultQuery';
 
 declare module 'express-session' {
   interface SessionData {

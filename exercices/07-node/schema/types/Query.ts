@@ -3,7 +3,7 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
 } from 'graphql';
-import { empireStrikesBack, newHope, tatooine, yavin } from '../../utils/fakeDatabase';
+import { empireStrikesBack, newHope, tatooine, yavin } from '../../database';
 import { nodeField } from '../interfaces/Node';
 import Film from './Film';
 import Planet from './Planet';

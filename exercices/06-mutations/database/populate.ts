@@ -1,4 +1,4 @@
-import database from '../database';
+import database from '.';
 
 const lukeSkywalker = {
   id: 1,
@@ -8,7 +8,8 @@ const lukeSkywalker = {
   height: 172,
   mass: 77.1,
   is_jedi: true,
-  gender: 'MALE'
+  gender: 'MALE',
+  likes_count: 0,
 };
 const leiaOrgana = {
   id: 2,
@@ -18,7 +19,8 @@ const leiaOrgana = {
   height: 150,
   mass: 49.3,
   is_jedi: false,
-  gender: 'FEMALE'
+  gender: 'FEMALE',
+  likes_count: 0,
 };
 
 const hanSolo = {
@@ -29,7 +31,8 @@ const hanSolo = {
   height: 180,
   mass: 80.0,
   is_jedi: false,
-  gender: 'MALE'
+  gender: 'MALE',
+  likes_count: 0,
 };
 
 const r2d2 = {

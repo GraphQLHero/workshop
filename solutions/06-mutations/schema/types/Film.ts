@@ -7,7 +7,7 @@ import {
   GraphQLNonNull
 } from 'graphql';
 import Likable, { likableFields } from '../../../06-mutations/schema/interfaces/Likable';
-import planetType from './Planet';
+import planetType from '../../../07-node/schema/types/Planet';
 
 export default new GraphQLObjectType({
   name: 'Film',

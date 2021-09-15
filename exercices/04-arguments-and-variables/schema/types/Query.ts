@@ -6,7 +6,7 @@ import {
   GraphQLNonNull
 } from 'graphql';
 import humanType from './Human';
-import { lukeSkywalker, leiaOrgana, hanSolo } from '../../utils/fakeDatabase';
+import { lukeSkywalker, leiaOrgana, hanSolo } from '../../database/fake';
 
 const humans = [lukeSkywalker, leiaOrgana, hanSolo];
 

@@ -4,7 +4,7 @@ import {
   GraphQLNonNull,
   GraphQLList
 } from 'graphql';
-import planetType from './Planet';
+import planetType from '../../../07-node/schema/types/Planet';
 import filmType from './Film';
 // import DiameterFilter from '../inputs/DiameterFilter';
 // import StarWarsSaga from '../enums/StarWarsSaga';

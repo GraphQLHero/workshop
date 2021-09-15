@@ -16,7 +16,7 @@ import {
   newHope,
   empireStrikesBack,
   returnOfTheJedi
-} from '../../utils/fakeDatabase';
+} from '../../database';
 
 export default new GraphQLObjectType({
   name: 'Human',

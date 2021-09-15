@@ -9,7 +9,7 @@ import {
 } from 'graphql';
 import characterFriendsResolver from '../../resolvers/characterFriendsResolver';
 import Character from '../interfaces/Character';
-import Likable, { likableFields } from '../interfaces/Likable';
+import Likable, { likableFields } from '../../../06-mutations/schema/interfaces/Likable';
 
 export default new GraphQLObjectType({
   name: 'Droid',
