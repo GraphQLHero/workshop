@@ -4,12 +4,6 @@ import {
   fromGlobalId,
 } from 'graphql-relay';
 
-/**
- * We get the node interface and field from the relay library.
- *
- * The first method is the way we resolve an ID to its object.
- * The second is the way we resolve an object that implements node to its type.
- */
  export const { nodeInterface, nodeField, nodesField } = nodeDefinitions<{database : SupabaseClient}>(
   async (globalId: string, {database}) => {
     const { type, id } = fromGlobalId(globalId);
@@ -39,15 +33,5 @@ import {
         if (!planet) return null;
         return { ...planet, __typename: 'Planet' };
     }
-  },
-  // (obj) => {
-  //   switch (obj.__typename) {
-  //     case 'Human':
-  //       return humanType;
-  //     case 'Film':
-  //       return filmType;
-  //     case 'Planet':
-  //       return planetType;
-  //   }
-  // }
+  }
 );

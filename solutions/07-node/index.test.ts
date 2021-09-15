@@ -25,6 +25,28 @@ Object {
       "id": "RmlsbTox",
       "title": "A New Hope",
     },
+    "nodes": Array [
+      Object {
+        "id": "SHVtYW46MQ==",
+        "name": "Luke Skywalker",
+      },
+      Object {
+        "id": "RmlsbTox",
+        "title": "A New Hope",
+      },
+      Object {
+        "id": "SHVtYW46MQ==",
+        "name": "Tatooine",
+      },
+    ],
+    "tatooine": Object {
+      "id": "SHVtYW46MQ==",
+      "name": "Tatooine",
+    },
+    "yavin": Object {
+      "id": "SHVtYW46Mg==",
+      "name": "Yavin IV",
+    },
   },
 }
 `);

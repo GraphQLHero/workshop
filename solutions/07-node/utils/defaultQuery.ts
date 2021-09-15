@@ -25,4 +25,28 @@ export default /* GraphQL */ `{
       title
     }
   }
+  tatooine: node(id: "${toGlobalId('Planet', '1')}") {
+    id
+    ... on Planet {
+      name
+    }
+  }
+  yavin: node(id: "${toGlobalId('Planet', '2')}") {
+    id
+    ... on Planet {
+      name
+    }
+  }
+  nodes(ids: ["${toGlobalId('Human', '1')}", "${toGlobalId('Film', '1')}","${toGlobalId('Planet', '1')}"]) {
+    id
+    ... on Human {
+      name
+    }
+    ... on Film {
+      title
+    }
+    ... on Planet {
+      name
+    }
+  }
 }`

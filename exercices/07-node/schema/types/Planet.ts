@@ -1,19 +1,16 @@
 import {
   GraphQLObjectType,
-  GraphQLList,
-  GraphQLID,
   GraphQLInt,
   GraphQLString,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLID
 } from 'graphql';
-import Likable, { likableFields } from '../../../06-mutations/schema/interfaces/Likable';
 
 export default new GraphQLObjectType({
   name: 'Planet',
-  interfaces: [Likable],
   fields: {
     id: {
-      type: new GraphQLNonNull(GraphQLID)
+      type: new GraphQLNonNull(GraphQLID),
     },
     name: {
       type: new GraphQLNonNull(GraphQLString)
@@ -21,6 +18,5 @@ export default new GraphQLObjectType({
     diameter: {
       type: GraphQLInt
     },
-    ...likableFields
   }
 });
