@@ -97,7 +97,7 @@ Object {
         ],
         "gender": "MALE",
         "id": "1",
-        "likesCount": 1,
+        "likesCount": 0,
         "viewerHasLiked": false,
       },
     ],
