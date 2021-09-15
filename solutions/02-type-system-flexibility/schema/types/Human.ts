@@ -14,7 +14,7 @@ import {
   tantive4,
   millenniumFalcon,
   newHope,
-  empireStikesBack,
+  empireStrikesBack,
   returnOfTheJedi
 } from '../../utils/fakeDatabase';
 
@@ -48,10 +48,10 @@ export default new GraphQLObjectType({
           return [newHope];
         }
         if (obj.name === 'Luke Skywalker') {
-          return [newHope, empireStikesBack, returnOfTheJedi];
+          return [newHope, empireStrikesBack, returnOfTheJedi];
         }
         if (obj.name === 'Leia Organa') {
-          return [newHope, empireStikesBack];
+          return [newHope, empireStrikesBack];
         }
       }
     },

@@ -19,7 +19,7 @@ import {
   naboo,
   dagobah,
   newHope,
-  empireStikesBack,
+  empireStrikesBack,
   returnOfTheJedi,
   revengeOfTheSith,
   theForceAwakens,
@@ -42,7 +42,7 @@ export default new GraphQLObjectType({
       type: new GraphQLList(filmType),
       resolve: () => [
         newHope,
-        empireStikesBack,
+        empireStrikesBack,
         returnOfTheJedi,
         revengeOfTheSith,
         theForceAwakens,

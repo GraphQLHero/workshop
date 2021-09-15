@@ -60,7 +60,7 @@ export const newHope = {
   poster_url: 'https://graphqlhero.com/Episode_IV.jpg',
   release_date: '1977-05-25'
 };
-export const empireStikesBack = {
+export const empireStrikesBack = {
   id: 2,
   title: 'The Empire Strikes Back',
   episode_number: 5,

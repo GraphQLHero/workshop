@@ -62,7 +62,7 @@ const newHope = {
   release_date: '1977-05-25',
   saga: 'ORIGINAL_TRILOGY'
 };
-const empireStikesBack = {
+const empireStrikesBack = {
   id: 2,
   title: 'The Empire Strikes Back',
   episode_number: 5,
@@ -178,7 +178,7 @@ const yWing = {
     .from('film')
     .upsert([
       newHope,
-      empireStikesBack,
+      empireStrikesBack,
       returnOfTheJedi,
       revengeOfTheSith,
       theForceAwakens,

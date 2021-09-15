@@ -58,7 +58,7 @@ const newHope = {
   poster_url: 'https://graphqlhero.com/Episode_IV.jpg',
   release_date: '1977-05-25'
 };
-const empireStikesBack = {
+const empireStrikesBack = {
   id: 2,
   title: 'The Empire Strikes Back',
   episode_number: 5,
@@ -168,7 +168,7 @@ const yWing = {
     .from('film')
     .upsert([
       newHope,
-      empireStikesBack,
+      empireStrikesBack,
       returnOfTheJedi,
       revengeOfTheSith,
       theForceAwakens,
