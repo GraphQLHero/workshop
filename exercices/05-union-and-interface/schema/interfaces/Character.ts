@@ -2,10 +2,10 @@ import {
   GraphQLInterfaceType,
   GraphQLID,
   GraphQLString,
-  GraphQLNonNull,
+  GraphQLNonNull
 } from 'graphql';
 
-export const resolveType = (obj: {gender?: string; model?: string}) => {
+export const resolveType = (obj: { gender?: string; model?: string }) => {
   if (obj.gender) {
     return 'Human';
   }
@@ -20,12 +20,12 @@ const characterInterface: GraphQLInterfaceType = new GraphQLInterfaceType({
   resolveType,
   fields: () => ({
     id: {
-      type: GraphQLID,
+      type: GraphQLID
     },
     name: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-  }),
+      type: new GraphQLNonNull(GraphQLString)
+    }
+  })
 });
 
 export default characterInterface;

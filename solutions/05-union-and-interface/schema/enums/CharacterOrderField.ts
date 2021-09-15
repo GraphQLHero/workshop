@@ -5,7 +5,7 @@ export default new GraphQLEnumType({
   description: 'The possible field for ordering characters.',
   values: {
     CREATED_AT: {
-      value: 'id',
-    },
-  },
+      value: 'id'
+    }
+  }
 });

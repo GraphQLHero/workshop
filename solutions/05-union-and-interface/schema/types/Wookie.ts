@@ -29,12 +29,12 @@ export default new GraphQLObjectType({
     },
     hairColor: {
       type: GraphQLString,
-      resolve: (v: {hair_color: string}) => v.hair_color
+      resolve: (v: { hair_color: string }) => v.hair_color
     },
     friends: {
       type: new GraphQLList(Character),
-      resolve: characterFriendsResolver,
+      resolve: characterFriendsResolver
     },
-    ...likableFields,
+    ...likableFields
   }
 });

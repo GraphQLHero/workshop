@@ -32,8 +32,8 @@ export default new GraphQLObjectType({
     },
     friends: {
       type: new GraphQLList(Character),
-      resolve: characterFriendsResolver,
+      resolve: characterFriendsResolver
     },
-    ...likableFields,
+    ...likableFields
   }
 });

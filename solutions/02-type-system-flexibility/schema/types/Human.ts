@@ -9,7 +9,14 @@ import {
 } from 'graphql';
 import spaceshipType from './Spaceship';
 import filmType from './Film';
-import { xWing, tantive4, millenniumFalcon, newHope, empireStikesBack, returnOfTheJedi } from '../../utils/fakeDatabase';
+import {
+  xWing,
+  tantive4,
+  millenniumFalcon,
+  newHope,
+  empireStikesBack,
+  returnOfTheJedi
+} from '../../utils/fakeDatabase';
 
 export default new GraphQLObjectType({
   name: 'Human',

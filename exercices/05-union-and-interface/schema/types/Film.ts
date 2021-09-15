@@ -38,6 +38,6 @@ export default new GraphQLObjectType({
           .filter('film_id', 'eq', film.id);
         return data.map((o: { planet_id: Object }) => o.planet_id);
       }
-    },
+    }
   }
 });

@@ -15,15 +15,18 @@ export default new GraphQLObjectType({
         orderBy: {
           type: CharacterOrder,
           defaultValue: { field: 'id', direction: 'ASC' }
-        },
+        }
       },
       resolve: async (_, { orderBy }, { database }) => {
         const query = database
-        .from('character')
-        .select('human_id(*),droid_id(*),wookie_id(*)')
-        .order(orderBy.field, { ascending: orderBy.direction === 'ASC' });
+          .from('character')
+          .select('human_id(*),droid_id(*),wookie_id(*)')
+          .order(orderBy.field, { ascending: orderBy.direction === 'ASC' });
         const { data } = await query;
-        return data.map((o: {human_id: Object; droid_id: Object; wookie_id: Object}) => o.human_id || o.droid_id || o.wookie_id);
+        return data.map(
+          (o: { human_id: Object; droid_id: Object; wookie_id: Object }) =>
+            o.human_id || o.droid_id || o.wookie_id
+        );
       }
     },
     planets: {

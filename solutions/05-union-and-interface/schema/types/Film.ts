@@ -41,6 +41,6 @@ export default new GraphQLObjectType({
         return data.map((o: { planet_id: Object }) => o.planet_id);
       }
     },
-    ...likableFields,
+    ...likableFields
   }
 });

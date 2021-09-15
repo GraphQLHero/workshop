@@ -1,9 +1,17 @@
-import { GraphQLFieldConfigMap, GraphQLInterfaceType, GraphQLInt, GraphQLBoolean } from 'graphql';
+import {
+  GraphQLFieldConfigMap,
+  GraphQLInterfaceType,
+  GraphQLInt,
+  GraphQLBoolean
+} from 'graphql';
 
-export const likableFields: GraphQLFieldConfigMap<any, { viewer: Object | null}> = {
+export const likableFields: GraphQLFieldConfigMap<
+  any,
+  { viewer: Object | null }
+> = {
   likesCount: {
     type: GraphQLInt,
-    resolve: obj => obj.likes_count,
+    resolve: obj => obj.likes_count
   },
   viewerHasLiked: {
     type: GraphQLBoolean,
@@ -12,13 +20,13 @@ export const likableFields: GraphQLFieldConfigMap<any, { viewer: Object | null}>
         return true;
       }
       return false;
-    },
-  },
+    }
+  }
 };
 
 export default new GraphQLInterfaceType({
   name: 'Likable',
-  resolveType: (obj) => {
+  resolveType: obj => {
     if (obj.title) {
       return 'Film';
     }
@@ -33,5 +41,5 @@ export default new GraphQLInterfaceType({
     }
     return 'Wookie';
   },
-  fields: () => likableFields,
+  fields: () => likableFields
 });

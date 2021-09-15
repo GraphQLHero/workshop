@@ -3,11 +3,11 @@ import {
   GraphQLList,
   GraphQLID,
   GraphQLString,
-  GraphQLNonNull,
+  GraphQLNonNull
 } from 'graphql';
 import Likable, { likableFields } from './Likable';
 
-export const resolveType = (obj: {gender?: string; model?: string}) => {
+export const resolveType = (obj: { gender?: string; model?: string }) => {
   if (obj.gender) {
     return 'Human';
   }
@@ -20,19 +20,19 @@ export const resolveType = (obj: {gender?: string; model?: string}) => {
 const characterInterface: GraphQLInterfaceType = new GraphQLInterfaceType({
   name: 'Character',
   resolveType,
-  interfaces: () => ([Likable]),
+  interfaces: () => [Likable],
   fields: () => ({
     id: {
       type: new GraphQLNonNull(GraphQLID)
     },
     name: {
-      type: new GraphQLNonNull(GraphQLString),
+      type: new GraphQLNonNull(GraphQLString)
     },
     friends: {
-      type: new GraphQLList(characterInterface),
+      type: new GraphQLList(characterInterface)
     },
-    ...likableFields,
-  }),
+    ...likableFields
+  })
 });
 
 export default characterInterface;

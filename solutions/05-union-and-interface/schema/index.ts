@@ -4,4 +4,7 @@ import humanType from './types/Human';
 import droidType from './types/Droid';
 import wookieType from './types/Wookie';
 
-export default new GraphQLSchema({ query, types: [humanType, droidType, wookieType] });
+export default new GraphQLSchema({
+  query,
+  types: [humanType, droidType, wookieType]
+});

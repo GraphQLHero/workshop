@@ -28,6 +28,6 @@ export default new GraphQLObjectType({
     hairColor: {
       type: GraphQLString,
       resolve: v => v.hair_color
-    },
+    }
   }
 });

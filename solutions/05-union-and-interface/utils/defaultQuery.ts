@@ -22,15 +22,15 @@ export default /* GraphQL */ `
       }
     }
     search(query: "Tatooine") {
-            ... on Human {
-              name
-            }
-            ... on Film {
-              title
-            }
-            ... on Planet {
-              name
-            }
+      ... on Human {
+        name
+      }
+      ... on Film {
+        title
+      }
+      ... on Planet {
+        name
+      }
     }
     planets {
       name

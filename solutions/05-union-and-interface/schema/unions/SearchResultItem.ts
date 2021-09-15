@@ -8,7 +8,7 @@ import planetType from '../types/Planet';
 export default new GraphQLUnionType({
   name: 'SearchResultItem',
   types: () => [humanType, droidType, wookieType, filmType, planetType],
-  resolveType: (obj) => {
+  resolveType: obj => {
     if (obj.title) {
       return filmType;
     }
@@ -22,5 +22,5 @@ export default new GraphQLUnionType({
       return droidType;
     }
     return wookieType;
-  },
+  }
 });

@@ -1,4 +1,9 @@
-import { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLList } from 'graphql';
+import {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLNonNull,
+  GraphQLList
+} from 'graphql';
 import planetType from './Planet';
 import filmType from './Film';
 import DiameterFilter from '../inputs/DiameterFilter';
@@ -16,23 +21,26 @@ export default new GraphQLObjectType({
         orderBy: {
           type: CharacterOrder,
           defaultValue: { field: 'id', direction: 'ASC' }
-        },
+        }
       },
       resolve: async (_, { orderBy }, { database }) => {
         const query = database
-        .from('character')
-        .select('human_id(*),droid_id(*),wookie_id(*)')
-        .order(orderBy.field, { ascending: orderBy.direction === 'ASC' });
+          .from('character')
+          .select('human_id(*),droid_id(*),wookie_id(*)')
+          .order(orderBy.field, { ascending: orderBy.direction === 'ASC' });
         const { data } = await query;
-        return data.map((o: {human_id: Object; droid_id: Object; wookie_id: Object}) => o.human_id || o.droid_id || o.wookie_id);
+        return data.map(
+          (o: { human_id: Object; droid_id: Object; wookie_id: Object }) =>
+            o.human_id || o.droid_id || o.wookie_id
+        );
       }
     },
     search: {
       type: new GraphQLNonNull(new GraphQLList(SearchResultItem)),
       args: {
         query: {
-          type: new GraphQLNonNull(GraphQLString),
-        },
+          type: new GraphQLNonNull(GraphQLString)
+        }
       },
       resolve: async (_, { query }, { database }) => {
         const { data: humans } = await database
@@ -51,7 +59,7 @@ export default new GraphQLObjectType({
           .textSearch('title', query, { type: 'websearch', config: 'english' });
 
         return [...humans, ...planets, ...films];
-      },
+      }
     },
     planets: {
       type: new GraphQLList(planetType),

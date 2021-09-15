@@ -37,6 +37,6 @@ export default new GraphQLObjectType({
     isJedi: {
       type: GraphQLBoolean,
       resolve: v => v.is_jedi
-    },
+    }
   }
 });

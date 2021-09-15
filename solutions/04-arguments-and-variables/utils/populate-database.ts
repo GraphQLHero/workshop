@@ -1,4 +1,4 @@
-import database from '../database'
+import database from '../database';
 
 const lukeSkywalker = {
   id: 1,
@@ -8,7 +8,7 @@ const lukeSkywalker = {
   height: 172,
   mass: 77.1,
   is_jedi: true,
-  gender: 'MALE',
+  gender: 'MALE'
 };
 const leiaOrgana = {
   id: 2,
@@ -18,7 +18,7 @@ const leiaOrgana = {
   height: 150,
   mass: 49.3,
   is_jedi: false,
-  gender: 'FEMALE',
+  gender: 'FEMALE'
 };
 
 const hanSolo = {
@@ -29,7 +29,7 @@ const hanSolo = {
   height: 180,
   mass: 80.0,
   is_jedi: false,
-  gender: 'MALE',
+  gender: 'MALE'
 };
 
 const r2d2 = {
@@ -37,14 +37,14 @@ const r2d2 = {
   name: 'R2-D2',
   height: 96,
   mass: 32.0,
-  model: 'Série R2',
+  model: 'Série R2'
 };
 const c3po = {
   id: 2,
   name: 'C-3PO',
   height: 167,
   mass: 75.0,
-  model: '',
+  model: ''
 };
 
 const chewbacca = {
@@ -52,7 +52,7 @@ const chewbacca = {
   name: 'Chewbacca',
   hair_color: 'Brown',
   height: 228,
-  mass: 112,
+  mass: 112
 };
 const newHope = {
   id: 1,
@@ -60,7 +60,7 @@ const newHope = {
   episode_number: 4,
   poster_url: 'https://graphqlhero.com/img/Episode_IV.jpg',
   release_date: '1977-05-25',
-  saga: 'ORIGINAL_TRILOGY',
+  saga: 'ORIGINAL_TRILOGY'
 };
 const empireStikesBack = {
   id: 2,
@@ -68,7 +68,7 @@ const empireStikesBack = {
   episode_number: 5,
   poster_url: 'https://graphqlhero.com/img/Episode_V.jpg',
   release_date: '1980-05-17',
-  saga: 'ORIGINAL_TRILOGY',
+  saga: 'ORIGINAL_TRILOGY'
 };
 const returnOfTheJedi = {
   id: 3,
@@ -76,7 +76,7 @@ const returnOfTheJedi = {
   episode_number: 6,
   poster_url: 'https://graphqlhero.com/img/Episode_VI.jpg',
   release_date: '1983-05-25',
-  saga: 'ORIGINAL_TRILOGY',
+  saga: 'ORIGINAL_TRILOGY'
 };
 const revengeOfTheSith = {
   id: 4,
@@ -84,7 +84,7 @@ const revengeOfTheSith = {
   episode_number: 3,
   poster_url: 'https://graphqlhero.com/img/Episode_III.png',
   release_date: '2005-05-19',
-  saga: 'PREQUEL_TRILOGY',
+  saga: 'PREQUEL_TRILOGY'
 };
 const theForceAwakens = {
   id: 5,
@@ -92,7 +92,7 @@ const theForceAwakens = {
   poster_url: 'https://graphqlhero.com/img/Episode_VII.jpg',
   episode_number: 7,
   release_date: '2015-12-11',
-  saga: 'SEQUEL_TRILOGY',
+  saga: 'SEQUEL_TRILOGY'
 };
 const thePhantomMenace = {
   id: 6,
@@ -100,7 +100,7 @@ const thePhantomMenace = {
   episode_number: 1,
   poster_url: 'https://graphqlhero.com/img/Episode_I.png',
   release_date: '1999-05-19',
-  saga: 'PREQUEL_TRILOGY',
+  saga: 'PREQUEL_TRILOGY'
 };
 const attackOfTheClones = {
   id: 7,
@@ -108,63 +108,63 @@ const attackOfTheClones = {
   episode_number: 2,
   poster_url: 'https://graphqlhero.com/img/Episode_II.jpg',
   release_date: '2002-05-16',
-  saga: 'PREQUEL_TRILOGY',
+  saga: 'PREQUEL_TRILOGY'
 };
 const tatooine = {
   id: 1,
   name: 'Tatooine',
   diameter: 10465,
-  climate: 'ARID',
+  climate: 'ARID'
 };
 const yavin = {
   id: 2,
   name: 'Yavin IV',
   diameter: 10200,
-  climate: 'TEMPERATE',
+  climate: 'TEMPERATE'
 };
 const corellia = {
   id: 3,
   name: 'Corellia',
   diameter: 11000,
-  climate: 'TEMPERATE',
+  climate: 'TEMPERATE'
 };
 const alderaan = {
   id: 4,
   name: 'Alderaan',
   diameter: 12500,
-  climate: 'TEMPERATE',
+  climate: 'TEMPERATE'
 };
 const hoth = {
   id: 5,
   name: 'Hoth',
   diameter: 7200,
-  climate: 'FROZEN',
+  climate: 'FROZEN'
 };
 const naboo = {
   id: 6,
   name: 'Naboo',
   diameter: 12120,
-  climate: 'TEMPERATE',
+  climate: 'TEMPERATE'
 };
 const dagobah = {
   id: 7,
   name: 'Dagobah',
   diameter: 8900,
-  climate: 'MURKY',
+  climate: 'MURKY'
 };
 
 const millenniumFalcon = {
   id: 1,
   name: 'Millennium Falcon',
   model: 'YT-1300 light freighter',
-  manufacturer: 'Corellian Engineering Corporation',
+  manufacturer: 'Corellian Engineering Corporation'
 };
 
 const yWing = {
   id: 2,
   name: 'Y-wing',
   model: 'BTL Y-wing',
-  manufacturer: 'Koensayr Manufacturing',
+  manufacturer: 'Koensayr Manufacturing'
 };
 
 (async () => {
@@ -183,7 +183,7 @@ const yWing = {
       revengeOfTheSith,
       theForceAwakens,
       thePhantomMenace,
-      attackOfTheClones,
+      attackOfTheClones
     ]);
 
   await database
@@ -199,14 +199,14 @@ const yWing = {
     { planet_id: 1, film_id: 4 },
     { planet_id: 2, film_id: 1 },
     { planet_id: 3, film_id: 1 },
-    { planet_id: 4, film_id: 1 },
+    { planet_id: 4, film_id: 1 }
   ]);
 
   await database.from('starship_pilots').upsert([
     { starship_id: 1, pilot_id: 1 },
     { starship_id: 1, pilot_id: 2 },
     { starship_id: 1, pilot_id: 3 },
-    { starship_id: 2, pilot_id: 1 },
+    { starship_id: 2, pilot_id: 1 }
   ]);
 
   console.log('Database populated !\n');
