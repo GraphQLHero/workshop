@@ -34,8 +34,7 @@ export default new GraphQLObjectType({
           'LAKES',
           'TUNDRA',
           'MOUNTAINS'
-        ]
-          .slice(0, 2);
+        ].slice(0, 2);
       }
     }
   }

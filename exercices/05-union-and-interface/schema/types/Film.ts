@@ -3,7 +3,8 @@ import {
   GraphQLList,
   GraphQLID,
   GraphQLInt,
-  GraphQLString
+  GraphQLString,
+  GraphQLNonNull
 } from 'graphql';
 import planetType from './Planet';
 
@@ -11,10 +12,10 @@ export default new GraphQLObjectType({
   name: 'Film',
   fields: {
     id: {
-      type: GraphQLID
+      type: new GraphQLNonNull(GraphQLID)
     },
     title: {
-      type: GraphQLString
+      type: new GraphQLNonNull(GraphQLString)
     },
     episodeNumber: {
       type: GraphQLInt,

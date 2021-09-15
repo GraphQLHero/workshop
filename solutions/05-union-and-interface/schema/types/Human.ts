@@ -5,19 +5,23 @@ import {
   GraphQLFloat,
   GraphQLInt,
   GraphQLID,
-  GraphQLString
+  GraphQLString,
+  GraphQLNonNull
 } from 'graphql';
 import humanGender from '../enums/HumanGender';
-import starshipType from './Starship';
+import characterFriendsResolver from '../../resolvers/characterFriendsResolver';
+import Character from '../interfaces/Character';
+import Likable, { likableFields } from '../interfaces/Likable';
 
 export default new GraphQLObjectType({
   name: 'Human',
+  interfaces: [Character, Likable],
   fields: {
     id: {
-      type: GraphQLID
+      type: new GraphQLNonNull(GraphQLID)
     },
     name: {
-      type: GraphQLString
+      type: new GraphQLNonNull(GraphQLString)
     },
     gender: {
       type: humanGender
@@ -36,16 +40,10 @@ export default new GraphQLObjectType({
       type: GraphQLBoolean,
       resolve: v => v.is_jedi
     },
-    starships: {
-      type: new GraphQLList(starshipType),
-      resolve: async (obj, args, { database }) => {
-        const { data } = await database
-          .from('starship_pilots')
-          .select('starship_id(*)')
-          .filter('pilot_id', 'eq', obj.id);
-
-        return data.map((o: { starship_id: Object }) => o.starship_id);
-      }
-    }
+    friends: {
+      type: new GraphQLList(Character),
+      resolve: characterFriendsResolver
+    },
+    ...likableFields
   }
 });

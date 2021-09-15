@@ -1,21 +1,24 @@
 import {
   GraphQLObjectType,
+  GraphQLList,
   GraphQLID,
   GraphQLInt,
   GraphQLString,
-  GraphQLList
+  GraphQLNonNull
 } from 'graphql';
 import planetClimage from '../enums/PlanetClimate';
 import planetLandscape from '../enums/PlanetLandscape';
+import Likable, { likableFields } from '../interfaces/Likable';
 
 export default new GraphQLObjectType({
   name: 'Planet',
+  interfaces: [Likable],
   fields: {
     id: {
-      type: GraphQLID
+      type: new GraphQLNonNull(GraphQLID)
     },
     name: {
-      type: GraphQLString
+      type: new GraphQLNonNull(GraphQLString)
     },
     diameter: {
       type: GraphQLInt
@@ -40,6 +43,7 @@ export default new GraphQLObjectType({
             .slice(0, 2)
         );
       }
-    }
+    },
+    ...likableFields
   }
 });

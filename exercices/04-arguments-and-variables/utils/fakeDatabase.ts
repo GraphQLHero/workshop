@@ -1,34 +1,34 @@
 export const lukeSkywalker = {
-  id: "1",
+  id: '1',
   name: 'Luke Skywalker',
   birth_year: '19BBY',
   avatar_url: 'https://graphqlhero.com/img/luke.jpg',
   height: 172,
   mass: 77.1,
   is_jedi: true,
-  gender: 'MALE',
+  gender: 'MALE'
 };
 
 export const leiaOrgana = {
-  id: "2",
+  id: '2',
   name: 'Leia Organa',
   birth_year: '19BBY',
   avatar_url: 'https://graphqlhero.com/img/LeiaOrgana.png',
   height: 150,
   mass: 49.3,
   is_jedi: false,
-  gender: 'FEMALE',
+  gender: 'FEMALE'
 };
 
 export const hanSolo = {
-  id: "3",
+  id: '3',
   name: 'Han Solo',
   birth_year: '29BBY',
   avatar_url: 'https://graphqlhero.com/img/HanSolo.png',
   height: 180,
   mass: 80.0,
   is_jedi: false,
-  gender: 'MALE',
+  gender: 'MALE'
 };
 
 export const r2d2 = {

@@ -3,18 +3,21 @@ import {
   GraphQLList,
   GraphQLID,
   GraphQLInt,
-  GraphQLString
+  GraphQLString,
+  GraphQLNonNull
 } from 'graphql';
+import Likable, { likableFields } from '../interfaces/Likable';
 import planetType from './Planet';
 
 export default new GraphQLObjectType({
   name: 'Film',
+  interfaces: [Likable],
   fields: {
     id: {
-      type: GraphQLID
+      type: new GraphQLNonNull(GraphQLID)
     },
     title: {
-      type: GraphQLString
+      type: new GraphQLNonNull(GraphQLString)
     },
     episodeNumber: {
       type: GraphQLInt,
@@ -37,6 +40,7 @@ export default new GraphQLObjectType({
           .filter('film_id', 'eq', film.id);
         return data.map((o: { planet_id: Object }) => o.planet_id);
       }
-    }
+    },
+    ...likableFields
   }
 });

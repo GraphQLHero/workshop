@@ -8,7 +8,7 @@ import {
 import humanType from './Human';
 import { lukeSkywalker, leiaOrgana, hanSolo } from '../../utils/fakeDatabase';
 
-const humans = [lukeSkywalker, leiaOrgana, hanSolo]
+const humans = [lukeSkywalker, leiaOrgana, hanSolo];
 
 export default new GraphQLObjectType({
   name: 'Query',
@@ -27,9 +27,7 @@ export default new GraphQLObjectType({
           'Resolver called with args: ' + JSON.stringify(args, null, 2)
         );
         if (args.isJedi !== null) {
-          return humans.filter(
-            h => h.is_jedi === args.isJedi
-          );
+          return humans.filter(h => h.is_jedi === args.isJedi);
         }
         return humans;
       }

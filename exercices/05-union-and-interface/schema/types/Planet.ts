@@ -1,9 +1,10 @@
 import {
   GraphQLObjectType,
+  GraphQLList,
   GraphQLID,
   GraphQLInt,
   GraphQLString,
-  GraphQLList
+  GraphQLNonNull
 } from 'graphql';
 import planetClimage from '../enums/PlanetClimate';
 import planetLandscape from '../enums/PlanetLandscape';
@@ -12,10 +13,10 @@ export default new GraphQLObjectType({
   name: 'Planet',
   fields: {
     id: {
-      type: GraphQLID
+      type: new GraphQLNonNull(GraphQLID)
     },
     name: {
-      type: GraphQLString
+      type: new GraphQLNonNull(GraphQLString)
     },
     diameter: {
       type: GraphQLInt
