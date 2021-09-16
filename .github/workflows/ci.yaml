@@ -29,13 +29,26 @@ jobs:
             yarn install
             yarn dump-graphql-schema
             yarn test --ci
-      - name: Test exercise 3
+      - name: Test exercise 3 - bonus
         run: |
             cd exercices/03-null-vs-non-null
             yarn install
             yarn dump-graphql-schema
             yarn test --ci
-      # TODO add solution 3
+      - name: Test exercise 3
+        run: |
+            cd exercices/03-a-complete-graphql-server
+            yarn install
+            yarn dump-graphql-schema
+            yarn populate-database
+            yarn test --ci
+      - name: Test solution 3
+        run: |
+            cd solutions/03-a-complete-graphql-server
+            yarn install
+            yarn dump-graphql-schema
+            yarn populate-database
+            yarn test --ci
       - name: Test exercise 4
         run: |
             cd exercices/04-arguments-and-variables
@@ -62,16 +75,41 @@ jobs:
             yarn dump-graphql-schema
             yarn populate-database
             yarn test --ci
-      - name: Test exercise 10
+      - name: Test exercise 6
         run: |
-            cd exercices/10-a-complete-graphql-server
+            cd exercices/06-mutations
+            yarn install
+            yarn dump-graphql-schema
+            yarn test --ci
+      - name: Test solution 6
+        run: |
+            cd solutions/06-mutations
             yarn install
             yarn dump-graphql-schema
             yarn populate-database
             yarn test --ci
-      - name: Test solution 10
+      - name: Test exercise 7
         run: |
-            cd solutions/10-a-complete-graphql-server
+            cd exercices/07-node
+            yarn install
+            yarn dump-graphql-schema
+            yarn test --ci
+      - name: Test solution 7
+        run: |
+            cd solutions/07-node
+            yarn install
+            yarn dump-graphql-schema
+            yarn populate-database
+            yarn test --ci
+      - name: Test exercise 8
+        run: |
+            cd exercices/08-lists-pagination
+            yarn install
+            yarn dump-graphql-schema
+            yarn test --ci
+      - name: Test solution 8
+        run: |
+            cd solutions/08-lists-pagination
             yarn install
             yarn dump-graphql-schema
             yarn populate-database

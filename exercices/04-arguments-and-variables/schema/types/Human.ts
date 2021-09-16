@@ -7,7 +7,7 @@ import {
   GraphQLObjectType
 } from 'graphql';
 import spaceshipType from './Spaceship';
-import { xWing, tantive4, millenniumFalcon } from '../../utils/fakeDatabase';
+import { xWing, tantive4, millenniumFalcon } from '../../database/fake';
 import HumanGender from '../enums/HumanGender';
 
 export default new GraphQLObjectType({

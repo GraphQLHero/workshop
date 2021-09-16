@@ -1,4 +1,4 @@
-type Human implements Character {
+type Human implements Character & Likable {
   id: ID!
   name: String!
   gender: HumanGender
@@ -7,12 +7,21 @@ type Human implements Character {
   avatarUrl: String
   isJedi: Boolean
   friends: [Character]
+  likesCount: Int
+  viewerHasLiked: Boolean
 }
 
-interface Character {
-  id: ID
+interface Character implements Likable {
+  id: ID!
   name: String!
   friends: [Character]
+  likesCount: Int
+  viewerHasLiked: Boolean
+}
+
+interface Likable {
+  likesCount: Int
+  viewerHasLiked: Boolean
 }
 
 """The possible gender for a human."""
@@ -22,26 +31,31 @@ enum HumanGender {
   OTHER
 }
 
-type Droid implements Character {
+type Droid implements Character & Likable {
   id: ID!
   name: String!
   height: Int
   mass: Float
   model: String
   friends: [Character]
+  likesCount: Int
+  viewerHasLiked: Boolean
 }
 
-type Wookie implements Character {
-  id: ID
+type Wookie implements Character & Likable {
+  id: ID!
   name: String!
   height: Int
   mass: Float
   hairColor: String
   friends: [Character]
+  likesCount: Int
+  viewerHasLiked: Boolean
 }
 
 type Query {
   characters(orderBy: CharacterOrder = {direction: ASC, field: CREATED_AT}): [Character]
+  search(query: String!): [SearchResultItem]!
   planets(diameter: DiameterFilter): [Planet]
   films(saga: StarWarsSaga): [Film]
 }
@@ -62,12 +76,27 @@ enum CharacterOrderField {
   CREATED_AT
 }
 
-type Planet {
-  id: ID
-  name: String
+union SearchResultItem = Human | Droid | Wookie | Film | Planet
+
+type Film implements Likable {
+  id: ID!
+  title: String!
+  episodeNumber: Int
+  posterUrl: String
+  releaseDate: String
+  featuredPlanets: [Planet]
+  likesCount: Int
+  viewerHasLiked: Boolean
+}
+
+type Planet implements Likable {
+  id: ID!
+  name: String!
   diameter: Int
   climate: PlanetClimage
   landscapes: [PlanetLandscape]
+  likesCount: Int
+  viewerHasLiked: Boolean
 }
 
 """The possible climate for a planet."""
@@ -94,15 +123,6 @@ enum PlanetLandscape {
 input DiameterFilter {
   min: Int
   max: Int
-}
-
-type Film {
-  id: ID
-  title: String
-  episodeNumber: Int
-  posterUrl: String
-  releaseDate: String
-  featuredPlanets: [Planet]
 }
 
 """The possible saga for a film."""

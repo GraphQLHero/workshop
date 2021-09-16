@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "dev": "node-dev --require dotenv/config index.ts",
-    "dump-graphql-schema": "node-dev --require dotenv/config utils/dump-graphql-schema.ts",
-    "populate-database": "node-dev --require dotenv/config utils/populate-database.ts",
+    "dump-graphql-schema": "node-dev --require dotenv/config schema/dump.ts",
+    "populate-database": "node-dev --require dotenv/config database/populate.ts",
     "test": "jest --setupFiles dotenv/config"
   },
   "dependencies": {

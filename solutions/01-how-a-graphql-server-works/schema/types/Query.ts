@@ -9,7 +9,7 @@ import {
   r2d2,
   c3po,
   chewbacca
-} from '../../utils/fakeDatabase';
+} from '../../database';
 
 export default new GraphQLObjectType({
   name: 'Query',

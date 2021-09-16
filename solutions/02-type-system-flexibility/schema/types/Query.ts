@@ -19,13 +19,13 @@ import {
   naboo,
   dagobah,
   newHope,
-  empireStikesBack,
+  empireStrikesBack,
   returnOfTheJedi,
   revengeOfTheSith,
   theForceAwakens,
   thePhantomMenace,
   attackOfTheClones
-} from '../../utils/fakeDatabase';
+} from '../../database';
 
 export default new GraphQLObjectType({
   name: 'Query',
@@ -42,7 +42,7 @@ export default new GraphQLObjectType({
       type: new GraphQLList(filmType),
       resolve: () => [
         newHope,
-        empireStikesBack,
+        empireStrikesBack,
         returnOfTheJedi,
         revengeOfTheSith,
         theForceAwakens,

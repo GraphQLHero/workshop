@@ -6,7 +6,7 @@ import {
   GraphQLObjectType
 } from 'graphql';
 import spaceshipType from './Spaceship';
-import { millenniumFalcon } from '../../utils/fakeDatabase';
+import { millenniumFalcon } from '../../database';
 
 export default new GraphQLObjectType({
   name: 'Wookie',

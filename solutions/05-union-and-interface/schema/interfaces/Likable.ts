@@ -26,7 +26,7 @@ export const likableFields: GraphQLFieldConfigMap<
 
 export default new GraphQLInterfaceType({
   name: 'Likable',
-  resolveType: obj => {
+  resolveType: (obj: {title?: string; diameter?: number; gender?: string; model?: string}) => {
     if (obj.title) {
       return 'Film';
     }
