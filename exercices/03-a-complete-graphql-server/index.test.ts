@@ -1,7 +1,7 @@
 import { graphql } from 'graphql';
 import schema from './schema';
 import database from './schema';
-import defaultQuery from './utils/defaultQuery';
+import defaultQuery from './queries/defaultQuery';
 
 test('`defaultQuery` resolve correctly without viewer', async () => {
   const context = { viewer: null, database };
