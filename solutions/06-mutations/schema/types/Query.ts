@@ -4,7 +4,6 @@ import {
   GraphQLNonNull,
   GraphQLList
 } from 'graphql';
-import planetType from '../../../07-node/schema/types/Planet';
 import filmType from './Film';
 // import DiameterFilter from '../inputs/DiameterFilter';
 // import StarWarsSaga from '../enums/StarWarsSaga';
@@ -34,18 +33,6 @@ export default new GraphQLObjectType({
     //     );
     //   }
     // },
-    planets: {
-      type: new GraphQLList(planetType),
-      resolve: async (_, args, { database }) => {
-        const query = database.from('planet').select('*');
-
-        const { data, error } = await query;
-        if (error) {
-          console.error(error);
-        }
-        return data;
-      }
-    },
     films: {
       type: new GraphQLList(filmType),
       resolve: async (_, args, { database }) => {

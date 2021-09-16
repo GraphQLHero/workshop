@@ -7,7 +7,7 @@ import {
   GraphQLString,
   GraphQLNonNull
 } from 'graphql';
-import Likable, { likableFields } from '../../../06-mutations/schema/interfaces/Likable';
+import Likable, { likableFields } from '../interfaces/Likable';
 
 export default new GraphQLObjectType({
   name: 'Human',

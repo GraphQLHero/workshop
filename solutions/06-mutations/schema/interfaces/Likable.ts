@@ -30,9 +30,6 @@ export default new GraphQLInterfaceType({
     if (obj.title) {
       return 'Film';
     }
-    if (obj.diameter) {
-      return 'Planet';
-    }
     if (obj.gender) {
       return 'Human';
     }
