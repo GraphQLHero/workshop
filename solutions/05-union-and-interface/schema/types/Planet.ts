@@ -8,7 +8,7 @@ import {
 } from 'graphql';
 import planetClimage from '../enums/PlanetClimate';
 import planetLandscape from '../enums/PlanetLandscape';
-import Likable, { likableFields } from '../../../06-mutations/schema/interfaces/Likable';
+import Likable, { likableFields } from '../interfaces/Likable';
 
 export default new GraphQLObjectType({
   name: 'Planet',

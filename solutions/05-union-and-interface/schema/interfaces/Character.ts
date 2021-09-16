@@ -5,7 +5,7 @@ import {
   GraphQLString,
   GraphQLNonNull
 } from 'graphql';
-import Likable, { likableFields } from '../../../06-mutations/schema/interfaces/Likable';
+import Likable, { likableFields } from './Likable';
 
 export const resolveType = (obj: { gender?: string; model?: string }) => {
   if (obj.gender) {

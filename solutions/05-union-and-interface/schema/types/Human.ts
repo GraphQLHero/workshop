@@ -11,7 +11,7 @@ import {
 import humanGender from '../enums/HumanGender';
 import characterFriendsResolver from '../../resolvers/characterFriendsResolver';
 import Character from '../interfaces/Character';
-import Likable, { likableFields } from '../../../06-mutations/schema/interfaces/Likable';
+import Likable, { likableFields } from '../interfaces/Likable';
 
 export default new GraphQLObjectType({
   name: 'Human',

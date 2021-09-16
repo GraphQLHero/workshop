@@ -6,7 +6,7 @@ import {
   GraphQLString,
   GraphQLNonNull
 } from 'graphql';
-import Likable, { likableFields } from '../../../06-mutations/schema/interfaces/Likable';
+import Likable, { likableFields } from '../interfaces/Likable';
 import planetType from './Planet';
 
 export default new GraphQLObjectType({
