@@ -23,6 +23,13 @@ type Film implements Node {
   releaseDate: String
 }
 
+type Planet implements Node {
+  """The ID of an object"""
+  id: ID!
+  name: String!
+  diameter: Int
+}
+
 type Query {
   """Fetches an object given its ID"""
   node(

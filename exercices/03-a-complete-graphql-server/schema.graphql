@@ -1,5 +1,8 @@
 type Query {
   viewer: Viewer
+  lukeSkywalker: Human
+  leiaOrgana: Human
+  hanSolo: Human
   humans: [Human]
   planets: [Planet]
   films: [Film]
