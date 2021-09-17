@@ -14,25 +14,26 @@ interface Node {
   id: ID!
 }
 
-type Film implements Node {
-  """The ID of an object"""
-  id: ID!
-  title: String!
-  episodeNumber: Int
-  posterUrl: String
-  releaseDate: String
-}
-
 type Query {
   """Fetches an object given its ID"""
   node(
     """The ID of an object"""
     id: ID!
   ): Node
+  planet(id: ID!): Planet
+  film(id: ID!): Film
+}
 
-  """Fetches objects given their IDs"""
-  nodes(
-    """The IDs of objects"""
-    ids: [ID!]!
-  ): [Node]!
+type Planet {
+  id: ID!
+  name: String!
+  diameter: Int
+}
+
+type Film {
+  id: ID!
+  title: String!
+  episodeNumber: Int
+  posterUrl: String
+  releaseDate: String
 }

@@ -6,13 +6,11 @@ type Human implements Character {
   mass: Float
   avatarUrl: String
   isJedi: Boolean
-  friends: [Character]
 }
 
 interface Character {
   id: ID
   name: String!
-  friends: [Character]
 }
 
 """The possible gender for a human."""
@@ -28,7 +26,6 @@ type Droid implements Character {
   height: Int
   mass: Float
   model: String
-  friends: [Character]
 }
 
 type Wookie implements Character {
@@ -37,7 +34,6 @@ type Wookie implements Character {
   height: Int
   mass: Float
   hairColor: String
-  friends: [Character]
 }
 
 type Query {
@@ -63,8 +59,8 @@ enum CharacterOrderField {
 }
 
 type Planet {
-  id: ID
-  name: String
+  id: ID!
+  name: String!
   diameter: Int
   climate: PlanetClimage
   landscapes: [PlanetLandscape]
@@ -97,8 +93,8 @@ input DiameterFilter {
 }
 
 type Film {
-  id: ID
-  title: String
+  id: ID!
+  title: String!
   episodeNumber: Int
   posterUrl: String
   releaseDate: String

@@ -1,21 +1,10 @@
-type Human implements Character & Likable {
-  id: ID
+type Human implements Likable {
+  id: ID!
   name: String!
-  gender: HumanGender
   height: Int
   mass: Float
   avatarUrl: String
   isJedi: Boolean
-  starships: [Starship]
-  friends: [Character]
-  likesCount: Int
-  viewerHasLiked: Boolean
-}
-
-interface Character implements Likable {
-  id: ID
-  name: String!
-  friends: [Character]
   likesCount: Int
   viewerHasLiked: Boolean
 }
@@ -25,122 +14,47 @@ interface Likable {
   viewerHasLiked: Boolean
 }
 
-"""The possible gender for a human."""
-enum HumanGender {
-  FEMALE
-  MALE
-  OTHER
-}
-
-type Starship {
-  id: ID
-  name: String
-  model: String
-  pilots: [Human]
-}
-
-type Droid implements Character & Likable {
-  id: ID
+type Droid implements Likable {
+  id: ID!
   name: String!
   height: Int
   mass: Float
   model: String
-  friends: [Character]
   likesCount: Int
   viewerHasLiked: Boolean
 }
 
-type Wookie implements Character & Likable {
-  id: ID
+type Wookie implements Likable {
+  id: ID!
   name: String!
   height: Int
   mass: Float
   hairColor: String
-  friends: [Character]
   likesCount: Int
   viewerHasLiked: Boolean
 }
 
 type Query {
-  viewer: Viewer
-  characters(orderBy: HumanOrder = {direction: DESC, field: CREATED_AT}): [Character]
-  planets(diameter: DiameterFilter): [Planet]
-  films(saga: StarWarsSaga): [Film]
-}
-
-type Viewer {
-  username: String
-}
-
-input HumanOrder {
-  direction: OrderDirection
-  field: CharacterOrderField
-}
-
-"""The possible direction for ordering."""
-enum OrderDirection {
-  ASC
-  DESC
-}
-
-"""The possible field for ordering characters."""
-enum CharacterOrderField {
-  CREATED_AT
+  planets: [Planet]
+  films: [Film]
 }
 
 type Planet implements Likable {
-  id: ID
-  name: String
+  id: ID!
+  name: String!
   diameter: Int
-  climate: PlanetClimage
-  landscapes: [PlanetLandscape]
   likesCount: Int
   viewerHasLiked: Boolean
-}
-
-"""The possible climate for a planet."""
-enum PlanetClimage {
-  ARID
-  TEMPERATE
-  TROPICAL
-  FROZEN
-  MURKY
-}
-
-"""The possible landscape for a planet."""
-enum PlanetLandscape {
-  DESERT
-  GRASSLANDS
-  MOUNTAINS
-  JUNGLE
-  RAINFORESTS
-  FORESTS
-  LAKES
-  TUNDRA
-}
-
-input DiameterFilter {
-  min: Int
-  max: Int
 }
 
 type Film implements Likable {
-  id: ID
-  title: String
+  id: ID!
+  title: String!
   episodeNumber: Int
   posterUrl: String
   releaseDate: String
-  viewerRating: Int
-  featuredPlanets: [Planet]
   likesCount: Int
   viewerHasLiked: Boolean
-}
-
-"""The possible saga for a film."""
-enum StarWarsSaga {
-  ORIGINAL_TRILOGY
-  PREQUEL_TRILOGY
-  SEQUEL_TRILOGY
 }
 
 type Mutation {

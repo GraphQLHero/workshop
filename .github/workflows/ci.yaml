@@ -6,111 +6,57 @@ env:
   SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
   SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
 
+
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        directory: [
+        "solutions/01-how-a-graphql-server-works", 
+        "exercices/02-type-system-flexibility", 
+        "solutions/02-type-system-flexibility",
+        "exercices/04-arguments-and-variables",
+        "exercices/07-node",
+        "exercices/08-lists-pagination",
+      ]
     steps:
       - uses: actions/checkout@v2
-      - name: Test solution 1
+      - name: Test ${{ matrix.directory }}
+        working-directory: ${{ matrix.directory }}
         run: |
-            cd solutions/01-how-a-graphql-server-works
             yarn install
             yarn dump-graphql-schema
+            if [[ $(git diff -G. --name-only *.graphql | wc -c) -ne 0 ]]; then echo "The schema is not up to date with the code !" && exit 1; fi
             yarn test --ci
-      - name: Test exercise 2
+  test-with-db:
+    runs-on: ubuntu-latest
+    concurrency: 
+      group: need_supabase
+      cancel-in-progress: true
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        directory: [
+        "exercices/03-a-complete-graphql-server", 
+        "solutions/03-a-complete-graphql-server", 
+        "solutions/04-arguments-and-variables",
+        "exercices/05-union-and-interface",
+        "solutions/05-union-and-interface",
+        "exercices/06-mutations",
+        "solutions/06-mutations",
+        "solutions/07-node",
+        "solutions/08-lists-pagination"
+      ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test ${{ matrix.directory }}
+        working-directory: ${{ matrix.directory }}
         run: |
-            cd exercices/02-type-system-flexibility
             yarn install
             yarn dump-graphql-schema
-            yarn test --ci
-      - name: Test solution 2
-        run: |
-            cd solutions/02-type-system-flexibility
-            yarn install
-            yarn dump-graphql-schema
-            yarn test --ci
-      - name: Test exercise 3 - bonus
-        run: |
-            cd exercices/03-null-vs-non-null
-            yarn install
-            yarn dump-graphql-schema
-            yarn test --ci
-      - name: Test exercise 3
-        run: |
-            cd exercices/03-a-complete-graphql-server
-            yarn install
-            yarn dump-graphql-schema
-            yarn populate-database
-            yarn test --ci
-      - name: Test solution 3
-        run: |
-            cd solutions/03-a-complete-graphql-server
-            yarn install
-            yarn dump-graphql-schema
-            yarn populate-database
-            yarn test --ci
-      - name: Test exercise 4
-        run: |
-            cd exercices/04-arguments-and-variables
-            yarn install
-            yarn dump-graphql-schema
-            yarn test --ci
-      - name: Test solution 4
-        run: |
-            cd solutions/04-arguments-and-variables
-            yarn install
-            yarn dump-graphql-schema
-            yarn populate-database
-            yarn test --ci
-      - name: Test exercise 5
-        run: |
-            cd exercices/05-union-and-interface
-            yarn install
-            yarn dump-graphql-schema
-            yarn test --ci
-      - name: Test solution 5
-        run: |
-            cd solutions/05-union-and-interface
-            yarn install
-            yarn dump-graphql-schema
-            yarn populate-database
-            yarn test --ci
-      - name: Test exercise 6
-        run: |
-            cd exercices/06-mutations
-            yarn install
-            yarn dump-graphql-schema
-            yarn test --ci
-      - name: Test solution 6
-        run: |
-            cd solutions/06-mutations
-            yarn install
-            yarn dump-graphql-schema
-            yarn populate-database
-            yarn test --ci
-      - name: Test exercise 7
-        run: |
-            cd exercices/07-node
-            yarn install
-            yarn dump-graphql-schema
-            yarn test --ci
-      - name: Test solution 7
-        run: |
-            cd solutions/07-node
-            yarn install
-            yarn dump-graphql-schema
-            yarn populate-database
-            yarn test --ci
-      - name: Test exercise 8
-        run: |
-            cd exercices/08-lists-pagination
-            yarn install
-            yarn dump-graphql-schema
-            yarn test --ci
-      - name: Test solution 8
-        run: |
-            cd solutions/08-lists-pagination
-            yarn install
-            yarn dump-graphql-schema
+            if [[ $(git diff -G. --name-only *.graphql | wc -c) -ne 0 ]]; then echo "The schema is not up to date with the code !" && exit 1; fi
             yarn populate-database
             yarn test --ci

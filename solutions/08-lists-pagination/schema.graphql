@@ -1,6 +1,12 @@
 type Query {
   """The characters of Star Wars."""
-  characters(after: String, first: Int): CharacterConnection!
+  characters(
+    """Returns the items in the list that come after the specified cursor."""
+    after: String
+
+    """Returns the first n items from the list."""
+    first: Int
+  ): CharacterConnection!
 }
 
 """A connection to a list of items."""
