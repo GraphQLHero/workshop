@@ -15,7 +15,10 @@ jobs:
         directory: [
         "solutions/01-how-a-graphql-server-works", 
         "exercices/02-type-system-flexibility", 
-        "solutions/02-type-system-flexibility"
+        "solutions/02-type-system-flexibility",
+        "exercices/04-arguments-and-variables",
+        "exercices/07-node",
+        "exercices/08-lists-pagination",
       ]
     steps:
       - uses: actions/checkout@v2
@@ -28,21 +31,18 @@ jobs:
             yarn test --ci
   test-with-db:
     runs-on: ubuntu-latest
-    concurrency: need_supabase
+    # concurrency: need_supabase
     strategy:
       matrix:
         directory: [
         "exercices/03-a-complete-graphql-server", 
         "solutions/03-a-complete-graphql-server", 
-        "exercices/04-arguments-and-variables",
         "solutions/04-arguments-and-variables",
         "exercices/05-union-and-interface",
         "solutions/05-union-and-interface",
         "exercices/06-mutations",
         "solutions/06-mutations",
-        "exercices/07-node",
         "solutions/07-node",
-        "exercices/08-lists-pagination",
         "solutions/08-lists-pagination"
       ]
     steps:
