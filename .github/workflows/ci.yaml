@@ -32,7 +32,7 @@ jobs:
             yarn test --ci
   test-with-db:
     runs-on: ubuntu-latest
-    # concurrency: need_supabase
+    concurrency: need_supabase
     strategy:
       fail-fast: false
       matrix:
