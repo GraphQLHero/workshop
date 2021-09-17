@@ -11,6 +11,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         directory: [
         "solutions/01-how-a-graphql-server-works", 
@@ -27,12 +28,13 @@ jobs:
         run: |
             yarn install
             yarn dump-graphql-schema
-            if [[ $(git diff -G. --name-only *.graphql | wc -c) -ne 0 ]]; then echo "\n\033[31mThe schema is not up to date with the code\033[0m" && exit 1; fi
+            if [[ $(git diff -G. --name-only *.graphql | wc -c) -ne 0 ]]; then echo "The schema is not up to date with the code !" && exit 1; fi
             yarn test --ci
   test-with-db:
     runs-on: ubuntu-latest
     # concurrency: need_supabase
     strategy:
+      fail-fast: false
       matrix:
         directory: [
         "exercices/03-a-complete-graphql-server", 
@@ -52,6 +54,6 @@ jobs:
         run: |
             yarn install
             yarn dump-graphql-schema
-            if [[ $(git diff -G. --name-only *.graphql | wc -c) -ne 0 ]]; then echo "\n\033[31mThe schema is not up to date with the code\033[0m" && exit 1; fi
+            if [[ $(git diff -G. --name-only *.graphql | wc -c) -ne 0 ]]; then echo "The schema is not up to date with the code !" && exit 1; fi
             yarn populate-database
             yarn test --ci
