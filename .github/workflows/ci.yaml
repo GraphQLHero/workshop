@@ -34,9 +34,10 @@ jobs:
     runs-on: ubuntu-latest
     concurrency: 
       group: need_supabase
-      cancel-in-progress: false
+      cancel-in-progress: true
     strategy:
       fail-fast: false
+      max-parallel: 1
       matrix:
         directory: [
         "exercices/03-a-complete-graphql-server", 
