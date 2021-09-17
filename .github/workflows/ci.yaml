@@ -32,7 +32,9 @@ jobs:
             yarn test --ci
   test-with-db:
     runs-on: ubuntu-latest
-    concurrency: need_supabase
+    concurrency: 
+      group: need_supabase
+      cancel-in-progress: false
     strategy:
       fail-fast: false
       matrix:
