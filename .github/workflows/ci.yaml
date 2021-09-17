@@ -26,82 +26,32 @@ jobs:
             yarn dump-graphql-schema
             if [[ $(git diff -G. --name-only *.graphql | wc -c) -ne 0 ]]; then echo "\n\033[31mThe schema is not up to date with the code\033[0m" && exit 1; fi
             yarn test --ci
-      # - name: Test exercise 3
-      #   run: |
-      #       cd exercices/03-a-complete-graphql-server
-      #       yarn install
-      #       yarn dump-graphql-schema
-      #       yarn populate-database
-      #       yarn test --ci
-      # - name: Test solution 3
-      #   run: |
-      #       cd solutions/03-a-complete-graphql-server
-      #       yarn install
-      #       yarn dump-graphql-schema
-      #       yarn populate-database
-      #       yarn test --ci
-      # - name: Test exercise 4
-      #   run: |
-      #       cd exercices/04-arguments-and-variables
-      #       yarn install
-      #       yarn dump-graphql-schema
-      #       yarn test --ci
-      # - name: Test solution 4
-      #   run: |
-      #       cd solutions/04-arguments-and-variables
-      #       yarn install
-      #       yarn dump-graphql-schema
-      #       yarn populate-database
-      #       yarn test --ci
-      # - name: Test exercise 5
-      #   run: |
-      #       cd exercices/05-union-and-interface
-      #       yarn install
-      #       yarn dump-graphql-schema
-      #       yarn test --ci
-      # - name: Test solution 5
-      #   run: |
-      #       cd solutions/05-union-and-interface
-      #       yarn install
-      #       yarn dump-graphql-schema
-      #       yarn populate-database
-      #       yarn test --ci
-      # - name: Test exercise 6
-      #   run: |
-      #       cd exercices/06-mutations
-      #       yarn install
-      #       yarn dump-graphql-schema
-      #       yarn test --ci
-      # - name: Test solution 6
-      #   run: |
-      #       cd solutions/06-mutations
-      #       yarn install
-      #       yarn dump-graphql-schema
-      #       yarn populate-database
-      #       yarn test --ci
-      # - name: Test exercise 7
-      #   run: |
-      #       cd exercices/07-node
-      #       yarn install
-      #       yarn dump-graphql-schema
-      #       yarn test --ci
-      # - name: Test solution 7
-      #   run: |
-      #       cd solutions/07-node
-      #       yarn install
-      #       yarn dump-graphql-schema
-      #       yarn populate-database
-      #       yarn test --ci
-      # - name: Test exercise 8
-      #   run: |
-      #       cd exercices/08-lists-pagination
-      #       yarn install
-      #       yarn dump-graphql-schema
-      #       yarn test --ci
-      # - name: Test solution 8
-      #   run: |
-      #       cd solutions/08-lists-pagination
-      #       yarn install
-      #       yarn dump-graphql-schema
-      #       yarn populate-database
-      #       yarn test --ci
+  test-with-db:
+    runs-on: ubuntu-latest
+    concurrency: need_supabase
+    strategy:
+      matrix:
+        directory: [
+        "exercices/03-a-complete-graphql-server", 
+        "solutions/03-a-complete-graphql-server", 
+        "exercices/04-arguments-and-variables",
+        "solutions/04-arguments-and-variables",
+        "exercices/05-union-and-interface",
+        "solutions/05-union-and-interface",
+        "exercices/06-mutations",
+        "solutions/06-mutations",
+        "exercices/07-node",
+        "solutions/07-node",
+        "exercices/08-lists-pagination",
+        "solutions/08-lists-pagination"
+      ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test ${{ matrix.directory }}
+        working-directory: ${{ matrix.directory }}
+        run: |
+            yarn install
+            yarn dump-graphql-schema
+            if [[ $(git diff -G. --name-only *.graphql | wc -c) -ne 0 ]]; then echo "\n\033[31mThe schema is not up to date with the code\033[0m" && exit 1; fi
+            yarn populate-database
+            yarn test --ci
